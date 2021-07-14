@@ -20,7 +20,9 @@ public class WebElementAction {
      * @param webElement the text box to set
      * @param value the value to set
      */
-    public void setTextField(final WebElement webElement, final String value) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public void setTextField(final WebElement webElement, final String value)
+            throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
+            InstantiationException, IllegalAccessException {
         driver = getWebDriverManager(DriverManagerType.CHROME).getDriver();
         wait = getWebDriverManager(DriverManagerType.CHROME).getWebDriverWait();
         wait.until(ExpectedConditions.visibilityOf(webElement));
