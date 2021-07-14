@@ -54,8 +54,10 @@ public class LoginPage extends BasePage {
      *
      * @param newUsername a String with the value
      */
-    private void setUsernameTextBox(final String newUsername) {
-        usernameTextBox.sendKeys(newUsername);
+    private void setUsernameTextBox(final String newUsername) throws
+            ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
+            InstantiationException, IllegalAccessException {
+        getWebElementAction().setTextField(usernameTextBox, newUsername);
     }
 
     /**
@@ -63,8 +65,10 @@ public class LoginPage extends BasePage {
      *
      * @param newPassword a String with the value
      */
-    private void setPasswordTextBox(final String newPassword) {
-        passwordTextBox.sendKeys(newPassword);
+    private void setPasswordTextBox(final String newPassword) throws
+            ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
+            InstantiationException, IllegalAccessException {
+        getWebElementAction().setTextField(passwordTextBox, newPassword);
     }
 
     /**

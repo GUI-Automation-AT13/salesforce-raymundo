@@ -35,3 +35,5 @@ checkstyleMain {
 checkstyleTest {
     source = 'src/main/java'
 }
+
+test.finalizedBy("checkstyleMain")

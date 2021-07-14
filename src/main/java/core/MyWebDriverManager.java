@@ -24,37 +24,67 @@ public class MyWebDriverManager {
     private static WebDriverWait wait;
 
     /**
+     * Creates the object myWebDriverManager.
+     *
+     * @param newDriverManagerType an enum with the web driver's type
+     * @throws ClassNotFoundException an enum with the driver type
+     * @throws NoSuchMethodException when the method is not found
+     * @throws InvocationTargetException when the target can not be invoked
+     * @throws InstantiationException when it is not possible to create an instance
+     * @throws IllegalAccessException when it can not be accessed
+     */
+    public MyWebDriverManager(final DriverManagerType newDriverManagerType)
+            throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
+            InstantiationException, IllegalAccessException {
+        this.driverManagerType = newDriverManagerType;
+        initialize();
+    }
+
+    /**
      * Gets the web driver manager or creates one when needed.
      *
-     * @param driverManagerType an enum with the driver type
+     * @param driverManagerType the driver's type
      * @return an instance of myWebDriverManager
+     * @throws ClassNotFoundException an enum with the driver type
+     * @throws NoSuchMethodException when the method is not found
+     * @throws InvocationTargetException when the target can not be invoked
+     * @throws InstantiationException when it is not possible to create an instance
+     * @throws IllegalAccessException when it can not be accessed
      */
     public static MyWebDriverManager getWebDriverManager(final DriverManagerType
                                                                  driverManagerType)
-            throws ClassNotFoundException, NoSuchMethodException,
-            InvocationTargetException, InstantiationException, IllegalAccessException {
+            throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
+            InstantiationException, IllegalAccessException {
         if (myWebDriverManager == null) {
             myWebDriverManager = new MyWebDriverManager(driverManagerType);
-            WebDriverManager.getInstance(driverManagerType).setup();
-            Class<?> driverClass =  Class.forName(driverManagerType.browserClass());
-            driver = (WebDriver) driverClass.getDeclaredConstructor().newInstance();
-            wait = new WebDriverWait(driver, Long.parseLong(getDotenv().get("EXPLICIT_WAIT_TIME")));
         }
         return myWebDriverManager;
+    }
+
+    /**
+     * Creates the web driver and web driver wait instances.
+     *
+     * @throws ClassNotFoundException an enum with the driver type
+     * @throws NoSuchMethodException when the method is not found
+     * @throws InvocationTargetException when the target can not be invoked
+     * @throws InstantiationException when it is not possible to create an instance
+     * @throws IllegalAccessException when it can not be accessed
+     */
+    public void initialize() throws ClassNotFoundException, NoSuchMethodException,
+            InvocationTargetException, InstantiationException, IllegalAccessException {
+        WebDriverManager.getInstance(driverManagerType).setup();
+        Class<?> driverClass =  Class.forName(driverManagerType.browserClass());
+        driver = (WebDriver) driverClass.getDeclaredConstructor().newInstance();
+        driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, Long.parseLong(getDotenv().get("EXPLICIT_WAIT_TIME")));
     }
 
     /**
      * Gets the driver instance according to its type.
      *
      * @return the Web Driver
-     * @throws ClassNotFoundException when the class does not exist
-     * @throws NoSuchMethodException when the method is not found
-     * @throws InvocationTargetException when the target can not be invoked
-     * @throws InstantiationException when it is not possible to create an instance
-     * @throws IllegalAccessException when it can not be accessed
      */
-    public WebDriver getDriver() throws ClassNotFoundException, NoSuchMethodException,
-            InvocationTargetException, InstantiationException, IllegalAccessException {
+    public WebDriver getDriver() {
         return driver;
     }
 
@@ -62,24 +92,15 @@ public class MyWebDriverManager {
      * Gets the web driver wait instance according to its type.
      *
      * @return the web driver wait
-     * @throws ClassNotFoundException when the class does not exist
-     * @throws InvocationTargetException when the target can not be invoked
-     * @throws NoSuchMethodException when the method is not found
-     * @throws InstantiationException when it is not possible to create an instance
-     * @throws IllegalAccessException when it can not be accessed
      */
-    public WebDriverWait getWebDriverWait() throws ClassNotFoundException,
-            InvocationTargetException, NoSuchMethodException, InstantiationException,
-            IllegalAccessException {
+    public WebDriverWait getWebDriverWait() {
         return wait;
     }
 
     /**
-     * Creates the object myWebDriverManager.
-     *
-     * @param newDriverManagerType an enum with the web driver's type
+     * Clears the MyWebDriverManager instance.
      */
-    public MyWebDriverManager(final DriverManagerType newDriverManagerType) {
-        this.driverManagerType = newDriverManagerType;
+    public static void quitMyWebDriverManager() {
+        myWebDriverManager = null;
     }
 }

@@ -13,7 +13,6 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import salesforce.ui.pages.LoginPage;
-
 import java.lang.reflect.InvocationTargetException;
 
 import static core.MyWebDriverManager.getWebDriverManager;
@@ -27,7 +26,6 @@ public class BaseTest {
             NoSuchMethodException, InstantiationException, IllegalAccessException {
         driver = getWebDriverManager(DriverManagerType.CHROME).getDriver();
         driver.get("https://login.salesforce.com/");
-        driver.manage().window().maximize();
         loginPage = new LoginPage(DriverManagerType.CHROME);
     }
 

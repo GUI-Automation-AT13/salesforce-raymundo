@@ -8,6 +8,7 @@
 
 package salesforce.ui.pages;
 
+import core.WebElementAction;
 import io.github.bonigarcia.wdm.config.DriverManagerType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -20,6 +21,7 @@ import static core.MyWebDriverManager.getWebDriverManager;
 public abstract class BasePage {
     private WebDriver driver;
     private WebDriverWait wait;
+    private WebElementAction webElementAction;
 
     /**
      * Creates the Base Page.
@@ -36,6 +38,7 @@ public abstract class BasePage {
             ClassNotFoundException {
         driver = getWebDriverManager(driverManagerType).getDriver();
         wait = getWebDriverManager(driverManagerType).getWebDriverWait();
+        webElementAction = new WebElementAction();
         PageFactory.initElements(driver, this);
         waitForPageToLoad();
     }
@@ -76,5 +79,23 @@ public abstract class BasePage {
      */
     public void setWait(final WebDriverWait newWait) {
         this.wait = newWait;
+    }
+
+    /**
+     * Gets the web element action.
+     *
+     * @return the web element action
+     */
+    public WebElementAction getWebElementAction() {
+        return webElementAction;
+    }
+
+    /**
+     * Sets the web element action.
+     *
+     * @param newWebElementAction the value to set
+     */
+    public void setWebElementAction(final WebElementAction newWebElementAction) {
+        this.webElementAction = newWebElementAction;
     }
 }
