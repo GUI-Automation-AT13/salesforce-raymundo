@@ -13,8 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +25,6 @@ public class CaseTests {
   private Map<String, Object> vars;
   JavascriptExecutor js;
 
-  @BeforeTest
   public void setUp() {
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--disable-notifications");
@@ -37,7 +35,7 @@ public class CaseTests {
     vars = new HashMap<String, Object>();
   }
 
-  @AfterTest
+  
   public void tearDown() {
     driver.quit();
   }
