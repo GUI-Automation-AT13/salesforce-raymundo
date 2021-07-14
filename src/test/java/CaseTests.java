@@ -35,7 +35,7 @@ public class CaseTests {
     vars = new HashMap<String, Object>();
   }
 
-  
+
   public void tearDown() {
     driver.quit();
   }
