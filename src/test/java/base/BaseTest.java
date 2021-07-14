@@ -16,6 +16,7 @@ import salesforce.ui.pages.LoginPage;
 import java.lang.reflect.InvocationTargetException;
 
 import static core.MyWebDriverManager.getWebDriverManager;
+import static core.MyWebDriverManager.quitMyWebDriverManager;
 
 public class BaseTest {
     private WebDriver driver;
@@ -32,5 +33,6 @@ public class BaseTest {
     @AfterClass
     public void tearDown() {
         driver.quit();
+        quitMyWebDriverManager();
     }
 }
