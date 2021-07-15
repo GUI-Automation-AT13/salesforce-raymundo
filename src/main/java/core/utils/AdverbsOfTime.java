@@ -8,24 +8,22 @@
 
 package core.utils;
 
-import java.util.Date;
-
 public enum AdverbsOfTime {
-    TODAY(new Date()),
-    YESTERDAY(new Date(System.currentTimeMillis() - 24 * 60 * 60 * 1000)),
-    TOMORROW(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000));
-    private final Date date;
+    TODAY(0),
+    YESTERDAY(-1),
+    TOMORROW(1);
+    private final int dayDifference;
 
-    AdverbsOfTime(final Date enumDate) {
-        this.date = enumDate;
+    AdverbsOfTime(final int enumDayDifference) {
+        this.dayDifference = enumDayDifference;
     }
 
     /**
-     * Gets the date for provided adverb of time.
+     * Gets the day difference for provided adverb of time.
      *
      * @return the date requested
      */
-    public Date getDate() {
-        return date;
+    public int getDayDifference() {
+        return dayDifference;
     }
 }

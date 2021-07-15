@@ -9,19 +9,18 @@
 package core.utils;
 
 public enum TimeUnits {
-    YEAR("year", 31536000000L),
-    MONTH("month", 2592000000L),
-    WEEK("week", 604800000L),
-    DAY("day", 86400000L),
-    HOUR("hour", 3600000L),
-    MINUTE("minute", 60000L),
-    SECOND("second", 1000L);
+    YEAR("year", 1),
+    MONTH("month", 2),
+    DAY("day", 5),
+    HOUR("hour", 10),
+    MINUTE("minute", 12),
+    SECOND("second", 13);
     private final String name;
-    private final Long milliseconds;
+    private int calendarValue;
 
-    TimeUnits(final String enumName, final Long enumMilliseconds) {
+    TimeUnits(final String enumName, final int enumCalendarValue) {
         this.name = enumName;
-        this.milliseconds = enumMilliseconds;
+        this.calendarValue = enumCalendarValue;
     }
 
     /**
@@ -34,11 +33,11 @@ public enum TimeUnits {
     }
 
     /**
-     * Gets the milliseconds equivalent to time unit.
+     * Gets the calendar's value equivalent to time unit.
      *
      * @return a Long with the value
      */
-    public Long getMilliseconds() {
-        return milliseconds;
+    public int getCalendarValue() {
+        return calendarValue;
     }
 }

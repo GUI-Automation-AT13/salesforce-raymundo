@@ -8,11 +8,16 @@
 
 package core.utils;
 
+import org.openqa.selenium.InvalidArgumentException;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class StringToDateConverter {
+    private Calendar calendar = Calendar.getInstance();
+
     /**
      * Converts a provided String to Date.
      *
@@ -24,6 +29,9 @@ public class StringToDateConverter {
      * @return the date in Date type
      */
     public Date convertStringToDate(final String string) throws ParseException {
+        if (string == null | string.equals("")) {
+            throw new NullPointerException();
+        }
         String[] dateParts = string.split("\\s+");
         return selectConvertType(dateParts);
     }
@@ -56,10 +64,11 @@ public class StringToDateConverter {
     private Date convertAdverbOfTime(final String[] dateStringParts) {
         for (AdverbsOfTime adverbsOfTime : AdverbsOfTime.values()) {
             if (adverbsOfTime.name().equals(dateStringParts[0])) {
-                return adverbsOfTime.getDate();
+                calendar.add(Calendar.DATE, adverbsOfTime.getDayDifference());
+                return calendar.getTime();
             }
         }
-        return null;
+        throw new InvalidArgumentException("Invalid adverb of time, unsupported String value");
     }
 
     /**
@@ -72,42 +81,40 @@ public class StringToDateConverter {
         int value = Integer.parseInt(dateStringParts[0]);
         String timeUnit = dateStringParts[1];
         String operatorKeyWord = dateStringParts[2];
-        Long dateInMilliseconds = calculateDateInMilliseconds(operatorKeyWord, value, timeUnit);
-        return new Date(dateInMilliseconds);
+        calculateDate(operatorKeyWord, value, timeUnit);
+        return calendar.getTime();
     }
 
     /**
-     * Makes an operation between the provided value and today's milliseconds equivalent.
+     * Makes an operation with the provided value and time unit.
      *
      * @param operatorKeyWord a String with the key word to determine the operation
      * @param value the times the time unit is required
      * @param timeUnit a String with the time unit provided
-     * @return a Long with the result of the operation
      */
-    private Long calculateDateInMilliseconds(final String operatorKeyWord,
+    private void calculateDate(final String operatorKeyWord,
                                              final int value, final String timeUnit) {
-        Date date = new Date();
         if (operatorKeyWord.equals("ago")) {
-            return date.getTime() - (value * getRequiredMilliseconds(timeUnit));
+            calendar.add(getRequiredCalendarValue(timeUnit), -value);
+        } else if (operatorKeyWord.equals("from")) {
+            calendar.add(getRequiredCalendarValue(timeUnit), value);
+        } else {
+            throw new InvalidArgumentException("Invalid key word, unsupported String value");
         }
-        if (operatorKeyWord.equals("from")) {
-            return date.getTime() + (value * getRequiredMilliseconds(timeUnit));
-        }
-        return null;
     }
 
     /**
-     * Gets the milliseconds for the time unit.
+     * Gets the calendar's value for the time unit.
      *
      * @param timeUnit a String with the time unit provided
-     * @return a Long with the milliseconds
+     * @return an int with the value
      */
-    private Long getRequiredMilliseconds(final String timeUnit) {
+    private int getRequiredCalendarValue(final String timeUnit) {
         for (TimeUnits timeUnits : TimeUnits.values()) {
             if (timeUnit.contains(timeUnits.getName())) {
-                return timeUnits.getMilliseconds();
+                return timeUnits.getCalendarValue();
             }
         }
-        return null;
+        throw new InvalidArgumentException("Invalid time unit, unsupported String value");
     }
 }
