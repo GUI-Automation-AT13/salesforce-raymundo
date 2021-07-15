@@ -14,7 +14,7 @@ public final class LoadEnvironmentFile {
     private LoadEnvironmentFile() {
     }
 
-    private static Dotenv dotenv = Dotenv.configure().load();
+    private static final Dotenv DOTENV = Dotenv.configure().load();
 
     /**
      * Gets the Dotenv.
@@ -22,15 +22,15 @@ public final class LoadEnvironmentFile {
      * @return the Dotenv
      */
     public static Dotenv getDotenv() {
-        return dotenv;
+        return DOTENV;
     }
 
     /**
-     * Sets the Dotenv value.
+     * Gets the browser from environment file.
      *
-     * @param newDotenv with the value to set
+     * @return a String with the browser
      */
-    public void setDotenv(final Dotenv newDotenv) {
-        dotenv = newDotenv;
+    public static String getBrowser() {
+        return getDotenv().get("BROWSER");
     }
 }

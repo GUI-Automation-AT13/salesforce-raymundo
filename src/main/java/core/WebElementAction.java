@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.lang.reflect.InvocationTargetException;
 
 import static core.MyWebDriverManager.getWebDriverManager;
+import static core.utils.LoadEnvironmentFile.getBrowser;
 
 public class WebElementAction {
     private WebDriver driver;
@@ -23,8 +24,12 @@ public class WebElementAction {
     public void setTextField(final WebElement webElement, final String value)
             throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
             InstantiationException, IllegalAccessException {
-        driver = getWebDriverManager(DriverManagerType.CHROME).getDriver();
-        wait = getWebDriverManager(DriverManagerType.CHROME).getWebDriverWait();
+        driver = getWebDriverManager(DriverManagerType
+                .valueOf(getBrowser()))
+                .getDriver();
+        wait = getWebDriverManager(DriverManagerType
+                .valueOf(getBrowser()))
+                .getWebDriverWait();
         wait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.clear();
         webElement.sendKeys(value);
