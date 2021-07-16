@@ -72,6 +72,16 @@ public class CasesFormPage extends BasePage {
         webElementAction.selectOnDropdownMenu(priorityMenu, value);
     }
 
+    /**
+     * Selects a value con accounts text box.
+     *
+     * @param value the value to set
+     * @throws InvocationTargetException when the target can not be invoked
+     * @throws NoSuchMethodException     when the method is not found
+     * @throws InstantiationException    when it is not possible to create an instance
+     * @throws IllegalAccessException    when it can not be accessed
+     * @throws ClassNotFoundException    when the class does not exist
+     */
     public void selectValueOnAccounts(final String value) throws ClassNotFoundException,
             InvocationTargetException, NoSuchMethodException, InstantiationException,
             IllegalAccessException {
