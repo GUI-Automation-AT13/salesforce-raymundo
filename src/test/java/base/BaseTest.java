@@ -8,16 +8,15 @@
 
 package base;
 
-import io.github.bonigarcia.wdm.config.DriverManagerType;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import salesforce.config.EnvironmentConfig;
 import salesforce.ui.pages.LoginPage;
+
 import java.lang.reflect.InvocationTargetException;
 
-import static core.MyWebDriverManager.getWebDriverManager;
-import static core.MyWebDriverManager.quitMyWebDriverManager;
-import static core.utils.LoadEnvironmentFile.getBrowser;
+import static core.selenium.MyWebDriverManager.getWebDriverManager;
 
 public class BaseTest {
     private WebDriver driver;
@@ -26,14 +25,13 @@ public class BaseTest {
     @BeforeClass
     public void setUp() throws ClassNotFoundException, InvocationTargetException,
             NoSuchMethodException, InstantiationException, IllegalAccessException {
-        driver = getWebDriverManager(DriverManagerType.valueOf(getBrowser())).getDriver();
-        driver.get("https://login.salesforce.com/");
-        loginPage = new LoginPage(DriverManagerType.valueOf(getBrowser()));
+        driver = getWebDriverManager().getDriver();
+        driver.get(EnvironmentConfig.getEnvironmentConfig().getLogin());
+        loginPage = new LoginPage();
     }
 
     @AfterClass
     public void tearDown() {
         driver.quit();
-        quitMyWebDriverManager();
     }
 }

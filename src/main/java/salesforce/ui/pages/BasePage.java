@@ -8,15 +8,14 @@
 
 package salesforce.ui.pages;
 
-import core.WebElementAction;
-import io.github.bonigarcia.wdm.config.DriverManagerType;
+import core.selenium.WebElementAction;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.lang.reflect.InvocationTargetException;
 
-import static core.MyWebDriverManager.getWebDriverManager;
+import static core.selenium.MyWebDriverManager.getWebDriverManager;
 
 public abstract class BasePage {
     private WebDriver driver;
@@ -26,18 +25,17 @@ public abstract class BasePage {
     /**
      * Creates the Base Page.
      *
-     * @param driverManagerType the driver's type
      * @throws InvocationTargetException when the target can not be invoked
      * @throws NoSuchMethodException when the method is not found
      * @throws InstantiationException when it is not possible to create an instance
      * @throws IllegalAccessException when it can not be accessed
      * @throws ClassNotFoundException when the class does not exist
      */
-    public BasePage(final DriverManagerType driverManagerType) throws InvocationTargetException,
+    public BasePage() throws InvocationTargetException,
             NoSuchMethodException, InstantiationException, IllegalAccessException,
             ClassNotFoundException {
-        driver = getWebDriverManager(driverManagerType).getDriver();
-        wait = getWebDriverManager(driverManagerType).getWebDriverWait();
+        driver = getWebDriverManager().getDriver();
+        wait = getWebDriverManager().getWebDriverWait();
         webElementAction = new WebElementAction();
         PageFactory.initElements(driver, this);
         waitForPageToLoad();

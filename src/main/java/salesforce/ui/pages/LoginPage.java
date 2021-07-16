@@ -8,7 +8,6 @@
 
 package salesforce.ui.pages;
 
-import io.github.bonigarcia.wdm.config.DriverManagerType;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -28,17 +27,15 @@ public class LoginPage extends BasePage {
     /**
      * Creates the login page.
      *
-     * @param driverManagerType the driver's type
      * @throws ClassNotFoundException when the class does not exist
      * @throws InvocationTargetException when the target can not be invoked
      * @throws NoSuchMethodException when the method is not found
      * @throws InstantiationException when it is not possible to create an instance
      * @throws IllegalAccessException when it can not be accessed
      */
-    public LoginPage(final DriverManagerType driverManagerType) throws ClassNotFoundException,
-            InvocationTargetException, NoSuchMethodException, InstantiationException,
-            IllegalAccessException {
-        super(driverManagerType);
+    public LoginPage() throws ClassNotFoundException, InvocationTargetException,
+            NoSuchMethodException, InstantiationException, IllegalAccessException {
+        super();
     }
 
     /**
@@ -91,6 +88,6 @@ public class LoginPage extends BasePage {
         setUsernameTextBox(username);
         setPasswordTextBox(password);
         clickLoginButton();
-        return new HomePage(DriverManagerType.CHROME);
+        return new HomePage();
     }
 }
