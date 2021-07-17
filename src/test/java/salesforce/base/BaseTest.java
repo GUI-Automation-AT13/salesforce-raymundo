@@ -14,8 +14,6 @@ import org.testng.annotations.BeforeClass;
 import salesforce.config.EnvironmentConfig;
 import salesforce.ui.pages.LoginPage;
 
-import java.lang.reflect.InvocationTargetException;
-
 import static core.selenium.MyWebDriverManager.getWebDriverManager;
 
 public class BaseTest {
@@ -23,8 +21,7 @@ public class BaseTest {
     protected LoginPage loginPage;
 
     @BeforeClass
-    public void setUp() throws ClassNotFoundException, InvocationTargetException,
-            NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public void setUp() {
         driver = getWebDriverManager().getDriver();
         driver.get(EnvironmentConfig.getEnvironmentConfig().getLogin());
         loginPage = new LoginPage();

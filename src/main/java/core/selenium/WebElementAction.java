@@ -77,6 +77,8 @@ public class WebElementAction {
         wait = getWebDriverManager().getWebDriverWait();
         wait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.sendKeys(value);
-        driver.findElement(By.linkText(value)).click();
+        wait.until(ExpectedConditions.visibilityOf(
+                webElement.findElement(By.xpath("//div[@title='" + value + "']/../.."))));
+        driver.findElement(By.xpath("//div[@title='" + value + "']/../..")).click();
     }
 }

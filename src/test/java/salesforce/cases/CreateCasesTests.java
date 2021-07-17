@@ -1,15 +1,13 @@
 package salesforce.cases;
 
-import salesforce.base.BaseTest;
 import org.testng.annotations.Test;
+import salesforce.base.BaseTest;
 import salesforce.config.EnvironmentConfig;
 import salesforce.ui.PageTransporter;
 import salesforce.ui.pages.CasesFormPage;
 import salesforce.ui.pages.CasesPage;
 import salesforce.ui.pages.HomePage;
 import salesforce.ui.pages.LoginPage;
-
-import java.lang.reflect.InvocationTargetException;
 
 public class CreateCasesTests extends BaseTest {
     private PageTransporter pageTransporter = new PageTransporter();
@@ -18,7 +16,7 @@ public class CreateCasesTests extends BaseTest {
     private CasesFormPage casesFormPage;
 
     @Test
-    public void testCreateCaseWithRequiredValues() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public void testCreateCaseWithRequiredValues() {
         loginPage = new LoginPage();
         homePage = loginPage.loginSuccessful(EnvironmentConfig.getEnvironmentConfig().getUsername(),
                 EnvironmentConfig.getEnvironmentConfig().getPassword());
