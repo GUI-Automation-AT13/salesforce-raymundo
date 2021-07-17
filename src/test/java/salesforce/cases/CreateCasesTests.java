@@ -1,6 +1,6 @@
-package cases;
+package salesforce.cases;
 
-import base.BaseTest;
+import salesforce.base.BaseTest;
 import org.testng.annotations.Test;
 import salesforce.config.EnvironmentConfig;
 import salesforce.ui.PageTransporter;

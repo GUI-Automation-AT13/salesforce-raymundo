@@ -6,7 +6,7 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package base;
+package salesforce.base;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;

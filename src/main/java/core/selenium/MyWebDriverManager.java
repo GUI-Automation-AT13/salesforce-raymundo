@@ -8,12 +8,10 @@
 
 package core.selenium;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import io.github.bonigarcia.wdm.config.DriverManagerType;
+import core.selenium.browsers.BrowserFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.TimeUnit;
 
 public final class MyWebDriverManager {
@@ -21,21 +19,11 @@ public final class MyWebDriverManager {
     private WebDriver driver;
     private WebDriverWait wait;
     private WebDriverConfig webDriverConfig = WebDriverConfig.getWebDriverConfig();
-    private DriverManagerType driverManagerType =
-            DriverManagerType.valueOf(webDriverConfig.getBrowser());
 
     /**
      * Creates the object myWebDriverManager.
-     *
-     * @throws ClassNotFoundException an enum with the driver type
-     * @throws NoSuchMethodException when the method is not found
-     * @throws InvocationTargetException when the target can not be invoked
-     * @throws InstantiationException when it is not possible to create an instance
-     * @throws IllegalAccessException when it can not be accessed
      */
-    private MyWebDriverManager()
-            throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
-            InstantiationException, IllegalAccessException {
+    private MyWebDriverManager() {
         initialize();
     }
 
@@ -43,15 +31,8 @@ public final class MyWebDriverManager {
      * Gets the web driver manager or creates one when needed.
      *
      * @return an instance of myWebDriverManager
-     * @throws ClassNotFoundException an enum with the driver type
-     * @throws NoSuchMethodException when the method is not found
-     * @throws InvocationTargetException when the target can not be invoked
-     * @throws InstantiationException when it is not possible to create an instance
-     * @throws IllegalAccessException when it can not be accessed
      */
-    public static MyWebDriverManager getWebDriverManager()
-            throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
-            InstantiationException, IllegalAccessException {
+    public static MyWebDriverManager getWebDriverManager() {
         if (myWebDriverManager == null) {
             myWebDriverManager = new MyWebDriverManager();
         }
@@ -60,18 +41,9 @@ public final class MyWebDriverManager {
 
     /**
      * Creates the web driver and web driver wait instances.
-     *
-     * @throws ClassNotFoundException an enum with the driver type
-     * @throws NoSuchMethodException when the method is not found
-     * @throws InvocationTargetException when the target can not be invoked
-     * @throws InstantiationException when it is not possible to create an instance
-     * @throws IllegalAccessException when it can not be accessed
      */
-    private void initialize() throws ClassNotFoundException, NoSuchMethodException,
-            InvocationTargetException, InstantiationException, IllegalAccessException {
-        WebDriverManager.getInstance(driverManagerType).setup();
-        Class<?> driverClass =  Class.forName(driverManagerType.browserClass());
-        driver = (WebDriver) driverClass.getDeclaredConstructor().newInstance();
+    private void initialize() {
+        driver = new BrowserFactory().getWebDriver(webDriverConfig.getBrowser());
         driver.manage().window().maximize();
         driver.manage().timeouts()
                 .implicitlyWait(webDriverConfig.getImplicitWaitTime(), TimeUnit.SECONDS);

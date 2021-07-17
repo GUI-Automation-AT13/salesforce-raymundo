@@ -14,8 +14,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.lang.reflect.InvocationTargetException;
-
 import static core.selenium.MyWebDriverManager.getWebDriverManager;
 
 public class WebElementAction {
@@ -33,15 +31,8 @@ public class WebElementAction {
      *
      * @param webElement the text box to set
      * @param value the value to set
-     * @throws ClassNotFoundException an enum with the driver type
-     * @throws NoSuchMethodException when the method is not found
-     * @throws InvocationTargetException when the target can not be invoked
-     * @throws InstantiationException when it is not possible to create an instance
-     * @throws IllegalAccessException when it can not be accessed
      */
-    public void setTextField(final WebElement webElement, final String value)
-            throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
-            InstantiationException, IllegalAccessException {
+    public void setTextField(final WebElement webElement, final String value) {
         driver = getWebDriverManager().getDriver();
         wait = getWebDriverManager().getWebDriverWait();
         wait.until(ExpectedConditions.visibilityOf(webElement));
@@ -53,15 +44,8 @@ public class WebElementAction {
      * Clicks on web element.
      *
      * @param webElement the element to click on
-     * @throws ClassNotFoundException an enum with the driver type
-     * @throws NoSuchMethodException when the method is not found
-     * @throws InvocationTargetException when the target can not be invoked
-     * @throws InstantiationException when it is not possible to create an instance
-     * @throws IllegalAccessException when it can not be accessed
      */
-    public void clickOnWebElement(final WebElement webElement) throws ClassNotFoundException,
-            InvocationTargetException, NoSuchMethodException, InstantiationException,
-            IllegalAccessException {
+    public void clickOnWebElement(final WebElement webElement) {
         driver = getWebDriverManager().getDriver();
         wait = getWebDriverManager().getWebDriverWait();
         wait.until(ExpectedConditions.visibilityOf(webElement));
@@ -73,15 +57,8 @@ public class WebElementAction {
      *
      * @param webElement the dropdown menu
      * @param value the value to choose
-     * @throws ClassNotFoundException an enum with the driver type
-     * @throws NoSuchMethodException when the method is not found
-     * @throws InvocationTargetException when the target can not be invoked
-     * @throws InstantiationException when it is not possible to create an instance
-     * @throws IllegalAccessException when it can not be accessed
      */
-    public void selectOnDropdownMenu(final WebElement webElement, final String value)
-            throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
-            InstantiationException, IllegalAccessException {
+    public void selectOnDropdownMenu(final WebElement webElement, final String value) {
         driver = getWebDriverManager().getDriver();
         wait = getWebDriverManager().getWebDriverWait();
         wait.until(ExpectedConditions.visibilityOf(webElement));
@@ -94,15 +71,8 @@ public class WebElementAction {
      *
      * @param webElement the text box
      * @param value the value to choose
-     * @throws ClassNotFoundException an enum with the driver type
-     * @throws NoSuchMethodException when the method is not found
-     * @throws InvocationTargetException when the target can not be invoked
-     * @throws InstantiationException when it is not possible to create an instance
-     * @throws IllegalAccessException when it can not be accessed
      */
-    public void selectOnAutoCompleteTextBox(final WebElement webElement, final String value)
-            throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
-            InstantiationException, IllegalAccessException {
+    public void selectOnAutoCompleteTextBox(final WebElement webElement, final String value) {
         driver = getWebDriverManager().getDriver();
         wait = getWebDriverManager().getWebDriverWait();
         wait.until(ExpectedConditions.visibilityOf(webElement));

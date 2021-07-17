@@ -1,11 +1,17 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
+
 package salesforce.ui.pages;
 
 import core.selenium.WebElementAction;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.lang.reflect.InvocationTargetException;
 
 public class CasesFormPage extends BasePage {
     private WebElementAction webElementAction = new WebElementAction();
@@ -20,15 +26,8 @@ public class CasesFormPage extends BasePage {
 
     /**
      * Creates the Cases form Page.
-     *
-     * @throws InvocationTargetException when the target can not be invoked
-     * @throws NoSuchMethodException     when the method is not found
-     * @throws InstantiationException    when it is not possible to create an instance
-     * @throws IllegalAccessException    when it can not be accessed
-     * @throws ClassNotFoundException    when the class does not exist
      */
-    public CasesFormPage() throws InvocationTargetException, NoSuchMethodException,
-            InstantiationException, IllegalAccessException, ClassNotFoundException {
+    public CasesFormPage() {
         super();
     }
 
@@ -44,15 +43,8 @@ public class CasesFormPage extends BasePage {
      * Selects a value on case origin menu.
      *
      * @param value the value to choose
-     * @throws InvocationTargetException when the target can not be invoked
-     * @throws NoSuchMethodException     when the method is not found
-     * @throws InstantiationException    when it is not possible to create an instance
-     * @throws IllegalAccessException    when it can not be accessed
-     * @throws ClassNotFoundException    when the class does not exist
      */
-    public void selectValueOnCaseOriginMenu(final String value) throws ClassNotFoundException,
-            InvocationTargetException, NoSuchMethodException, InstantiationException,
-            IllegalAccessException {
+    public void selectValueOnCaseOriginMenu(final String value) {
         webElementAction.selectOnDropdownMenu(caseOriginMenu, value);
     }
 
@@ -60,31 +52,17 @@ public class CasesFormPage extends BasePage {
      * Selects a value on priority menu.
      *
      * @param value the value to choose
-     * @throws InvocationTargetException when the target can not be invoked
-     * @throws NoSuchMethodException     when the method is not found
-     * @throws InstantiationException    when it is not possible to create an instance
-     * @throws IllegalAccessException    when it can not be accessed
-     * @throws ClassNotFoundException    when the class does not exist
      */
-    public void selectValueOnPriorityMenu(final String value) throws ClassNotFoundException,
-            InvocationTargetException, NoSuchMethodException, InstantiationException,
-            IllegalAccessException {
+    public void selectValueOnPriorityMenu(final String value) {
         webElementAction.selectOnDropdownMenu(priorityMenu, value);
     }
 
     /**
-     * Selects a value con accounts text box.
+     * Selects a value con salesforce.accounts text box.
      *
      * @param value the value to set
-     * @throws InvocationTargetException when the target can not be invoked
-     * @throws NoSuchMethodException     when the method is not found
-     * @throws InstantiationException    when it is not possible to create an instance
-     * @throws IllegalAccessException    when it can not be accessed
-     * @throws ClassNotFoundException    when the class does not exist
      */
-    public void selectValueOnAccounts(final String value) throws ClassNotFoundException,
-            InvocationTargetException, NoSuchMethodException, InstantiationException,
-            IllegalAccessException {
+    public void selectValueOnAccounts(final String value) {
         webElementAction.selectOnAutoCompleteTextBox(contactNameTextBox, value);
     }
 }

@@ -6,18 +6,15 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package salesforce.ui.pages;
+package core.selenium.browsers;
 
-public class HomePage extends BasePage {
+import org.openqa.selenium.WebDriver;
+
+public interface IBrowser {
     /**
-     * Creates the Home page.
+     * Gets the browser's driver.
+     *
+     * @return the web driver
      */
-    public HomePage() {
-        super();
-    }
-
-    @Override
-    protected void waitForPageToLoad() {
-
-    }
+    WebDriver getDriver();
 }

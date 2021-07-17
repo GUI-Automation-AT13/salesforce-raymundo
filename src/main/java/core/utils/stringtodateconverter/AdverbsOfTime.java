@@ -6,7 +6,7 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package core.utils;
+package core.utils.stringtodateconverter;
 
 public enum AdverbsOfTime {
     TODAY(0),

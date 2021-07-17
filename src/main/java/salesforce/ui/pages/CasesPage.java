@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
+
 package salesforce.ui.pages;
 
 import core.selenium.WebElementAction;
@@ -5,23 +13,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.lang.reflect.InvocationTargetException;
-
 public class CasesPage extends BasePage {
     private WebElementAction webElementAction = new WebElementAction();
     @FindBy(css = "div[title=\"New\"]")
     private WebElement buttonNew;
+
     /**
      * Creates the Cases Page.
-     *
-     * @throws InvocationTargetException when the target can not be invoked
-     * @throws NoSuchMethodException     when the method is not found
-     * @throws InstantiationException    when it is not possible to create an instance
-     * @throws IllegalAccessException    when it can not be accessed
-     * @throws ClassNotFoundException    when the class does not exist
      */
-    public CasesPage() throws InvocationTargetException, NoSuchMethodException,
-            InstantiationException, IllegalAccessException, ClassNotFoundException {
+    public CasesPage() {
         super();
     }
 
@@ -36,15 +36,9 @@ public class CasesPage extends BasePage {
     /**
      * Clicks on the new button.
      *
-     * @return the cases form site
-     * @throws InvocationTargetException when the target can not be invoked
-     * @throws NoSuchMethodException     when the method is not found
-     * @throws InstantiationException    when it is not possible to create an instance
-     * @throws IllegalAccessException    when it can not be accessed
-     * @throws ClassNotFoundException    when the class does not exist
+     * @return the salesforce.cases form site
      */
-    public CasesFormPage clickOnNew() throws ClassNotFoundException, InvocationTargetException,
-            NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public CasesFormPage clickOnNew() {
         webElementAction.clickOnWebElement(buttonNew);
         return new CasesFormPage();
     }

@@ -51,9 +51,9 @@ public final class EnvironmentConfig {
     }
 
     /**
-     * Gets the base url.
+     * Gets the salesforce.base url.
      *
-     * @return a String with the base url
+     * @return a String with the salesforce.base url
      */
     public String getBaseUrl() {
         return baseUrl;

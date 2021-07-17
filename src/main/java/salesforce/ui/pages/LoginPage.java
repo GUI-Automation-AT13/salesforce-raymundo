@@ -12,8 +12,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.lang.reflect.InvocationTargetException;
-
 public class LoginPage extends BasePage {
     @FindBy(id = "username")
     private WebElement usernameTextBox;
@@ -26,15 +24,8 @@ public class LoginPage extends BasePage {
 
     /**
      * Creates the login page.
-     *
-     * @throws ClassNotFoundException when the class does not exist
-     * @throws InvocationTargetException when the target can not be invoked
-     * @throws NoSuchMethodException when the method is not found
-     * @throws InstantiationException when it is not possible to create an instance
-     * @throws IllegalAccessException when it can not be accessed
      */
-    public LoginPage() throws ClassNotFoundException, InvocationTargetException,
-            NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public LoginPage() {
         super();
     }
 
@@ -51,9 +42,7 @@ public class LoginPage extends BasePage {
      *
      * @param newUsername a String with the value
      */
-    private void setUsernameTextBox(final String newUsername) throws
-            ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
-            InstantiationException, IllegalAccessException {
+    private void setUsernameTextBox(final String newUsername) {
         getWebElementAction().setTextField(usernameTextBox, newUsername);
     }
 
@@ -62,9 +51,7 @@ public class LoginPage extends BasePage {
      *
      * @param newPassword a String with the value
      */
-    private void setPasswordTextBox(final String newPassword) throws
-            ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
-            InstantiationException, IllegalAccessException {
+    private void setPasswordTextBox(final String newPassword) {
         getWebElementAction().setTextField(passwordTextBox, newPassword);
     }
 
@@ -82,9 +69,7 @@ public class LoginPage extends BasePage {
      * @param password a String with the password
      * @return the Home Web page
      */
-    public HomePage loginSuccessful(final String username, final String password) throws
-            ClassNotFoundException, InvocationTargetException, NoSuchMethodException,
-            InstantiationException, IllegalAccessException {
+    public HomePage loginSuccessful(final String username, final String password) {
         setUsernameTextBox(username);
         setPasswordTextBox(password);
         clickLoginButton();

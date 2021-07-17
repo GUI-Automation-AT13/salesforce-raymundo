@@ -6,9 +6,9 @@
  * license agreement you entered into with Fundacion Jala
  */
 
-package accounts;
+package salesforce.accounts;
 
-import base.BaseTest;
+import salesforce.base.BaseTest;
 import org.testng.annotations.Test;
 import salesforce.ui.pages.HomePage;
 
