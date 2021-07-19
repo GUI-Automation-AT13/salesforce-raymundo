@@ -8,7 +8,13 @@
 
 package salesforce.ui.pages;
 
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 public class HomePage extends BasePage {
+    @FindBy(css = ".slds-icon-waffle")
+    private WebElement appLauncherButton;
     /**
      * Creates the Home page.
      */
@@ -16,8 +22,11 @@ public class HomePage extends BasePage {
         super();
     }
 
+    /**
+     * Waits for the app launcher button to be available.
+     */
     @Override
     protected void waitForPageToLoad() {
-
+        getWait().until(ExpectedConditions.visibilityOf(appLauncherButton));
     }
 }

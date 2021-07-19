@@ -9,8 +9,8 @@
 package salesforce.base;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import salesforce.config.EnvironmentConfig;
 import salesforce.ui.pages.LoginPage;
 
@@ -20,15 +20,15 @@ public class BaseTest {
     private WebDriver driver;
     protected LoginPage loginPage;
 
-    @BeforeClass
+    @BeforeTest
     public void setUp() {
         driver = getWebDriverManager().getDriver();
         driver.get(EnvironmentConfig.getEnvironmentConfig().getLogin());
         loginPage = new LoginPage();
     }
 
-    @AfterClass
+    @AfterTest
     public void tearDown() {
-        driver.quit();
+        getWebDriverManager().quitDriver();
     }
 }

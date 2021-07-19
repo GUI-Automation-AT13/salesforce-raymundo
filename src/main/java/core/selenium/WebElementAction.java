@@ -53,6 +53,19 @@ public class WebElementAction {
     }
 
     /**
+     * Gets the web element with xpath and a value to replace in it.
+     *
+     * @param xpath the element's xpath
+     * @param value the value to replace the xpath
+     * @return a web element with the provided features
+     */
+    public WebElement getWebElementByXpathAndValue(final String xpath, final String value) {
+        driver = getWebDriverManager().getDriver();
+        wait = getWebDriverManager().getWebDriverWait();
+        return driver.findElement(By.xpath(String.format(xpath, value)));
+    }
+
+    /**
      * Selects an option of a dropdown menu.
      *
      * @param webElement the dropdown menu
@@ -71,14 +84,14 @@ public class WebElementAction {
      *
      * @param webElement the text box
      * @param value the value to choose
+     * @param displayedElementPath the element to select
      */
-    public void selectOnAutoCompleteTextBox(final WebElement webElement, final String value) {
+    public void selectOnAutoCompleteTextBox(final WebElement webElement, final String value,
+                                            final String displayedElementPath) {
         driver = getWebDriverManager().getDriver();
         wait = getWebDriverManager().getWebDriverWait();
         wait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.sendKeys(value);
-        wait.until(ExpectedConditions.visibilityOf(
-                webElement.findElement(By.xpath("//div[@title='" + value + "']/../.."))));
-        driver.findElement(By.xpath("//div[@title='" + value + "']/../..")).click();
+        clickOnWebElement(getWebElementByXpathAndValue(displayedElementPath, value));
     }
 }
