@@ -11,6 +11,7 @@ public class SingleCasePage extends BasePage {
     @FindBy(xpath = "//button[@name='Delete']")
     private WebElement deleteButton;
     private String popUpMessage = "//span[contains(@class,'toastMessage')]";
+    private String createdDateLabel = "//span[text()='Created By']/../..//lightning-formatted-text";
 
     /**
      * Waits for the edit button to appear on single case page.
@@ -37,6 +38,17 @@ public class SingleCasePage extends BasePage {
      */
     public String getPopUpMessage() {
         WebElement webElement = getDriver().findElement(By.xpath(popUpMessage));
+        getWait().until(ExpectedConditions.visibilityOf(webElement));
+        return webElement.getText();
+    }
+
+    /**
+     * Gets the pop up message.
+     *
+     * @return a String with the message
+     */
+    public String getCreatedDateLabel() {
+        WebElement webElement = getDriver().findElement(By.xpath(createdDateLabel));
         getWait().until(ExpectedConditions.visibilityOf(webElement));
         return webElement.getText();
     }
