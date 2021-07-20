@@ -36,7 +36,7 @@ public class PageTransporter {
      * @return the salesforce.cases web Page
      */
     public CasesPage goToCases() {
-        goToUrl(baseUrl.concat("lightning/o/Case/list"));
+        goToUrl(baseUrl.concat("lightning/o/Case/list?filterName=Recent"));
         return new CasesPage();
     }
 }

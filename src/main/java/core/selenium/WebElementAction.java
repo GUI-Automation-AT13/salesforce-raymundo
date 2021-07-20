@@ -48,7 +48,7 @@ public class WebElementAction {
     public void clickOnWebElement(final WebElement webElement) {
         driver = getWebDriverManager().getDriver();
         wait = getWebDriverManager().getWebDriverWait();
-        wait.until(ExpectedConditions.visibilityOf(webElement));
+        wait.until(ExpectedConditions.elementToBeClickable(webElement));
         webElement.click();
     }
 
@@ -91,6 +91,7 @@ public class WebElementAction {
         driver = getWebDriverManager().getDriver();
         wait = getWebDriverManager().getWebDriverWait();
         wait.until(ExpectedConditions.visibilityOf(webElement));
+        webElement.click();
         webElement.sendKeys(value);
         clickOnWebElement(getWebElementByXpathAndValue(displayedElementPath, value));
     }
