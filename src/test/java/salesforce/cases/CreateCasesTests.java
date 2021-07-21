@@ -3,11 +3,14 @@ package salesforce.cases;
 import org.apache.commons.lang3.time.DateUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import salesforce.base.BaseTest;
 import salesforce.config.EnvironmentConfig;
+import salesforce.features.Case;
 import salesforce.ui.PageTransporter;
 import salesforce.ui.pages.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -21,9 +24,10 @@ public class CreateCasesTests extends BaseTest {
     private CasesFormPage casesFormPage;
     private SingleCasePage singleCasePage;
     private PopUpConfirmPage popUpConfirmPage;
+    private SoftAssert softAssert = new SoftAssert();
 
     @Test
-    public void testCreateCaseWithRequiredValues() throws ParseException {
+    public void testCreateCaseWithRequiredValues() throws ParseException, InvocationTargetException, IllegalAccessException {
         loginPage = new LoginPage();
         homePage = loginPage.loginSuccessful(EnvironmentConfig.getEnvironmentConfig().getUsername(),
                 EnvironmentConfig.getEnvironmentConfig().getPassword());
@@ -36,10 +40,13 @@ public class CreateCasesTests extends BaseTest {
         Date expectedDate = DateUtils.truncate(Date.from(timeStamp), Calendar.MINUTE);
         String expectedStart = "Case";
         String expectedFinish = "was created.";
-        Assert.assertTrue(actual.startsWith(expectedStart) && actual.contains(expectedFinish));
+        softAssert.assertTrue(actual.startsWith(expectedStart) && actual.contains(expectedFinish));
         String createdDate = singleCasePage.getCreatedDateLabel();
         Date actualDate = DateUtils.truncate(new SimpleDateFormat("d/M/yyyy HH:mm").parse(createdDate), Calendar.MINUTE);
-        Assert.assertEquals(expectedDate, actualDate);
+        softAssert.assertEquals(expectedDate, actualDate);
+        Case myCase = new Case();
+        org.apache.commons.beanutils.BeanUtils.populate(myCase, singleCasePage.getDetailsFields());
+        softAssert.assertEquals(myCase.getCaseOrigin(), "Phone");
         popUpConfirmPage = singleCasePage.clickOnDelete();
         popUpConfirmPage.clickOnDelete();
     }

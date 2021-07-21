@@ -29,7 +29,7 @@ public class StringToDateConverter {
      * @return the date in Date type
      */
     public Date convertStringToDate(final String string) throws ParseException {
-        if (string == null | string.equals("")) {
+        if (string == null || string.equals("")) {
             throw new NullPointerException();
         }
         String[] dateParts = string.split("\\s+");
