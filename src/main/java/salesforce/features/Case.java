@@ -58,8 +58,8 @@ public class Case {
         return caseOwner;
     }
 
-    public void setCaseOwner(final String caseOwner) {
-        this.caseOwner = caseOwner;
+    public void setCaseOwner(final String inputCaseOwner) {
+        this.caseOwner = inputCaseOwner;
     }
 
     public String getAccountName() {
@@ -170,8 +170,8 @@ public class Case {
         return lastModifiedBy;
     }
 
-    public void setLastModifiedBy(final String lastModifiedBy) {
-        this.lastModifiedBy = lastModifiedBy;
+    public void setLastModifiedBy(final String inputLastModifiedBy) {
+        this.lastModifiedBy = inputLastModifiedBy;
     }
 
     public String getPriority() {
@@ -210,8 +210,8 @@ public class Case {
         return createdBy;
     }
 
-    public void setCreatedBy(final String createdBy) {
-        this.createdBy = createdBy;
+    public void setCreatedBy(final String inputCreatedBy) {
+        this.createdBy = inputCreatedBy;
     }
 
     public String getDateTimeClosed() {

@@ -1,5 +1,6 @@
 package salesforce.cases;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -28,24 +29,20 @@ public class CreateCasesTests extends BaseTest {
 
     @Test
     public void testCreateCaseWithRequiredValues() throws ParseException, InvocationTargetException, IllegalAccessException {
-        loginPage = new LoginPage();
         homePage = loginPage.loginSuccessful(EnvironmentConfig.getEnvironmentConfig().getUsername(),
                 EnvironmentConfig.getEnvironmentConfig().getPassword());
         casesPage = pageTransporter.goToCases();
         casesFormPage = casesPage.clickOnNew();
         casesFormPage.selectValueOnCaseOriginMenu("Phone");
         singleCasePage = casesFormPage.clickOnSaveButton();
-        String actual = singleCasePage.getPopUpMessage();
-        Instant timeStamp = Instant.now();
-        Date expectedDate = DateUtils.truncate(Date.from(timeStamp), Calendar.MINUTE);
-        String expectedStart = "Case";
-        String expectedFinish = "was created.";
-        softAssert.assertTrue(actual.startsWith(expectedStart) && actual.contains(expectedFinish));
-        String createdDate = singleCasePage.getCreatedDateLabel();
-        Date actualDate = DateUtils.truncate(new SimpleDateFormat("d/M/yyyy HH:mm").parse(createdDate), Calendar.MINUTE);
+        String actual = casesFormPage.getPopUpMessage();
+        Date expectedDate = DateUtils.truncate(Date.from(Instant.now()), Calendar.MINUTE);
+        String expectedRegex = "Case \"[0-9]{8}\" was created.";
+        softAssert.assertTrue(actual.matches(expectedRegex), "\nactual: " + actual + "\nexpected regex: " + expectedRegex);
+        Date actualDate = DateUtils.truncate(new SimpleDateFormat("d/M/yyyy HH:mm").parse(singleCasePage.getCreatedDateLabel()), Calendar.MINUTE);
         softAssert.assertEquals(expectedDate, actualDate);
         Case myCase = new Case();
-        org.apache.commons.beanutils.BeanUtils.populate(myCase, singleCasePage.getDetailsFields());
+        BeanUtils.populate(myCase, singleCasePage.getDetailsFields());
         softAssert.assertEquals(myCase.getCaseOrigin(), "Phone");
         popUpConfirmPage = singleCasePage.clickOnDelete();
         popUpConfirmPage.clickOnDelete();
@@ -75,7 +72,7 @@ public class CreateCasesTests extends BaseTest {
         casesFormPage.inputTextOnDescriptionTextBox("The description");
         casesFormPage.inputTextOnInternalCommentsTextBox("The comments");
         singleCasePage = casesFormPage.clickOnSaveButton();
-        String actual = singleCasePage.getPopUpMessage();
+        String actual = casesFormPage.getPopUpMessage();
         Instant timeStamp = Instant.now();
         Date expectedDate = DateUtils.truncate(Date.from(timeStamp), Calendar.MINUTE);
         String expectedStart = "Case";

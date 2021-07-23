@@ -95,4 +95,32 @@ public class WebElementAction {
         webElement.sendKeys(value);
         clickOnWebElement(getWebElementByXpathAndValue(displayedElementPath, value));
     }
+
+    /**
+     * Gets a web element's text.
+     *
+     * @param webElement any web element on page
+     * @return a String with the text
+     */
+    public String getTextOnWebElement(final WebElement webElement) {
+        driver = getWebDriverManager().getDriver();
+        wait = getWebDriverManager().getWebDriverWait();
+        wait.until(ExpectedConditions.visibilityOf(webElement));
+        return webElement.getText();
+    }
+
+    /**
+     * Gets the attribute value on web element.
+     *
+     * @param webElement any web element on page
+     * @param attributeName an attribute of the web element
+     * @return a String with the value
+     */
+    public String getAttributeFromWebElement(final WebElement webElement,
+                                             final String attributeName) {
+        driver = getWebDriverManager().getDriver();
+        wait = getWebDriverManager().getWebDriverWait();
+        wait.until(ExpectedConditions.visibilityOf(webElement));
+        return webElement.getAttribute(attributeName);
+    }
 }
