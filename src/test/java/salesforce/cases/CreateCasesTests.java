@@ -1,13 +1,12 @@
 package salesforce.cases;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import salesforce.base.BaseTest;
 import salesforce.config.EnvironmentConfig;
-import salesforce.features.Case;
+import salesforce.entities.Case;
 import salesforce.ui.PageTransporter;
 import salesforce.ui.pages.*;
 
@@ -17,6 +16,10 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import static core.utils.ObjectToMap.convertObjectToMap;
 
 public class CreateCasesTests extends BaseTest {
     private PageTransporter pageTransporter = new PageTransporter();
@@ -26,31 +29,60 @@ public class CreateCasesTests extends BaseTest {
     private SingleCasePage singleCasePage;
     private PopUpConfirmPage popUpConfirmPage;
     private SoftAssert softAssert = new SoftAssert();
+    private String singleCaseTitle = "Case";
+    private String priorityHeaderTitle = "Priority";
+    private String statusHeaderTitle = "Status";
+    private String caseNumberHeaderTitle = "Case Number";
 
     @Test
     public void testCreateCaseWithRequiredValues() throws ParseException, InvocationTargetException, IllegalAccessException {
+        //Required values on case
+        Case newCase = new Case();
+        Map newCaseValues = new HashMap();
+        newCaseValues.put("priority", "Medium");
+        newCaseValues.put("caseOrigin", "Phone");
+        newCaseValues.put("status", "New");
+        newCase.setCaseWithMap(newCaseValues);
+        //Login to salesforce
         homePage = loginPage.loginSuccessful(EnvironmentConfig.getEnvironmentConfig().getUsername(),
                 EnvironmentConfig.getEnvironmentConfig().getPassword());
+        //Navigate to Case's site
         casesPage = pageTransporter.goToCases();
+        //Click on new case
         casesFormPage = casesPage.clickOnNew();
-        casesFormPage.selectValueOnCaseOriginMenu("Phone");
+        //Fill case form
+        casesFormPage.selectValueOnCaseOriginMenu(newCase.getCaseOrigin());
         singleCasePage = casesFormPage.clickOnSaveButton();
+        //Set missing values
+        newCase.setDateTimeOpened(DateUtils.truncate(Date.from(Instant.now()), Calendar.MINUTE).toString());
+        newCase.setCaseOwner("Raymundo Guaraguara");
+        newCase.setCreatedBy(newCase.getCaseOwner() + newCase.getDateTimeOpened());
+        newCase.setLastModifiedBy(newCase.getCaseOwner() + newCase.getDateTimeOpened());
+        //Get success message
         String actual = casesFormPage.getPopUpMessage();
-        Date expectedDate = DateUtils.truncate(Date.from(Instant.now()), Calendar.MINUTE);
+        //Verify message
         String expectedRegex = "Case \"[0-9]{8}\" was created.";
-        softAssert.assertTrue(actual.matches(expectedRegex), "\nactual: " + actual + "\nexpected regex: " + expectedRegex);
-        Date actualDate = DateUtils.truncate(new SimpleDateFormat("d/M/yyyy HH:mm").parse(singleCasePage.getCreatedDateLabel()), Calendar.MINUTE);
-        softAssert.assertEquals(expectedDate, actualDate);
-        Case myCase = new Case();
-        BeanUtils.populate(myCase, singleCasePage.getDetailsFields());
-        softAssert.assertEquals(myCase.getCaseOrigin(), "Phone");
+        softAssert.assertTrue(actual.matches(expectedRegex),
+                "\nactual: " + actual + "\nexpected regex: " + expectedRegex);
+        //Verify case headers
+        softAssert.assertEquals(singleCasePage.getHeadersTitle(), singleCaseTitle);
+        softAssert.assertEquals(singleCasePage.getHeadersField(priorityHeaderTitle), newCase.getPriority());
+        softAssert.assertEquals(singleCasePage.getHeadersField(statusHeaderTitle), newCase.getStatus());
+        softAssert.assertEquals(singleCasePage.getHeadersField(caseNumberHeaderTitle), newCase.getCaseNumber());
+        //Verify case details
+        Map actualCaseDetailsValues = singleCasePage.getDetailsFields();
+        Map expectedCaseDetailsValues = convertObjectToMap(newCase);
+        softAssert.assertEquals(actualCaseDetailsValues, expectedCaseDetailsValues);
+        //Navigate to case's site
+
+        //Verify case on case's list
+
         popUpConfirmPage = singleCasePage.clickOnDelete();
         popUpConfirmPage.clickOnDelete();
     }
 
     @Test
     public void testCreateCaseWithAllValues() throws ParseException {
-        loginPage = new LoginPage();
         homePage = loginPage.loginSuccessful(EnvironmentConfig.getEnvironmentConfig().getUsername(),
                 EnvironmentConfig.getEnvironmentConfig().getPassword());
         casesPage = pageTransporter.goToCases();

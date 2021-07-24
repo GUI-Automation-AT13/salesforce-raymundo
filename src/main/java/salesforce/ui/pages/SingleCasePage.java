@@ -1,6 +1,5 @@
 package salesforce.ui.pages;
 
-import core.selenium.WebElementAction;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,11 +12,10 @@ import java.util.Map;
 import static salesforce.utils.AdaptStringToAttribute.changeFieldName;
 
 public class SingleCasePage extends BasePage {
-    private WebElementAction webElementAction = new WebElementAction();
     @FindBy(xpath = "//button[@name='Delete']")
     private WebElement deleteButton;
     private String headersXpath = "//p[@title='%s']/../p/slot/lightning-formatted-text";
-    @FindBy(xpath = "//support-output-case-subject-field/div/lightning-formatted-text")
+    @FindBy(xpath = "//slot[@slot='primaryField']//div/lightning-formatted-text")
     private WebElement headersSubject;
     @FindBy(xpath = "//h1/div")
     private WebElement headersTitle;
@@ -40,7 +38,7 @@ public class SingleCasePage extends BasePage {
      * @return a pop up to confirm deletion
      */
     public PopUpConfirmPage clickOnDelete() {
-        webElementAction.clickOnWebElement(deleteButton);
+        getWebElementAction().clickOnWebElement(deleteButton);
         return new PopUpConfirmPage();
     }
 
@@ -62,8 +60,8 @@ public class SingleCasePage extends BasePage {
      * @return a String with the priority
      */
     public String getHeadersField(final String field) {
-        return webElementAction.getTextOnWebElement(
-                webElementAction.getWebElementByXpathAndValue(headersXpath, field));
+        return getWebElementAction().getTextOnWebElement(
+                getWebElementAction().getWebElementByXpathAndValue(headersXpath, field));
     }
 
     /**
@@ -72,7 +70,7 @@ public class SingleCasePage extends BasePage {
      * @return a String with the title
      */
     public String getHeadersTitle() {
-        return webElementAction.getTextOnWebElement(headersTitle);
+        return getWebElementAction().getTextOnWebElement(headersTitle);
     }
 
     /**
@@ -81,7 +79,7 @@ public class SingleCasePage extends BasePage {
      * @return a String with the subject
      */
     public String getHeadersSubject() {
-        return webElementAction.getTextOnWebElement(headersSubject);
+        return getWebElementAction().getTextOnWebElement(headersSubject);
     }
 
     /**
