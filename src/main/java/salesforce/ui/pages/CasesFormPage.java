@@ -12,6 +12,7 @@ import core.selenium.WebElementAction;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import salesforce.ui.PopUpMessage;
 
 public class CasesFormPage extends BasePage {
     private WebElementAction webElementAction = new WebElementAction();
@@ -57,6 +58,7 @@ public class CasesFormPage extends BasePage {
             + "/span[text()='Internal Comments']/../../textarea")
     private WebElement internalCommentsTextBox;
     private String displayedNameOnTextBoxPath = "//div[@title='%s']/../..";
+    private String popUpMessage;
 
     /**
      * Creates the Cases form Page.
@@ -144,7 +146,9 @@ public class CasesFormPage extends BasePage {
      * @return the created case page
      */
     public SingleCasePage clickOnSaveButton() {
+        PopUpMessage message = new PopUpMessage();
         webElementAction.clickOnWebElement(saveButton);
+        setPopUpMessage(message.getPopUpMessage());
         return new SingleCasePage();
     }
 
@@ -245,5 +249,23 @@ public class CasesFormPage extends BasePage {
      */
     public void inputTextOnInternalCommentsTextBox(final String text) {
         webElementAction.setTextField(internalCommentsTextBox, text);
+    }
+
+    /**
+     * Gets the pop up message.
+     *
+     * @return a String with the message
+     */
+    public String getPopUpMessage() {
+        return popUpMessage;
+    }
+
+    /**
+     * Sets the pop up message.
+     *
+     * @param inputPopUpMessage a String with the value to set
+     */
+    public void setPopUpMessage(final String inputPopUpMessage) {
+        this.popUpMessage = inputPopUpMessage;
     }
 }
