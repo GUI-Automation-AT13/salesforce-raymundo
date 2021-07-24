@@ -8,7 +8,7 @@
 
 package unittests.core.utils;
 
-import core.utils.StringToDateConverter;
+import core.utils.stringtodateconverter.StringToDateConverter;
 import org.openqa.selenium.InvalidArgumentException;
 import org.testng.annotations.Test;
 

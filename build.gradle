@@ -1,6 +1,16 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.5.2'
+    }
+}
+
 plugins {
     id 'java'
     id 'checkstyle'
+    id 'info.solidsoft.pitest' version '1.5.2'
 }
 
 group 'org.example'
@@ -15,6 +25,14 @@ dependencies {
     implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
     implementation 'io.github.bonigarcia:webdrivermanager:4.4.3'
     testImplementation 'org.testng:testng:7.4.0'
+}
+
+pitest {
+    testPlugin='testng'
+    targetClasses = ['core.utils.stringtodateconverter.StringToDateConverter']
+    targetTests = ['unittests.core.utils.StringToDateConverterTest']
+    threads = 4
+    outputFormats = ['XML', 'HTML']
 }
 
 test {

@@ -1,26 +1,32 @@
+/**
+ * Copyright (c) 2021 Fundacion Jala.
+ * This software is the confidential and proprietary information of Fundacion Jala
+ * ("Confidential Information"). You shall not disclose such Confidential
+ * Information and shall use it only in accordance with the terms of the
+ * license agreement you entered into with Fundacion Jala
+ */
+
 package salesforce.ui.pages;
 
-import io.github.bonigarcia.wdm.config.DriverManagerType;
-
-import java.lang.reflect.InvocationTargetException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
+    @FindBy(css = ".slds-icon-waffle")
+    private WebElement appLauncherButton;
     /**
-     * Creates the Base Page.
-     *
-     * @param driverManagerType the driver's type
-     * @throws InvocationTargetException when the target can not be invoked
-     * @throws NoSuchMethodException     when the method is not found
-     * @throws InstantiationException    when it is not possible to create an instance
-     * @throws IllegalAccessException    when it can not be accessed
-     * @throws ClassNotFoundException    when the class does not exist
+     * Creates the Home page.
      */
-    public HomePage(final DriverManagerType driverManagerType) throws InvocationTargetException,
-            NoSuchMethodException, InstantiationException, IllegalAccessException,
-            ClassNotFoundException {
-        super(driverManagerType);
+    public HomePage() {
+        super();
     }
 
+    /**
+     * Waits for the app launcher button to be available.
+     */
     @Override
-    protected void waitForPageToLoad() { }
+    protected void waitForPageToLoad() {
+        getWait().until(ExpectedConditions.visibilityOf(appLauncherButton));
+    }
 }
