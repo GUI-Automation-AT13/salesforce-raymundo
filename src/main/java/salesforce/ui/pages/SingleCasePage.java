@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static salesforce.utils.AdaptStringToAttribute.changeFieldName;
+import static salesforce.api.utils.AdaptStringToAttribute.changeFieldName;
 
 public class SingleCasePage extends BasePage {
     @FindBy(xpath = "//button[@name='Delete']")

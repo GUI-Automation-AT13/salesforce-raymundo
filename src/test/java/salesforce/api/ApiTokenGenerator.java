@@ -1,18 +1,16 @@
-package salesforce.utils;
+package salesforce.api;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import core.api.ApiManager;
 import core.api.ApiMethod;
 import core.api.ApiRequestBuilder;
 import core.api.ApiResponse;
-import org.testng.annotations.Test;
 
 import static core.utils.LoadEnvironmentFile.*;
 
 public class ApiTokenGenerator {
-    private ApiResponse tokenApiResponse = new ApiResponse();
-    private String token;
-    public void generateToken() throws JsonProcessingException {
+    private static String token;
+    public static void generateToken() {
+        ApiResponse tokenApiResponse = new ApiResponse();
         ApiRequestBuilder apiRequestBuilder = new ApiRequestBuilder();
         apiRequestBuilder
                 .addBaseUri(getTheLoginUrl())
@@ -29,9 +27,8 @@ public class ApiTokenGenerator {
         token = tokenApiResponse.getPath("token_type").concat(" ").concat(tokenApiResponse.getPath("access_token"));
     }
 
-    @Test
-    public void test100() throws JsonProcessingException {
+    public static String getApiToken() {
         generateToken();
-        System.out.println(token);
+        return token;
     }
 }
