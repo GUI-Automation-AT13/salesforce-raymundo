@@ -11,15 +11,12 @@ package unittests.core.utils;
 import core.utils.stringtodateconverter.StringToDateConverter;
 import org.openqa.selenium.InvalidArgumentException;
 import org.testng.annotations.Test;
-import salesforce.entities.Case;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Map;
 
-import static core.utils.ObjectToMap.convertObjectToMap;
 import static org.testng.Assert.assertTrue;
 
 public class StringToDateConverterTest {
@@ -156,13 +153,5 @@ public class StringToDateConverterTest {
         StringToDateConverter stringToDateConverter = new StringToDateConverter();
         String value = null;
         stringToDateConverter.convertStringToDate(value);
-    }
-
-    @Test
-    public void test100() throws IllegalAccessException {
-        Case myCase = new Case();
-        myCase.setCaseNumber("12345");
-        Map map = convertObjectToMap(myCase);
-        System.out.println(map);
     }
 }

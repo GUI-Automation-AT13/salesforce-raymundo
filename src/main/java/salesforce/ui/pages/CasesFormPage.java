@@ -18,45 +18,15 @@ public class CasesFormPage extends BasePage {
     private WebElementAction webElementAction = new WebElementAction();
     @FindBy(xpath = "//button[@title='Save']")
     private WebElement saveButton;
-    @FindBy(xpath = "//span[text()='Case Origin']/../..//a[@class='select']")
-    private WebElement caseOriginMenu;
-    @FindBy(xpath = "//span[text()='Priority']/../..//a[@class='select']")
-    private WebElement priorityMenu;
-    @FindBy(xpath = "//span[text()='Type']/../..//a[@class='select']")
-    private WebElement typeMenu;
-    @FindBy(xpath = "//span[text()='Case Reason']/../..//a[@class='select']")
-    private WebElement caseReasonMenu;
-    @FindBy(xpath = "//span[text()='Product']/../..//a[@class='select']")
-    private WebElement productMenu;
-    @FindBy(xpath = "//span[text()='Potential Liability']/../..//a[@class='select']")
-    private WebElement potentialLiabilityMenu;
-    @FindBy(xpath = "//span[text()='SLA Violation']/../..//a[@class='select']")
-    private WebElement slaViolationMenu;
     @FindBy(xpath = "//label[text()='Status']/../..//input[@role='combobox']")
     private WebElement statusMenu;
-    @FindBy(xpath = "//span[text()='Contact Name']/../..//input")
-    private WebElement contactNameTextBox;
-    @FindBy(xpath = "//span[text()='Account Name']/../..//input")
-    private WebElement accountNameTextBox;
-    @FindBy(xpath = "//span[text()='Web Email']/../..//input")
-    private WebElement webEmailTextBox;
-    @FindBy(xpath = "//span[text()='Web Name']/../..//input")
-    private WebElement webNameTextBox;
-    @FindBy(xpath = "//span[text()='Web Company']/../..//input")
-    private WebElement webCompanyTextBox;
-    @FindBy(xpath = "//span[text()='Web Phone']/../..//input")
-    private WebElement webPhoneTextBox;
-    @FindBy(xpath = "//span[text()='Engineering Req Number']/../..//input")
-    private WebElement engineeringReqNumberTextBox;
     @FindBy(xpath = "//label[contains(@class,'inputLabel')]"
             + "/span[text()='Subject']/../../input")
     private WebElement subjectTextBox;
-    @FindBy(xpath = "//label[contains(@class,'inputLabel')]"
-            + "/span[text()='Description']/../../textarea")
-    private WebElement descriptionTextBox;
-    @FindBy(xpath = "//label[contains(@class,'inputLabel')]"
-            + "/span[text()='Internal Comments']/../../textarea")
-    private WebElement internalCommentsTextBox;
+    private String comboBoxXpath = "//span[text()='%s']/../..//a[@class='select']";
+    private String textBoxXpath = "//span[text()='%s']/../..//input";
+    private String textAreaXpath = "//label[contains(@class,'inputLabel')]"
+            + "/span[text()='%s']/../../textarea";
     private String displayedNameOnTextBoxPath = "//div[@title='%s']/../..";
     private String popUpMessage;
 
@@ -81,7 +51,8 @@ public class CasesFormPage extends BasePage {
      * @param value the value to choose
      */
     public void selectValueOnCaseOriginMenu(final String value) {
-        webElementAction.selectOnDropdownMenu(caseOriginMenu, value);
+        webElementAction.selectOnDropdownMenu(webElementAction
+                .getWebElementByXpathAndValue(comboBoxXpath, "Case Origin"), value);
     }
 
     /**
@@ -90,7 +61,8 @@ public class CasesFormPage extends BasePage {
      * @param value the value to choose
      */
     public void selectValueOnPriorityMenu(final String value) {
-        webElementAction.selectOnDropdownMenu(priorityMenu, value);
+        webElementAction.selectOnDropdownMenu(webElementAction
+                .getWebElementByXpathAndValue(comboBoxXpath, "Priority"), value);
     }
 
     /**
@@ -99,7 +71,8 @@ public class CasesFormPage extends BasePage {
      * @param value the value to set
      */
     public void selectValueOnContacts(final String value) {
-        webElementAction.selectOnAutoCompleteTextBox(contactNameTextBox,
+        webElementAction.selectOnAutoCompleteTextBox(webElementAction
+                        .getWebElementByXpathAndValue(textBoxXpath, "Contact Name"),
                 value, displayedNameOnTextBoxPath);
     }
 
@@ -109,7 +82,8 @@ public class CasesFormPage extends BasePage {
      * @param value the value to set
      */
     public void selectValueOnAccounts(final String value) {
-        webElementAction.selectOnAutoCompleteTextBox(accountNameTextBox,
+        webElementAction.selectOnAutoCompleteTextBox(webElementAction
+                        .getWebElementByXpathAndValue(textBoxXpath, "Account Name"),
                 value, displayedNameOnTextBoxPath);
     }
 
@@ -119,7 +93,8 @@ public class CasesFormPage extends BasePage {
      * @param value the value to choose
      */
     public void selectValueOnTypeMenu(final String value) {
-        webElementAction.selectOnDropdownMenu(typeMenu, value);
+        webElementAction.selectOnDropdownMenu(webElementAction
+                .getWebElementByXpathAndValue(comboBoxXpath, "Type"), value);
     }
 
     /**
@@ -128,7 +103,8 @@ public class CasesFormPage extends BasePage {
      * @param value the value to choose
      */
     public void selectValueOnCaseReasonMenu(final String value) {
-        webElementAction.selectOnDropdownMenu(caseReasonMenu, value);
+        webElementAction.selectOnDropdownMenu(webElementAction
+                .getWebElementByXpathAndValue(comboBoxXpath, "Case Reason"), value);
     }
 
     /**
@@ -158,7 +134,8 @@ public class CasesFormPage extends BasePage {
      * @param text a String to input
      */
     public void inputTextOnWebEmailTextBox(final String text) {
-        webElementAction.setTextField(webEmailTextBox, text);
+        webElementAction.setTextField(webElementAction
+                .getWebElementByXpathAndValue(textBoxXpath, "Web Email"), text);
     }
 
     /**
@@ -167,7 +144,8 @@ public class CasesFormPage extends BasePage {
      * @param text a String to input
      */
     public void inputTextOnWebCompanyTextBox(final String text) {
-        webElementAction.setTextField(webCompanyTextBox, text);
+        webElementAction.setTextField(webElementAction
+                .getWebElementByXpathAndValue(textBoxXpath, "Web Company"), text);
     }
 
     /**
@@ -176,7 +154,8 @@ public class CasesFormPage extends BasePage {
      * @param text a String to input
      */
     public void inputTextOnWebNameTextBox(final String text) {
-        webElementAction.setTextField(webNameTextBox, text);
+        webElementAction.setTextField(webElementAction
+                .getWebElementByXpathAndValue(textBoxXpath, "Web Name"), text);
     }
 
     /**
@@ -185,7 +164,8 @@ public class CasesFormPage extends BasePage {
      * @param text a String to input
      */
     public void inputTextOnWebPhoneTextBox(final String text) {
-        webElementAction.setTextField(webPhoneTextBox, text);
+        webElementAction.setTextField(webElementAction
+                .getWebElementByXpathAndValue(textBoxXpath, "Web Phone"), text);
     }
 
     /**
@@ -194,7 +174,8 @@ public class CasesFormPage extends BasePage {
      * @param value the value to choose
      */
     public void selectValueOnProductMenu(final String value) {
-        webElementAction.selectOnDropdownMenu(productMenu, value);
+        webElementAction.selectOnDropdownMenu(webElementAction
+                .getWebElementByXpathAndValue(comboBoxXpath, "Product"), value);
     }
 
     /**
@@ -203,7 +184,8 @@ public class CasesFormPage extends BasePage {
      * @param value the value to choose
      */
     public void selectValueOnPotentialLiabilityMenu(final String value) {
-        webElementAction.selectOnDropdownMenu(potentialLiabilityMenu, value);
+        webElementAction.selectOnDropdownMenu(webElementAction
+                .getWebElementByXpathAndValue(comboBoxXpath, "Potential Liability"), value);
     }
 
     /**
@@ -212,7 +194,8 @@ public class CasesFormPage extends BasePage {
      * @param value the value to choose
      */
     public void selectValueOnSlaViolationMenu(final String value) {
-        webElementAction.selectOnDropdownMenu(slaViolationMenu, value);
+        webElementAction.selectOnDropdownMenu(webElementAction
+                .getWebElementByXpathAndValue(comboBoxXpath, "SLA Violation"), value);
     }
 
     /**
@@ -221,7 +204,8 @@ public class CasesFormPage extends BasePage {
      * @param text a String to input
      */
     public void inputTextOnEngineeringReqNumberTextBox(final String text) {
-        webElementAction.setTextField(engineeringReqNumberTextBox, text);
+        webElementAction.setTextField(webElementAction
+                .getWebElementByXpathAndValue(textBoxXpath, "Engineering Req Number"), text);
     }
 
     /**
@@ -239,7 +223,8 @@ public class CasesFormPage extends BasePage {
      * @param text a String to input
      */
     public void inputTextOnDescriptionTextBox(final String text) {
-        webElementAction.setTextField(descriptionTextBox, text);
+        webElementAction.setTextField(webElementAction
+                .getWebElementByXpathAndValue(textAreaXpath, "Description"), text);
     }
 
     /**
@@ -248,7 +233,8 @@ public class CasesFormPage extends BasePage {
      * @param text a String to input
      */
     public void inputTextOnInternalCommentsTextBox(final String text) {
-        webElementAction.setTextField(internalCommentsTextBox, text);
+        webElementAction.setTextField(webElementAction
+                .getWebElementByXpathAndValue(textAreaXpath, "Internal Comments"), text);
     }
 
     /**

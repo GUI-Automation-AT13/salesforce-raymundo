@@ -8,13 +8,11 @@
 
 package salesforce.ui.pages;
 
-import core.selenium.WebElementAction;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CasesPage extends BasePage {
-    private WebElementAction webElementAction = new WebElementAction();
     @FindBy(css = "div[title=\"New\"]")
     private WebElement buttonNew;
     @FindBy(xpath = "//*[@title='%s']")
@@ -49,7 +47,7 @@ public class CasesPage extends BasePage {
      * @return the salesforce.cases form site
      */
     public CasesFormPage clickOnNew() {
-        webElementAction.clickOnWebElement(buttonNew);
+        getWebElementAction().clickOnWebElement(buttonNew);
         return new CasesFormPage();
     }
 
@@ -59,7 +57,7 @@ public class CasesPage extends BasePage {
      * @return a String with the case number
      */
     public String getCaseNumberCellText() {
-        return webElementAction.getTextOnWebElement(caseNumberCell);
+        return getWebElementAction().getTextOnWebElement(caseNumberCell);
     }
 
     /**
@@ -68,7 +66,7 @@ public class CasesPage extends BasePage {
      * @return a String with the subject
      */
     public String getSubjectCellText() {
-        return webElementAction.getTextOnWebElement(subjectCell);
+        return getWebElementAction().getTextOnWebElement(subjectCell);
     }
 
     /**
@@ -77,7 +75,7 @@ public class CasesPage extends BasePage {
      * @return a String with the status
      */
     public String getStatusCellText() {
-        return webElementAction.getTextOnWebElement(statusCell);
+        return getWebElementAction().getTextOnWebElement(statusCell);
     }
 
     /**
@@ -86,7 +84,7 @@ public class CasesPage extends BasePage {
      * @return a String with the Date/Time Opened
      */
     public String getDateTimeOpenedCellText() {
-        return webElementAction.getTextOnWebElement(dateTimeOpenedCell);
+        return getWebElementAction().getTextOnWebElement(dateTimeOpenedCell);
     }
 
     /**
@@ -95,6 +93,6 @@ public class CasesPage extends BasePage {
      * @return a String with the case owner alias
      */
     public String getCaseOwnerAliasCellText() {
-        return webElementAction.getTextOnWebElement(caseOwnerAlias);
+        return getWebElementAction().getTextOnWebElement(caseOwnerAlias);
     }
 }

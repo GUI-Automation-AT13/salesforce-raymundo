@@ -1,12 +1,10 @@
 package salesforce.ui.pages;
 
-import core.selenium.WebElementAction;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class PopUpConfirmPage extends BasePage {
-    private WebElementAction webElementAction = new WebElementAction();
     @FindBy(css = "[title='Cancel']")
     private WebElement cancelButton;
     @FindBy(xpath = "//span[text()='Delete']")
@@ -26,7 +24,7 @@ public class PopUpConfirmPage extends BasePage {
      * @return the all cases web site
      */
     public CasesPage clickOnDelete() {
-        webElementAction.clickOnWebElement(deleteButton);
+        getWebElementAction().clickOnWebElement(deleteButton);
         return new CasesPage();
     }
 }

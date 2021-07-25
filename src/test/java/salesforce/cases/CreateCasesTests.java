@@ -58,6 +58,7 @@ public class CreateCasesTests extends BaseTest {
         newCase.setCaseOwner("Raymundo Guaraguara");
         newCase.setCreatedBy(newCase.getCaseOwner() + newCase.getDateTimeOpened());
         newCase.setLastModifiedBy(newCase.getCaseOwner() + newCase.getDateTimeOpened());
+        newCase.setCaseNumber(singleCasePage.getHeadersField(caseNumberHeaderTitle));
         //Get success message
         String actual = casesFormPage.getPopUpMessage();
         //Verify message
@@ -68,7 +69,6 @@ public class CreateCasesTests extends BaseTest {
         softAssert.assertEquals(singleCasePage.getHeadersTitle(), singleCaseTitle);
         softAssert.assertEquals(singleCasePage.getHeadersField(priorityHeaderTitle), newCase.getPriority());
         softAssert.assertEquals(singleCasePage.getHeadersField(statusHeaderTitle), newCase.getStatus());
-        softAssert.assertEquals(singleCasePage.getHeadersField(caseNumberHeaderTitle), newCase.getCaseNumber());
         //Verify case details
         Map actualCaseDetailsValues = singleCasePage.getDetailsFields();
         Map expectedCaseDetailsValues = convertObjectToMap(newCase);
@@ -79,6 +79,7 @@ public class CreateCasesTests extends BaseTest {
 
         popUpConfirmPage = singleCasePage.clickOnDelete();
         popUpConfirmPage.clickOnDelete();
+        softAssert.assertAll();
     }
 
     @Test
