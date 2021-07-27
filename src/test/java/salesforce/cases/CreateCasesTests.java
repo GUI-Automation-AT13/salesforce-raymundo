@@ -5,7 +5,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import salesforce.base.BaseTest;
-import salesforce.config.EnvironmentConfig;
 import salesforce.entities.Case;
 import salesforce.ui.PageTransporter;
 import salesforce.ui.pages.*;
@@ -44,10 +43,9 @@ public class CreateCasesTests extends BaseTest {
         newCaseValues.put("status", "New");
         newCase.setCaseWithMap(newCaseValues);
         //Login to salesforce
-        homePage = loginPage.loginSuccessful(EnvironmentConfig.getEnvironmentConfig().getUsername(),
-                EnvironmentConfig.getEnvironmentConfig().getPassword());
+//        homePage = loginPage.loginSuccessful(getUsername(), getPassword());
         //Navigate to Case's site
-        casesPage = pageTransporter.goToCases();
+//        casesPage = pageTransporter.goToCases();
         //Click on new case
         casesFormPage = casesPage.clickOnNew();
         //Fill case form
@@ -84,9 +82,9 @@ public class CreateCasesTests extends BaseTest {
 
     @Test
     public void testCreateCaseWithAllValues() throws ParseException {
-        homePage = loginPage.loginSuccessful(EnvironmentConfig.getEnvironmentConfig().getUsername(),
-                EnvironmentConfig.getEnvironmentConfig().getPassword());
-        casesPage = pageTransporter.goToCases();
+//        homePage = loginPage.loginSuccessful(EnvironmentConfig.getEnvironmentConfig().getUsername(),
+//                EnvironmentConfig.getEnvironmentConfig().getPassword());
+//        casesPage = pageTransporter.goToCases();
         casesFormPage = casesPage.clickOnNew();
         casesFormPage.selectValueOnContacts("Bruce Wayne");
         casesFormPage.selectValueOnTypeMenu("Mechanical");

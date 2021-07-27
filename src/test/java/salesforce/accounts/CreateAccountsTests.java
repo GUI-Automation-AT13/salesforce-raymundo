@@ -9,16 +9,12 @@
 package salesforce.accounts;
 
 import org.testng.annotations.Test;
-import salesforce.ui.pages.HomePage;
 import salesforce.base.BaseTest;
-
-import static core.utils.LoadEnvironmentFile.getTheSalesforcePassword;
-import static core.utils.LoadEnvironmentFile.getTheSalesforceUsername;
 
 public class CreateAccountsTests extends BaseTest {
     @Test
     public void testCreateAccountWithRequiredFields() {
-        HomePage homePage = loginPage.loginSuccessful(getTheSalesforceUsername(),
-                getTheSalesforcePassword());
+//        HomePage homePage = loginPage.loginSuccessful(getTheSalesforceUsername(),
+//                getTheSalesforcePassword());
     }
 }

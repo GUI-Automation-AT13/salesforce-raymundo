@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -153,5 +154,11 @@ public class StringToDateConverterTest {
         StringToDateConverter stringToDateConverter = new StringToDateConverter();
         String value = null;
         stringToDateConverter.convertStringToDate(value);
+    }
+
+    @Test
+    public void test100() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy HH:mm");
+        System.out.println(dateFormat.format(Date.from(Instant.now())));
     }
 }

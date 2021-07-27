@@ -93,6 +93,11 @@ public class WebElementAction {
      * @return a String with the text
      */
     public String getTextOnWebElement(final WebElement webElement) {
+        System.out.println("----------------");
+        System.out.println(webElement.getAttribute("textContent"));
+        System.out.println(webElement.getAttribute("innerText"));
+        System.out.println(webElement.isDisplayed());
+        System.out.println("-----------------");
         wait.until(ExpectedConditions.visibilityOf(webElement));
         return webElement.getText();
     }

@@ -6,6 +6,7 @@ import core.api.ApiManager;
 import core.api.ApiMethod;
 import core.api.ApiRequestBuilder;
 import core.api.ApiResponse;
+import org.testng.annotations.Test;
 import salesforce.entities.Account;
 
 import static core.utils.LoadEnvironmentFile.getTheBaseUrl;
@@ -27,6 +28,13 @@ public class AccountTest {
                 .addMethod(ApiMethod.POST)
                 .build();
         ApiManager.executeWithBody(apiRequestBuilder.build(), apiResponse);
+        System.out.println(apiResponse.getBody(SalesforceApiResponse.class).getId());
+    }
+
+    @Test
+    public void testes10() throws JsonProcessingException {
+//        createAnAccount();
+        deleteAnAccount();
     }
 
     public void deleteAnAccount() {
@@ -35,7 +43,7 @@ public class AccountTest {
                 .addBaseUri(getTheBaseUrl())
                 .clearPathParams()
                 .addEndpoint("/services/data/v52.0/sobjects/Account/{accountID}")
-                .addPathParams("accountID", "0015e00000FNEyyAAH")
+                .addPathParams("accountID", "0015e00000FNj1AAAT")
                 .addMethod(ApiMethod.DELETE)
                 .build();
         ApiManager.execute(apiRequestBuilder.build(), apiResponse);

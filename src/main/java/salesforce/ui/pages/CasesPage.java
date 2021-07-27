@@ -15,16 +15,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class CasesPage extends BasePage {
     @FindBy(css = "div[title=\"New\"]")
     private WebElement buttonNew;
-    @FindBy(xpath = "//*[@title='%s']")
-    private WebElement caseNumberCell;
-    @FindBy(xpath = "//*[@title='%s']/../../..//*[contains(@class,'textUnderline')]")
-    private WebElement subjectCell;
-    @FindBy(xpath = "//*[@title='%s']/../../..//*[@class='slds-truncate']")
-    private WebElement statusCell;
-    @FindBy(xpath = "//*[@title='%s']/../../..//*[contains(@class,'uiOutputDateTime')]")
-    private WebElement dateTimeOpenedCell;
-    @FindBy(xpath = "//*[@title='%s']/../../..//*[contains(@class,'uiOutputText')]")
-    private WebElement caseOwnerAlias;
+    private String caseNumberCellXpath = "//*[@title='%s']";
+    private String subjectCellXpath = "//*[@title='%s']/../../.."
+            + "//div[contains(@class,'outputLookupContainer')]";
+    private String statusCellXpath = "//*[@title='%s']/../../..//*[@class='slds-truncate']";
+    private String dateTimeOpenedCellXpath = "//*[@title='%s']/../../.."
+            + "//*[contains(@class,'uiOutputDateTime')]";
+    private String caseOwnerAliasXpath = "//*[@title='%s']/../../.."
+            + "//*[contains(@class,'uiOutputText')]";
 
     /**
      * Creates the Cases Page.
@@ -54,45 +52,61 @@ public class CasesPage extends BasePage {
     /**
      * Gets the text on the Case Number cell.
      *
+     * @param caseNumber a String with the value
      * @return a String with the case number
      */
-    public String getCaseNumberCellText() {
-        return getWebElementAction().getTextOnWebElement(caseNumberCell);
+    public String getCaseNumberCellText(final String caseNumber) {
+        return getWebElementAction().getTextOnWebElement(getWebElementAction()
+                .getWebElementByXpathAndValue(caseNumberCellXpath, caseNumber));
     }
 
     /**
      * Gets the text on the subject cell.
      *
+     * @param caseNumber a String with the value
      * @return a String with the subject
      */
-    public String getSubjectCellText() {
-        return getWebElementAction().getTextOnWebElement(subjectCell);
+    public String getSubjectCellText(final String caseNumber) {
+        return getWebElementAction().getTextOnWebElement(getWebElementAction()
+                .getWebElementByXpathAndValue(subjectCellXpath, caseNumber));
     }
 
     /**
      * Gets the text on the status cell.
      *
+     * @param caseNumber a String with the value
      * @return a String with the status
      */
-    public String getStatusCellText() {
-        return getWebElementAction().getTextOnWebElement(statusCell);
+    public String getStatusCellText(final String caseNumber) {
+        return getWebElementAction().getTextOnWebElement(getWebElementAction()
+                .getWebElementByXpathAndValue(statusCellXpath, caseNumber));
     }
 
     /**
      * Gets the text on Date/Time Opened cell.
      *
+     * @param caseNumber a String with the value
      * @return a String with the Date/Time Opened
      */
-    public String getDateTimeOpenedCellText() {
-        return getWebElementAction().getTextOnWebElement(dateTimeOpenedCell);
+    public String getDateTimeOpenedCellText(final String caseNumber) {
+        return getWebElementAction().getTextOnWebElement(getWebElementAction()
+                .getWebElementByXpathAndValue(dateTimeOpenedCellXpath, caseNumber));
     }
 
     /**
      * Gets the text on the Case Owner Alias cell.
      *
+     * @param caseNumber a String with the value
      * @return a String with the case owner alias
      */
-    public String getCaseOwnerAliasCellText() {
-        return getWebElementAction().getTextOnWebElement(caseOwnerAlias);
+    public String getCaseOwnerAliasCellText(final String caseNumber) {
+        return getWebElementAction().getTextOnWebElement(getWebElementAction()
+                .getWebElementByXpathAndValue(caseOwnerAliasXpath, caseNumber));
+    }
+
+    public String getCaseId(final String caseNumber) {
+        return getWebElementAction().getAttributeFromWebElement(getWebElementAction()
+                .getWebElementByXpathAndValue(caseNumberCellXpath, caseNumber),
+                "data-recordid");
     }
 }

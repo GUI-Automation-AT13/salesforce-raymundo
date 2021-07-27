@@ -12,7 +12,11 @@ import core.selenium.WebElementAction;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import salesforce.entities.Case;
 import salesforce.ui.PopUpMessage;
+
+import java.util.HashMap;
+import java.util.Set;
 
 public class CasesFormPage extends BasePage {
     private WebElementAction webElementAction = new WebElementAction();
@@ -28,6 +32,8 @@ public class CasesFormPage extends BasePage {
     private String textAreaXpath = "//label[contains(@class,'inputLabel')]"
             + "/span[text()='%s']/../../textarea";
     private String displayedNameOnTextBoxPath = "//div[@title='%s']/../..";
+    private String caseOwnerXpath = "//span[text()='%s']/../.."
+            + "//span[@class='uiOutputText forceOutputLookup']";
     private String popUpMessage;
 
     /**
@@ -253,5 +259,53 @@ public class CasesFormPage extends BasePage {
      */
     public void setPopUpMessage(final String inputPopUpMessage) {
         this.popUpMessage = inputPopUpMessage;
+    }
+
+    /**
+     * Gets the case owner value.
+     *
+     * @return a String with the value
+     */
+    public String getCaseOwner() {
+        return webElementAction.getTextOnWebElement(
+                webElementAction.getWebElementByXpathAndValue(caseOwnerXpath, "Case Owner"));
+    }
+
+    /**
+     * Creates a case on the salesforce user interface.
+     *
+     * @param fields a set of keys
+     * @param newCase the entity to set
+     * @return the page of the created case
+     */
+    public SingleCasePage createCase(final Set<String> fields, final Case newCase) {
+        //Compose map
+        HashMap<String, Runnable> strategyMap = new HashMap<>();
+        strategyMap.put("status", () -> System.out.println("Hello World"));
+        strategyMap.put("caseOrigin", () -> selectValueOnCaseOriginMenu(newCase.getCaseOrigin()));
+        strategyMap.put("contactName", () -> selectValueOnContacts(newCase.getContactName()));
+        strategyMap.put("accountName", () -> selectValueOnAccounts(newCase.getAccountName()));
+        strategyMap.put("type", () -> selectValueOnTypeMenu(newCase.getType()));
+        strategyMap.put("caseReason", () -> selectValueOnCaseReasonMenu(newCase.getCaseReason()));
+        strategyMap.put("priority", () -> selectValueOnPriorityMenu(newCase.getPriority()));
+        strategyMap.put("webEmail", () -> inputTextOnWebEmailTextBox(newCase.getWebEmail()));
+        strategyMap.put("webName", () -> inputTextOnWebNameTextBox(newCase.getWebName()));
+        strategyMap.put("webCompany", () -> inputTextOnWebCompanyTextBox(newCase.getWebCompany()));
+        strategyMap.put("webPhone", () -> inputTextOnWebPhoneTextBox(newCase.getWebPhone()));
+        strategyMap.put("product", () -> selectValueOnProductMenu(newCase.getProduct()));
+        strategyMap.put("potentialLiability", () ->
+                selectValueOnPotentialLiabilityMenu(newCase.getPotentialLiability()));
+        strategyMap.put("engineeringReqNumber", () ->
+                inputTextOnEngineeringReqNumberTextBox(newCase.getEngineeringReqNumber()));
+        strategyMap.put("sLAViolation", () ->
+                selectValueOnSlaViolationMenu(newCase.getsLAViolation()));
+        strategyMap.put("subject", () -> inputTextOnSubjectTextBox(newCase.getSubject()));
+        strategyMap.put("description", () ->
+                inputTextOnDescriptionTextBox(newCase.getDescription()));
+        strategyMap.put("internalComments", () ->
+                inputTextOnInternalCommentsTextBox(newCase.getInternalComments()));
+        //Fill form
+        fields.forEach(field -> strategyMap.get(field).run());
+        return clickOnSaveButton();
     }
 }
