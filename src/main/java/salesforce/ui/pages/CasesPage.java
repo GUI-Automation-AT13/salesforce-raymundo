@@ -8,9 +8,15 @@
 
 package salesforce.ui.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static salesforce.ui.pages.SingleCasePage.INTERVAL_TIME;
 
 public class CasesPage extends BasePage {
     @FindBy(css = "div[title=\"New\"]")
@@ -67,8 +73,18 @@ public class CasesPage extends BasePage {
      * @return a String with the subject
      */
     public String getSubjectCellText(final String caseNumber) {
-        return getWebElementAction().getTextOnWebElement(getWebElementAction()
-                .getWebElementByXpathAndValue(subjectCellXpath, caseNumber));
+        if (getWebElementAction().isElementPresent(
+                By.xpath(String.format(subjectCellXpath, caseNumber)), INTERVAL_TIME)) {
+            if (getDriver().findElement(
+                    By.xpath(String.format(subjectCellXpath, caseNumber))).getText().equals("-")) {
+                return "";
+            } else {
+                return getDriver().findElement(
+                        By.xpath(String.format(subjectCellXpath, caseNumber))).getText();
+            }
+        } else {
+            return "";
+        }
     }
 
     /**
@@ -104,9 +120,30 @@ public class CasesPage extends BasePage {
                 .getWebElementByXpathAndValue(caseOwnerAliasXpath, caseNumber));
     }
 
+    /**
+     * Gets the case id.
+     *
+     * @param caseNumber a String with the value
+     * @return the case id
+     */
     public String getCaseId(final String caseNumber) {
         return getWebElementAction().getAttributeFromWebElement(getWebElementAction()
                 .getWebElementByXpathAndValue(caseNumberCellXpath, caseNumber),
                 "data-recordid");
+    }
+
+    /**
+     * Creates a map of all the row fields of the case.
+     *
+     * @param caseNumber the case we want to extract the row
+     * @return a map with all the row fields
+     */
+    public Map<String, String> getRowFields(final String caseNumber) {
+        Map<String, String> map = new HashMap<>();
+        map.put("caseNumber", getCaseNumberCellText(caseNumber));
+        map.put("subject", getSubjectCellText(caseNumber));
+        map.put("status", getStatusCellText(caseNumber));
+        map.put("dateTimeOpened", getDateTimeOpenedCellText(caseNumber));
+        return map;
     }
 }

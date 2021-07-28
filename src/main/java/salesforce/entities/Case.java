@@ -4,9 +4,9 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.*;
 
 public class Case {
     private String id;
@@ -36,6 +36,7 @@ public class Case {
     private String contactPhone;
     private String status;
     private String webCompany;
+    private Map<String, String> commentsList = new HashMap<>();
 
     /**
      * Gets the case id.
@@ -565,5 +566,26 @@ public class Case {
             throws InvocationTargetException, IllegalAccessException {
         BeanUtils.populate(this, map);
         setNullValuesToEmpty();
+    }
+
+    /**
+     * Updates a Case to default values on salesforce.
+     *
+     * @param inputCaseNumber the self generated case number
+     */
+    public void updateCase(final String inputCaseNumber) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy HH:mm");
+        this.setDateTimeOpened(dateFormat.format(Date.from(Instant.now())));
+        this.setCreatedBy(caseOwner.concat(", ").concat(dateTimeOpened));
+        this.setLastModifiedBy(caseOwner.concat(", ").concat(dateTimeOpened));
+        this.setCaseNumber(inputCaseNumber);
+        this.commentsList.put(dateTimeOpened, internalComments);
+        this.setInternalComments("");
+        if (status.equals("")) {
+            status = "New";
+        }
+        if (priority.equals("")) {
+            priority = "Medium";
+        }
     }
 }

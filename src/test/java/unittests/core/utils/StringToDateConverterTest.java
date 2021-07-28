@@ -14,7 +14,6 @@ import org.testng.annotations.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -158,7 +157,14 @@ public class StringToDateConverterTest {
 
     @Test
     public void test100() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy HH:mm");
-        System.out.println(dateFormat.format(Date.from(Instant.now())));
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy HH:mm");
+//        System.out.println(dateFormat.format(Date.from(Instant.now())));
+//        Case newCase = new Case();
+//        System.out.println(newCase.getClass().getName());
+//        System.out.println(newCase.getClass().getSimpleName());
+        String string = "Raymundo Guaraguara Open Raymundo Guaraguara Preview , 28/7/2021 09:47";
+        System.out.println(string.contains("Open") && string.contains("Preview"));
+        System.out.println(string.indexOf(","));
+        System.out.println(string.substring(0, string.indexOf("Open") - 1).concat(string.substring(string.indexOf(","))));
     }
 }

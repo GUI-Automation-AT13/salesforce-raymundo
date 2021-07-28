@@ -15,21 +15,22 @@ public class SingleCasePage extends BasePage {
     @FindBy(xpath = "//button[@name='Delete']")
     private WebElement deleteButton;
     private String headersXpath = "//p[@title='%s']/../p/slot/lightning-formatted-text";
-    @FindBy(xpath = "//slot[@slot='primaryField']//div/lightning-formatted-text")
-    private WebElement headersSubject;
+    private String headersSubjectXpath = "//slot[@slot='primaryField']"
+            + "//div/lightning-formatted-text";
     @FindBy(xpath = "//h1/div")
     private WebElement headersTitle;
     private String createdDateLabel = "//span[text()='Created By']/../..//lightning-formatted-text";
     private String detailsFields = "//records-lwc-detail-panel"
             + "//div[contains(@class,'slds-form-element__label')]";
     private String detailsValues = "//*[@data-output-element-id='output-field']";
+    public static final int INTERVAL_TIME = 40000;
 
     /**
      * Waits for the edit button to appear on single case page.
      */
     @Override
     protected void waitForPageToLoad() {
-        getWait().until(ExpectedConditions.elementToBeClickable(deleteButton));
+        getWait().until(ExpectedConditions.visibilityOf(headersTitle));
     }
 
     /**
@@ -79,7 +80,26 @@ public class SingleCasePage extends BasePage {
      * @return a String with the subject
      */
     public String getHeadersSubject() {
-        return getWebElementAction().getTextOnWebElement(headersSubject);
+        if (getWebElementAction().isElementPresent(By.xpath(headersSubjectXpath), INTERVAL_TIME)) {
+            return getDriver().findElement(By.xpath(headersSubjectXpath)).getText();
+        } else {
+            return "";
+        }
+    }
+
+    /**
+     * Creates a map of all the headers fields on a Case.
+     *
+     * @return the map with the headers and values
+     */
+    public Map<String, String> getHeadersFields() {
+        Map<String, String> map = new HashMap<>();
+        map.put("title", getHeadersTitle());
+        map.put("subject", getHeadersSubject());
+        map.put("priority", getHeadersField("Priority"));
+        map.put("status", getHeadersField("Status"));
+        map.put("caseNumber", getHeadersField("Case Number"));
+        return map;
     }
 
     /**
@@ -93,7 +113,22 @@ public class SingleCasePage extends BasePage {
         if (fieldsList.size() == valuesList.size()) {
             Map<String, String> map = new HashMap<>();
             for (int i = 0; i < fieldsList.size(); i++) {
-                map.put(changeFieldName(fieldsList.get(i).getText()), valuesList.get(i).getText());
+                if (valuesList.get(i).getText().contains("Open")
+                        && valuesList.get(i).getText().contains("Preview")) {
+                    if (valuesList.get(i).getText().contains(",")) {
+                        String value = valuesList.get(i).getText();
+                        map.put(changeFieldName(fieldsList.get(i).getText()),
+                                value.substring(0, value.indexOf("Open") - 1)
+                                .concat(value.substring(value.indexOf(","))));
+                    } else {
+                        String value = valuesList.get(i).getText();
+                        map.put(changeFieldName(fieldsList.get(i).getText()),
+                                value.substring(0, value.indexOf("Open") - 1));
+                    }
+                } else {
+                    map.put(changeFieldName(fieldsList.get(i).getText()),
+                            valuesList.get(i).getText());
+                }
             }
             return map;
         }
