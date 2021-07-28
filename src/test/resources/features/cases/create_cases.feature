@@ -1,4 +1,5 @@
 Feature: Create Cases
+  @CreateAccount @CreateContact @DeleteCase @DeleteAccount @DeleteContact
   Scenario: Create a case with required fields
     Given I login to salesforce as an "admin" user
     When I navigate to the "CASES" page
@@ -19,8 +20,8 @@ Feature: Create Cases
     When I create a case with fields
       | status | New |
       | caseOrigin  | Phone |
-      | contactName | Bruce Wayne |
-      | accountName | Batman      |
+      | contactName | Frank Castle |
+      | accountName | Punisher    |
       | type        | Mechanical  |
       | caseReason  | Installation |
       | priority    | Medium       |

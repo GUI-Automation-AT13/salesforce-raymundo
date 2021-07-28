@@ -15,7 +15,7 @@ import static salesforce.config.EnvironmentConfig.getPassword;
 import static salesforce.config.EnvironmentConfig.getUsername;
 
 public class CreateCaseSteps {
-    Case newCase = new Case();
+    Case newCase;
     String actualMessage;
     Map actualCaseDetailsValues;
     Map expectedCaseDetailsValues;
@@ -24,6 +24,10 @@ public class CreateCaseSteps {
     Map actualCaseRowValues;
     Map expectedCaseRowValues;
     SoftAssert softAssert = new SoftAssert();
+
+    public CreateCaseSteps(Case newCase) {
+        this.newCase = newCase;
+    }
 
     @Given("I login to salesforce as a(n) {string} user")
     public void iLoginToSalesforceAsAUser(final String userType) {
