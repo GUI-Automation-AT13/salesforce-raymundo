@@ -1,4 +1,4 @@
-package salesforce.api.utils;
+package salesforce.utils;
 
 public final class AdaptStringToAttribute {
     private AdaptStringToAttribute() {

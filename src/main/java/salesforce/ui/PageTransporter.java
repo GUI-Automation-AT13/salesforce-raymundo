@@ -48,5 +48,6 @@ public class PageTransporter {
      */
     public void goToPage(final String pageName) {
         goToUrl(baseUrl.concat(SalesforceUrl.valueOf(pageName).getUrl()));
+//        Url.FEATURE_URL.get(), page
     }
 }
