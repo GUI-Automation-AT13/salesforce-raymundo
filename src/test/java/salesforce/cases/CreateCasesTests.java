@@ -5,14 +5,12 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import salesforce.base.BaseTest;
-import salesforce.config.EnvironmentConfig;
 import salesforce.entities.Case;
 import salesforce.ui.PageTransporter;
 import salesforce.ui.pages.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Calendar;
 import java.util.Date;
@@ -44,10 +42,9 @@ public class CreateCasesTests extends BaseTest {
         newCaseValues.put("status", "New");
         newCase.setCaseWithMap(newCaseValues);
         //Login to salesforce
-        homePage = loginPage.loginSuccessful(EnvironmentConfig.getEnvironmentConfig().getUsername(),
-                EnvironmentConfig.getEnvironmentConfig().getPassword());
+//        homePage = loginPage.loginSuccessful(getUsername(), getPassword());
         //Navigate to Case's site
-        casesPage = pageTransporter.goToCases();
+//        casesPage = pageTransporter.goToCases();
         //Click on new case
         casesFormPage = casesPage.clickOnNew();
         //Fill case form
@@ -58,6 +55,7 @@ public class CreateCasesTests extends BaseTest {
         newCase.setCaseOwner("Raymundo Guaraguara");
         newCase.setCreatedBy(newCase.getCaseOwner() + newCase.getDateTimeOpened());
         newCase.setLastModifiedBy(newCase.getCaseOwner() + newCase.getDateTimeOpened());
+//        newCase.setCaseNumber(singleCasePage.getHeadersField(caseNumberHeaderTitle));
         //Get success message
         String actual = casesFormPage.getPopUpMessage();
         //Verify message
@@ -66,26 +64,24 @@ public class CreateCasesTests extends BaseTest {
                 "\nactual: " + actual + "\nexpected regex: " + expectedRegex);
         //Verify case headers
         softAssert.assertEquals(singleCasePage.getHeadersTitle(), singleCaseTitle);
-        softAssert.assertEquals(singleCasePage.getHeadersField(priorityHeaderTitle), newCase.getPriority());
-        softAssert.assertEquals(singleCasePage.getHeadersField(statusHeaderTitle), newCase.getStatus());
-        softAssert.assertEquals(singleCasePage.getHeadersField(caseNumberHeaderTitle), newCase.getCaseNumber());
+//        softAssert.assertEquals(singleCasePage.getHeadersField(priorityHeaderTitle), newCase.getPriority());
+//        softAssert.assertEquals(singleCasePage.getHeadersField(statusHeaderTitle), newCase.getStatus());
         //Verify case details
         Map actualCaseDetailsValues = singleCasePage.getDetailsFields();
         Map expectedCaseDetailsValues = convertObjectToMap(newCase);
         softAssert.assertEquals(actualCaseDetailsValues, expectedCaseDetailsValues);
         //Navigate to case's site
-
         //Verify case on case's list
-
-        popUpConfirmPage = singleCasePage.clickOnDelete();
+//        popUpConfirmPage = singleCasePage.clickOnDelete();
         popUpConfirmPage.clickOnDelete();
+        softAssert.assertAll();
     }
 
     @Test
     public void testCreateCaseWithAllValues() throws ParseException {
-        homePage = loginPage.loginSuccessful(EnvironmentConfig.getEnvironmentConfig().getUsername(),
-                EnvironmentConfig.getEnvironmentConfig().getPassword());
-        casesPage = pageTransporter.goToCases();
+//        homePage = loginPage.loginSuccessful(EnvironmentConfig.getEnvironmentConfig().getUsername(),
+//                EnvironmentConfig.getEnvironmentConfig().getPassword());
+//        casesPage = pageTransporter.goToCases();
         casesFormPage = casesPage.clickOnNew();
         casesFormPage.selectValueOnContacts("Bruce Wayne");
         casesFormPage.selectValueOnTypeMenu("Mechanical");
@@ -110,10 +106,10 @@ public class CreateCasesTests extends BaseTest {
         String expectedStart = "Case";
         String expectedFinish = "was created.";
         Assert.assertTrue(actual.startsWith(expectedStart) && actual.contains(expectedFinish));
-        String createdDate = singleCasePage.getCreatedDateLabel();
-        Date actualDate = DateUtils.truncate(new SimpleDateFormat("d/M/yyyy HH:mm").parse(createdDate), Calendar.MINUTE);
-        Assert.assertEquals(expectedDate, actualDate);
-        popUpConfirmPage = singleCasePage.clickOnDelete();
+//        String createdDate = singleCasePage.getCreatedDateLabel();
+//        Date actualDate = DateUtils.truncate(new SimpleDateFormat("d/M/yyyy HH:mm").parse(createdDate), Calendar.MINUTE);
+//        Assert.assertEquals(expectedDate, actualDate);
+//        popUpConfirmPage = singleCasePage.clickOnDelete();
         popUpConfirmPage.clickOnDelete();
     }
 

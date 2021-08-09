@@ -9,59 +9,32 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static core.utils.StringAdapter.replaceSpecialCharacters;
 import static salesforce.utils.AdaptStringToAttribute.changeFieldName;
+import static salesforce.utils.CaseAttributeNameAdapter.getCaseAttributeName;
+import static salesforce.utils.FileTranslator.translateValue;
 
 public class SingleCasePage extends BasePage {
-    @FindBy(xpath = "//button[@name='Delete']")
-    private WebElement deleteButton;
-    private String headersXpath = "//p[@title='%s']/../p/slot/lightning-formatted-text";
-    @FindBy(xpath = "//slot[@slot='primaryField']//div/lightning-formatted-text")
-    private WebElement headersSubject;
+    private String headersSubjectXpath = "//slot[@slot='primaryField']"
+            + "//div/lightning-formatted-text";
     @FindBy(xpath = "//h1/div")
     private WebElement headersTitle;
-    private String createdDateLabel = "//span[text()='Created By']/../..//lightning-formatted-text";
+    private String headersFields = "//p[@class='slds-text-title slds-truncate']";
+    private String headersValues = "//slot[@class='slds-grid slds-page-header__detail-row']"
+            + "//lightning-formatted-text";
     private String detailsFields = "//records-lwc-detail-panel"
             + "//div[contains(@class,'slds-form-element__label')]";
     private String detailsValues = "//*[@data-output-element-id='output-field']";
+    private String caseNumberXpath = "//p[%s]/../p/slot/lightning-formatted-text";
+    public static final int INTERVAL_TIME = 40000;
+    private String featureName = "Cases";
 
     /**
      * Waits for the edit button to appear on single case page.
      */
     @Override
     protected void waitForPageToLoad() {
-        getWait().until(ExpectedConditions.elementToBeClickable(deleteButton));
-    }
-
-    /**
-     * Clicks on the delete button.
-     *
-     * @return a pop up to confirm deletion
-     */
-    public PopUpConfirmPage clickOnDelete() {
-        getWebElementAction().clickOnWebElement(deleteButton);
-        return new PopUpConfirmPage();
-    }
-
-    /**
-     * Gets the pop up message.
-     *
-     * @return a String with the message
-     */
-    public String getCreatedDateLabel() {
-        WebElement webElement = getDriver().findElement(By.xpath(createdDateLabel));
-        getWait().until(ExpectedConditions.visibilityOf(webElement));
-        return webElement.getText();
-    }
-
-    /**
-     * Gets the headers required field.
-     *
-     * @param field a String with Status|Priority|Case Number
-     * @return a String with the priority
-     */
-    public String getHeadersField(final String field) {
-        return getWebElementAction().getTextOnWebElement(
-                getWebElementAction().getWebElementByXpathAndValue(headersXpath, field));
+        getWait().until(ExpectedConditions.visibilityOf(headersTitle));
     }
 
     /**
@@ -79,7 +52,54 @@ public class SingleCasePage extends BasePage {
      * @return a String with the subject
      */
     public String getHeadersSubject() {
-        return getWebElementAction().getTextOnWebElement(headersSubject);
+        if (getWebElementAction().isElementPresent(By.xpath(headersSubjectXpath), INTERVAL_TIME)) {
+            return getDriver().findElement(By.xpath(headersSubjectXpath)).getText();
+        } else {
+            return "";
+        }
+    }
+
+    /**
+     * Creates a map of all the headers fields on a Case.
+     *
+     * @return the map with the headers and values
+     */
+    public Map<String, String> getAllHeadersFields() {
+        Map<String, String> map = getHeadersFields();
+        map.put("title", getHeadersTitle());
+        map.put("subject", getHeadersSubject());
+        return map;
+    }
+
+    /**
+     * Gets all the fields and values of the headers section.
+     *
+     * @return a map with all the values
+     */
+    public Map<String, String> getHeadersFields() {
+        List<WebElement> fieldsList = getDriver().findElements(By.xpath(headersFields));
+        List<WebElement> valuesList = getDriver().findElements(By.xpath(headersValues));
+        if (fieldsList.size() == valuesList.size()) {
+            Map<String, String> map = new HashMap<>();
+            for (int i = 0; i < fieldsList.size(); i++) {
+                String text = fieldsList.get(i).getText();
+                map.put(getCaseAttributeName(changeFieldName(
+                        replaceSpecialCharacters(text))), valuesList.get(i).getText());
+            }
+            return map;
+        }
+        return null;
+    }
+
+    /**
+     * Gets the case's number.
+     *
+     * @return a string with the value
+     */
+    public String getCaseNumber() {
+        return getWebElementAction().getTextOnWebElement(getWebElementAction()
+                .getWebElementByXpathAndValue(caseNumberXpath,
+                        translateValue(featureName, "header.caseNumber")));
     }
 
     /**
@@ -93,10 +113,38 @@ public class SingleCasePage extends BasePage {
         if (fieldsList.size() == valuesList.size()) {
             Map<String, String> map = new HashMap<>();
             for (int i = 0; i < fieldsList.size(); i++) {
-                map.put(changeFieldName(fieldsList.get(i).getText()), valuesList.get(i).getText());
+                String mapKey = getCaseAttributeName(changeFieldName(
+                        replaceSpecialCharacters(fieldsList.get(i).getText())));
+                String mapValue = valuesList.get(i).getText();
+                if (mapValue.contains(translateValue(featureName, "details.open"))
+                        && mapValue.contains(translateValue(featureName, "details.preview"))) {
+                    if (mapValue.contains(",")) {
+                        map.put(mapKey, mapValue.substring(0, mapValue.indexOf(
+                                translateValue(featureName, "details.open")) - 1)
+                                        .concat(mapValue.substring(mapValue.indexOf(","))));
+                    } else {
+                        map.put(mapKey, mapValue.substring(0, mapValue.indexOf(
+                                translateValue(featureName, "details.open")) - 1));
+                    }
+                } else {
+                    map.put(mapKey, mapValue);
+                }
             }
             return map;
         }
         return null;
+    }
+
+    /**
+     * Gets the case's id.
+     *
+     * @return a string with the value
+     */
+    public String getCaseId() {
+        String url = getWebElementAction().getSiteCurrentUrl();
+        String preIdString = "Case/";
+        String posIdString = "/view";
+        return url.substring(url.indexOf(preIdString)
+                + preIdString.length(), url.indexOf(posIdString));
     }
 }

@@ -10,6 +10,8 @@ package core.utils;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
+import java.util.Locale;
+
 public final class LoadEnvironmentFile {
     private LoadEnvironmentFile() {
     }
@@ -53,38 +55,74 @@ public final class LoadEnvironmentFile {
     }
 
     /**
-     * Gets the implicit wait time from environment file.
+     * Gets the base url from environment file.
      *
-     * @return an int with the implicit wait time
+     * @return a String with the base url
      */
     public static String getTheBaseUrl() {
         return getDotenv().get("BASE_URL");
     }
 
     /**
-     * Gets the implicit wait time from environment file.
+     * Gets the login url from environment file.
      *
-     * @return an int with the implicit wait time
+     * @return a String with the login url
      */
     public static String getTheLoginUrl() {
         return getDotenv().get("LOGIN_URL");
     }
 
     /**
-     * Gets the implicit wait time from environment file.
+     * Gets the salesforce username from environment file.
      *
-     * @return an int with the implicit wait time
+     * @return a String with the salesforce username
      */
     public static String getTheSalesforceUsername() {
         return getDotenv().get("SALESFORCE_USERNAME");
     }
 
     /**
-     * Gets the implicit wait time from environment file.
+     * Gets the salesforce password from environment file.
      *
-     * @return an int with the implicit wait time
+     * @return a String with the salesforce password
      */
     public static String getTheSalesforcePassword() {
         return getDotenv().get("SALESFORCE_PASSWORD");
+    }
+
+    /**
+     * Gets the salesforce client id from environment file.
+     *
+     * @return a String with the salesforce client id
+     */
+    public static String getTheSalesforceClientId() {
+        return getDotenv().get("SALESFORCE_CLIENT_ID");
+    }
+
+    /**
+     * Gets the salesforce client secret from environment file.
+     *
+     * @return a String with the salesforce client secret
+     */
+    public static String getTheSalesforceClientSecret() {
+        return getDotenv().get("SALESFORCE_CLIENT_SECRET");
+    }
+
+    /**
+     * Gets the salesforce token from environment file.
+     *
+     * @return a String with the salesforce token
+     */
+    public static String getTheSalesforceToken() {
+        return getDotenv().get("SALESFORCE_TOKEN");
+    }
+
+    /**
+     * Gets the internationalization language.
+     *
+     * @return Locale with language.
+     */
+    public static Locale getLanguage() {
+        return new Locale(getDotenv().get("LANGUAGE"));
     }
 }

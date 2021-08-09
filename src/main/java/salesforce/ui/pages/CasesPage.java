@@ -8,25 +8,30 @@
 
 package salesforce.ui.pages;
 
-import core.selenium.WebElementAction;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import static salesforce.ui.pages.SingleCasePage.INTERVAL_TIME;
+import static salesforce.utils.FileTranslator.translateValue;
+
 public class CasesPage extends BasePage {
-    private WebElementAction webElementAction = new WebElementAction();
-    @FindBy(css = "div[title=\"New\"]")
-    private WebElement buttonNew;
-    @FindBy(xpath = "//*[@title='%s']")
-    private WebElement caseNumberCell;
-    @FindBy(xpath = "//*[@title='%s']/../../..//*[contains(@class,'textUnderline')]")
-    private WebElement subjectCell;
-    @FindBy(xpath = "//*[@title='%s']/../../..//*[@class='slds-truncate']")
-    private WebElement statusCell;
-    @FindBy(xpath = "//*[@title='%s']/../../..//*[contains(@class,'uiOutputDateTime')]")
-    private WebElement dateTimeOpenedCell;
-    @FindBy(xpath = "//*[@title='%s']/../../..//*[contains(@class,'uiOutputText')]")
-    private WebElement caseOwnerAlias;
+    @FindBy(xpath = "//*[@class='slds-input']")
+    private WebElement searchTextBox;
+    private String buttonNewXpath = "//div[@title='%s']";
+    private String caseNumberCellXpath = "//*[@title='%s']";
+    private String subjectCellXpath = "//*[@title='%s']/../../.."
+            + "//div[contains(@class,'outputLookupContainer')]";
+    private String statusCellXpath = "//*[@title='%s']/../../..//*[@class='slds-truncate']";
+    private String dateTimeOpenedCellXpath = "//*[@title='%s']/../../.."
+            + "//*[contains(@class,'uiOutputDateTime')]";
+    private String caseOwnerAliasXpath = "//*[@title='%s']/../../.."
+            + "//*[contains(@class,'uiOutputText')]";
+    private String featureName = "Cases";
 
     /**
      * Creates the Cases Page.
@@ -40,7 +45,7 @@ public class CasesPage extends BasePage {
      */
     @Override
     protected void waitForPageToLoad() {
-        getWait().until(ExpectedConditions.visibilityOf(buttonNew));
+        getWait().until(ExpectedConditions.visibilityOf(searchTextBox));
     }
 
     /**
@@ -49,52 +54,89 @@ public class CasesPage extends BasePage {
      * @return the salesforce.cases form site
      */
     public CasesFormPage clickOnNew() {
-        webElementAction.clickOnWebElement(buttonNew);
+        getWebElementAction().clickOnWebElement(getWebElementAction()
+                .getWebElementByXpathAndValue(buttonNewXpath,
+                        translateValue(featureName, "button.new")));
         return new CasesFormPage();
     }
 
     /**
      * Gets the text on the Case Number cell.
      *
+     * @param caseNumber a String with the value
      * @return a String with the case number
      */
-    public String getCaseNumberCellText() {
-        return webElementAction.getTextOnWebElement(caseNumberCell);
+    public String getCaseNumberCellText(final String caseNumber) {
+        return getWebElementAction().getTextOnWebElement(getWebElementAction()
+                .getWebElementByXpathAndValue(caseNumberCellXpath, caseNumber));
     }
 
     /**
      * Gets the text on the subject cell.
      *
+     * @param caseNumber a String with the value
      * @return a String with the subject
      */
-    public String getSubjectCellText() {
-        return webElementAction.getTextOnWebElement(subjectCell);
+    public String getSubjectCellText(final String caseNumber) {
+        if (getWebElementAction().isElementPresent(
+                By.xpath(String.format(subjectCellXpath, caseNumber)), INTERVAL_TIME)) {
+            if (getDriver().findElement(
+                    By.xpath(String.format(subjectCellXpath, caseNumber))).getText().equals("-")) {
+                return "";
+            } else {
+                return getDriver().findElement(
+                        By.xpath(String.format(subjectCellXpath, caseNumber))).getText();
+            }
+        } else {
+            return "";
+        }
     }
 
     /**
      * Gets the text on the status cell.
      *
+     * @param caseNumber a String with the value
      * @return a String with the status
      */
-    public String getStatusCellText() {
-        return webElementAction.getTextOnWebElement(statusCell);
+    public String getStatusCellText(final String caseNumber) {
+        return getWebElementAction().getTextOnWebElement(getWebElementAction()
+                .getWebElementByXpathAndValue(statusCellXpath, caseNumber));
     }
 
     /**
      * Gets the text on Date/Time Opened cell.
      *
+     * @param caseNumber a String with the value
      * @return a String with the Date/Time Opened
      */
-    public String getDateTimeOpenedCellText() {
-        return webElementAction.getTextOnWebElement(dateTimeOpenedCell);
+    public String getDateTimeOpenedCellText(final String caseNumber) {
+        return getWebElementAction().getTextOnWebElement(getWebElementAction()
+                .getWebElementByXpathAndValue(dateTimeOpenedCellXpath, caseNumber));
     }
 
     /**
      * Gets the text on the Case Owner Alias cell.
      *
+     * @param caseNumber a String with the value
      * @return a String with the case owner alias
      */
-    public String getCaseOwnerAliasCellText() {
-        return webElementAction.getTextOnWebElement(caseOwnerAlias);
+    public String getCaseOwnerAliasCellText(final String caseNumber) {
+        return getWebElementAction().getTextOnWebElement(getWebElementAction()
+                .getWebElementByXpathAndValue(caseOwnerAliasXpath, caseNumber));
+    }
+
+    /**
+     * Creates a map of all the row fields of the case.
+     *
+     * @param caseNumber the case we want to extract the row
+     * @return a map with all the row fields
+     */
+    public Map<String, String> getRowFields(final String caseNumber) {
+        Map<String, String> map = new HashMap<>();
+        map.put("caseNumber", getCaseNumberCellText(caseNumber));
+        map.put("subject", getSubjectCellText(caseNumber));
+        map.put("status", getStatusCellText(caseNumber));
+        map.put("dateTimeOpened", getDateTimeOpenedCellText(caseNumber));
+        return map;
     }
 }

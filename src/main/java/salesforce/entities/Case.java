@@ -4,9 +4,12 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.*;
 
 public class Case {
+    private String id;
     private String sLAViolation;
     private String internalComments;
     private String caseOwner;
@@ -33,6 +36,25 @@ public class Case {
     private String contactPhone;
     private String status;
     private String webCompany;
+    private Map<String, String> commentsList = new HashMap<>();
+
+    /**
+     * Gets the case id.
+     *
+     * @return a String with the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Sets the id.
+     *
+     * @param inputId the value to set
+     */
+    public void setId(final String inputId) {
+        this.id = inputId;
+    }
 
     /**
      * Gets the SLA violation field.
@@ -85,7 +107,7 @@ public class Case {
      * @param inputCaseOwner the value to set
      */
     public void setCaseOwner(final String inputCaseOwner) {
-        this.caseOwner = inputCaseOwner + " Open " + inputCaseOwner + " Preview ";
+        this.caseOwner = inputCaseOwner;
     }
 
     /**
@@ -517,6 +539,23 @@ public class Case {
     }
 
     /**
+     * Creates a map with the fields that match a key set.
+     *
+     * @param keys a set of keys
+     * @return a map with the provided keys and case's values
+     * @throws IllegalAccessException when access to class not provided
+     */
+    public Map createMapOnKeySetFromCase(final Set keys) throws IllegalAccessException {
+        Map myMap = new HashMap();
+        for (Field field : this.getClass().getDeclaredFields()) {
+            if (keys.contains(field.getName())) {
+                myMap.put(field.getName(), field.get(this));
+            }
+        }
+        return myMap;
+    }
+
+    /**
      * Sets the case values with a map.
      *
      * @param map with the case's values
@@ -527,5 +566,26 @@ public class Case {
             throws InvocationTargetException, IllegalAccessException {
         BeanUtils.populate(this, map);
         setNullValuesToEmpty();
+    }
+
+    /**
+     * Updates a Case to default values on salesforce.
+     *
+     * @param inputCaseNumber the self generated case number
+     */
+    public void updateCase(final String inputCaseNumber) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d/M/yyyy HH:mm");
+        this.setDateTimeOpened(dateFormat.format(Date.from(Instant.now())));
+        this.setCreatedBy(caseOwner.concat(", ").concat(dateTimeOpened));
+        this.setLastModifiedBy(caseOwner.concat(", ").concat(dateTimeOpened));
+        this.setCaseNumber(inputCaseNumber);
+        this.commentsList.put(dateTimeOpened, internalComments);
+        this.setInternalComments("");
+        if (status.equals("")) {
+            status = "New";
+        }
+        if (priority.equals("")) {
+            priority = "Medium";
+        }
     }
 }

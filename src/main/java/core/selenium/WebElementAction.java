@@ -9,10 +9,13 @@
 package core.selenium;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
 
 import static core.selenium.MyWebDriverManager.getWebDriverManager;
 
@@ -108,5 +111,49 @@ public class WebElementAction {
                                              final String attributeName) {
         wait.until(ExpectedConditions.visibilityOf(webElement));
         return webElement.getAttribute(attributeName);
+    }
+
+    /**
+     * Verifies if an element is present.
+     * Uses an interval time to wait and find the element and return true if it is present.
+     *
+     * @param by - Selector of element to Find.
+     * @param intervalTime - Time in milliseconds to wait.
+     * @return True if the element is present, false otherwise.
+     */
+    public boolean isElementPresent(final By by, final int intervalTime) {
+        driver.manage().timeouts().implicitlyWait(intervalTime, TimeUnit.MILLISECONDS);
+        try {
+            driver.findElement(by);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        } finally {
+            driver.manage().timeouts().implicitlyWait(WebDriverConfig
+                    .getWebDriverConfig().getImplicitWaitTime(), TimeUnit.MILLISECONDS);
+        }
+    }
+
+    /**
+     * Gets the current web site's url.
+     *
+     * @return a String with the url
+     */
+    public String getSiteCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
+
+    /**
+     * Selects an option of a dropdown menu.
+     *
+     * @param webElement the dropdown menu
+     * @param value the value to choose
+     * @param xpath the displayed values xpath
+     */
+    public void selectOnDropDownMenu(final WebElement webElement, final String value,
+                                     final String xpath) {
+        wait.until(ExpectedConditions.visibilityOf(webElement));
+        webElement.click();
+        driver.findElement(By.xpath(String.format(xpath, value))).click();
     }
 }

@@ -62,17 +62,29 @@ public class LoginPage extends BasePage {
         loginButton.click();
     }
 
+//    /**
+//     * Creates an instance of home page on successful login.
+//     *
+//     * @param username a String with the username
+//     * @param password a String with the password
+//     * @return the Home Web page
+//     */
+//    public HomePage loginSuccessful(final String username, final String password) {
+//        setUsernameTextBox(username);
+//        setPasswordTextBox(password);
+//        clickLoginButton();
+//        return new HomePage();
+//    }
+
     /**
      * Creates an instance of home page on successful login.
      *
      * @param username a String with the username
      * @param password a String with the password
-     * @return the Home Web page
      */
-    public HomePage loginSuccessful(final String username, final String password) {
+    public void loginSuccessful(final String username, final String password) {
         setUsernameTextBox(username);
         setPasswordTextBox(password);
         clickLoginButton();
-        return new HomePage();
     }
 }

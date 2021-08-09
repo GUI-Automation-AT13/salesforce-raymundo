@@ -12,53 +12,31 @@ import core.selenium.WebElementAction;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import salesforce.entities.Case;
 import salesforce.ui.PopUpMessage;
+
+import java.util.HashMap;
+import java.util.Set;
+
+import static salesforce.utils.FileTranslator.translateValue;
 
 public class CasesFormPage extends BasePage {
     private WebElementAction webElementAction = new WebElementAction();
-    @FindBy(xpath = "//button[@title='Save']")
-    private WebElement saveButton;
-    @FindBy(xpath = "//span[text()='Case Origin']/../..//a[@class='select']")
-    private WebElement caseOriginMenu;
-    @FindBy(xpath = "//span[text()='Priority']/../..//a[@class='select']")
-    private WebElement priorityMenu;
-    @FindBy(xpath = "//span[text()='Type']/../..//a[@class='select']")
-    private WebElement typeMenu;
-    @FindBy(xpath = "//span[text()='Case Reason']/../..//a[@class='select']")
-    private WebElement caseReasonMenu;
-    @FindBy(xpath = "//span[text()='Product']/../..//a[@class='select']")
-    private WebElement productMenu;
-    @FindBy(xpath = "//span[text()='Potential Liability']/../..//a[@class='select']")
-    private WebElement potentialLiabilityMenu;
-    @FindBy(xpath = "//span[text()='SLA Violation']/../..//a[@class='select']")
-    private WebElement slaViolationMenu;
-    @FindBy(xpath = "//label[text()='Status']/../..//input[@role='combobox']")
+    private String saveButtonXpath = "//button[@title='%s']";
+    @FindBy(xpath = "//abbr[@title]/../../div//input")
     private WebElement statusMenu;
-    @FindBy(xpath = "//span[text()='Contact Name']/../..//input")
-    private WebElement contactNameTextBox;
-    @FindBy(xpath = "//span[text()='Account Name']/../..//input")
-    private WebElement accountNameTextBox;
-    @FindBy(xpath = "//span[text()='Web Email']/../..//input")
-    private WebElement webEmailTextBox;
-    @FindBy(xpath = "//span[text()='Web Name']/../..//input")
-    private WebElement webNameTextBox;
-    @FindBy(xpath = "//span[text()='Web Company']/../..//input")
-    private WebElement webCompanyTextBox;
-    @FindBy(xpath = "//span[text()='Web Phone']/../..//input")
-    private WebElement webPhoneTextBox;
-    @FindBy(xpath = "//span[text()='Engineering Req Number']/../..//input")
-    private WebElement engineeringReqNumberTextBox;
-    @FindBy(xpath = "//label[contains(@class,'inputLabel')]"
-            + "/span[text()='Subject']/../../input")
-    private WebElement subjectTextBox;
-    @FindBy(xpath = "//label[contains(@class,'inputLabel')]"
-            + "/span[text()='Description']/../../textarea")
-    private WebElement descriptionTextBox;
-    @FindBy(xpath = "//label[contains(@class,'inputLabel')]"
-            + "/span[text()='Internal Comments']/../../textarea")
-    private WebElement internalCommentsTextBox;
+    private String subjectTextBoxXpath = "//label[contains(@class,'inputLabel')]"
+            + "/span[text()='%s']/../../input";
+    private String displayedStatusOnComboBoxXpath = "//span[@title='%s']";
+    private String comboBoxXpath = "//span[text()='%s']/../..//a[@class='select']";
+    private String textBoxXpath = "//span[%s]/../..//input";
+    private String textAreaXpath = "//label[contains(@class,'inputLabel')]"
+            + "/span[%s]/../../textarea";
     private String displayedNameOnTextBoxPath = "//div[@title='%s']/../..";
+    private String caseOwnerXpath = "//span[text()='%s']/../.."
+            + "//span[@class='uiOutputText forceOutputLookup']";
     private String popUpMessage;
+    private String featureName = "Cases";
 
     /**
      * Creates the Cases form Page.
@@ -72,7 +50,7 @@ public class CasesFormPage extends BasePage {
      */
     @Override
     protected void waitForPageToLoad() {
-        getWait().until(ExpectedConditions.visibilityOf(saveButton));
+        getWait().until(ExpectedConditions.visibilityOf(statusMenu));
     }
 
     /**
@@ -81,7 +59,9 @@ public class CasesFormPage extends BasePage {
      * @param value the value to choose
      */
     public void selectValueOnCaseOriginMenu(final String value) {
-        webElementAction.selectOnDropdownMenu(caseOriginMenu, value);
+        webElementAction.selectOnDropdownMenu(webElementAction
+                .getWebElementByXpathAndValue(comboBoxXpath,
+                        translateValue(featureName, "comboBox.caseOrigin")), value);
     }
 
     /**
@@ -90,7 +70,9 @@ public class CasesFormPage extends BasePage {
      * @param value the value to choose
      */
     public void selectValueOnPriorityMenu(final String value) {
-        webElementAction.selectOnDropdownMenu(priorityMenu, value);
+        webElementAction.selectOnDropdownMenu(webElementAction
+                .getWebElementByXpathAndValue(comboBoxXpath,
+                        translateValue(featureName, "comboBox.priority")), value);
     }
 
     /**
@@ -99,7 +81,9 @@ public class CasesFormPage extends BasePage {
      * @param value the value to set
      */
     public void selectValueOnContacts(final String value) {
-        webElementAction.selectOnAutoCompleteTextBox(contactNameTextBox,
+        webElementAction.selectOnAutoCompleteTextBox(webElementAction
+                        .getWebElementByXpathAndValue(textBoxXpath,
+                                translateValue(featureName, "textBox.contactName")),
                 value, displayedNameOnTextBoxPath);
     }
 
@@ -109,7 +93,9 @@ public class CasesFormPage extends BasePage {
      * @param value the value to set
      */
     public void selectValueOnAccounts(final String value) {
-        webElementAction.selectOnAutoCompleteTextBox(accountNameTextBox,
+        webElementAction.selectOnAutoCompleteTextBox(webElementAction
+                        .getWebElementByXpathAndValue(textBoxXpath,
+                                translateValue(featureName, "textBox.accountName")),
                 value, displayedNameOnTextBoxPath);
     }
 
@@ -119,7 +105,9 @@ public class CasesFormPage extends BasePage {
      * @param value the value to choose
      */
     public void selectValueOnTypeMenu(final String value) {
-        webElementAction.selectOnDropdownMenu(typeMenu, value);
+        webElementAction.selectOnDropdownMenu(webElementAction
+                .getWebElementByXpathAndValue(comboBoxXpath,
+                        translateValue(featureName, "comboBox.type")), value);
     }
 
     /**
@@ -128,7 +116,9 @@ public class CasesFormPage extends BasePage {
      * @param value the value to choose
      */
     public void selectValueOnCaseReasonMenu(final String value) {
-        webElementAction.selectOnDropdownMenu(caseReasonMenu, value);
+        webElementAction.selectOnDropdownMenu(webElementAction
+                .getWebElementByXpathAndValue(comboBoxXpath,
+                        translateValue(featureName, "comboBox.caseReason")), value);
     }
 
     /**
@@ -137,7 +127,7 @@ public class CasesFormPage extends BasePage {
      * @param value the value to choose
      */
     public void selectValueOnStatusMenu(final String value) {
-        webElementAction.selectOnDropdownMenu(statusMenu, value);
+        webElementAction.selectOnDropDownMenu(statusMenu, value, displayedStatusOnComboBoxXpath);
     }
 
     /**
@@ -147,7 +137,9 @@ public class CasesFormPage extends BasePage {
      */
     public SingleCasePage clickOnSaveButton() {
         PopUpMessage message = new PopUpMessage();
-        webElementAction.clickOnWebElement(saveButton);
+        webElementAction.clickOnWebElement(webElementAction
+                .getWebElementByXpathAndValue(saveButtonXpath,
+                        translateValue(featureName, "button.save")));
         setPopUpMessage(message.getPopUpMessage());
         return new SingleCasePage();
     }
@@ -158,7 +150,9 @@ public class CasesFormPage extends BasePage {
      * @param text a String to input
      */
     public void inputTextOnWebEmailTextBox(final String text) {
-        webElementAction.setTextField(webEmailTextBox, text);
+        webElementAction.setTextField(webElementAction
+                .getWebElementByXpathAndValue(textBoxXpath,
+                        translateValue(featureName, "textBox.webEmail")), text);
     }
 
     /**
@@ -167,7 +161,9 @@ public class CasesFormPage extends BasePage {
      * @param text a String to input
      */
     public void inputTextOnWebCompanyTextBox(final String text) {
-        webElementAction.setTextField(webCompanyTextBox, text);
+        webElementAction.setTextField(webElementAction
+                .getWebElementByXpathAndValue(textBoxXpath,
+                        translateValue(featureName, "textBox.webCompany")), text);
     }
 
     /**
@@ -176,7 +172,9 @@ public class CasesFormPage extends BasePage {
      * @param text a String to input
      */
     public void inputTextOnWebNameTextBox(final String text) {
-        webElementAction.setTextField(webNameTextBox, text);
+        webElementAction.setTextField(webElementAction
+                .getWebElementByXpathAndValue(textBoxXpath,
+                        translateValue(featureName, "textBox.webName")), text);
     }
 
     /**
@@ -185,7 +183,9 @@ public class CasesFormPage extends BasePage {
      * @param text a String to input
      */
     public void inputTextOnWebPhoneTextBox(final String text) {
-        webElementAction.setTextField(webPhoneTextBox, text);
+        webElementAction.setTextField(webElementAction
+                .getWebElementByXpathAndValue(textBoxXpath,
+                        translateValue(featureName, "textBox.webPhone")), text);
     }
 
     /**
@@ -194,7 +194,8 @@ public class CasesFormPage extends BasePage {
      * @param value the value to choose
      */
     public void selectValueOnProductMenu(final String value) {
-        webElementAction.selectOnDropdownMenu(productMenu, value);
+        webElementAction.selectOnDropdownMenu(webElementAction
+                .getWebElementByXpathAndValue(comboBoxXpath, "Product"), value);
     }
 
     /**
@@ -203,7 +204,8 @@ public class CasesFormPage extends BasePage {
      * @param value the value to choose
      */
     public void selectValueOnPotentialLiabilityMenu(final String value) {
-        webElementAction.selectOnDropdownMenu(potentialLiabilityMenu, value);
+        webElementAction.selectOnDropdownMenu(webElementAction
+                .getWebElementByXpathAndValue(comboBoxXpath, "Potential Liability"), value);
     }
 
     /**
@@ -212,7 +214,8 @@ public class CasesFormPage extends BasePage {
      * @param value the value to choose
      */
     public void selectValueOnSlaViolationMenu(final String value) {
-        webElementAction.selectOnDropdownMenu(slaViolationMenu, value);
+        webElementAction.selectOnDropdownMenu(webElementAction
+                .getWebElementByXpathAndValue(comboBoxXpath, "SLA Violation"), value);
     }
 
     /**
@@ -221,7 +224,9 @@ public class CasesFormPage extends BasePage {
      * @param text a String to input
      */
     public void inputTextOnEngineeringReqNumberTextBox(final String text) {
-        webElementAction.setTextField(engineeringReqNumberTextBox, text);
+        webElementAction.setTextField(webElementAction
+                .getWebElementByXpathAndValue(textBoxXpath,
+                        "text()='Engineering Req Number'"), text);
     }
 
     /**
@@ -230,7 +235,9 @@ public class CasesFormPage extends BasePage {
      * @param text a String to input
      */
     public void inputTextOnSubjectTextBox(final String text) {
-        webElementAction.setTextField(subjectTextBox, text);
+        webElementAction.setTextField(webElementAction
+                .getWebElementByXpathAndValue(subjectTextBoxXpath,
+                        translateValue(featureName, "textBox.subject")), text);
     }
 
     /**
@@ -239,7 +246,9 @@ public class CasesFormPage extends BasePage {
      * @param text a String to input
      */
     public void inputTextOnDescriptionTextBox(final String text) {
-        webElementAction.setTextField(descriptionTextBox, text);
+        webElementAction.setTextField(webElementAction
+                .getWebElementByXpathAndValue(textAreaXpath,
+                        translateValue(featureName, "textArea.description")), text);
     }
 
     /**
@@ -248,7 +257,9 @@ public class CasesFormPage extends BasePage {
      * @param text a String to input
      */
     public void inputTextOnInternalCommentsTextBox(final String text) {
-        webElementAction.setTextField(internalCommentsTextBox, text);
+        webElementAction.setTextField(webElementAction
+                .getWebElementByXpathAndValue(textAreaXpath,
+                        translateValue(featureName, "textArea.internalComments")), text);
     }
 
     /**
@@ -267,5 +278,52 @@ public class CasesFormPage extends BasePage {
      */
     public void setPopUpMessage(final String inputPopUpMessage) {
         this.popUpMessage = inputPopUpMessage;
+    }
+
+    /**
+     * Gets the case owner value.
+     *
+     * @return a String with the value
+     */
+    public String getCaseOwner() {
+        return webElementAction.getTextOnWebElement(
+                webElementAction.getWebElementByXpathAndValue(caseOwnerXpath,
+                        translateValue(featureName, "label.caseOwner")));
+    }
+
+    /**
+     * Creates a case on the salesforce user interface.
+     *
+     * @param fields a set of keys
+     * @param newCase the entity to set
+     * @return the page of the created case
+     */
+    public SingleCasePage createCase(final Set<String> fields, final Case newCase) {
+        HashMap<String, Runnable> strategyMap = new HashMap<>();
+        strategyMap.put("status", () -> selectValueOnStatusMenu(newCase.getStatus()));
+        strategyMap.put("caseOrigin", () -> selectValueOnCaseOriginMenu(newCase.getCaseOrigin()));
+        strategyMap.put("contactName", () -> selectValueOnContacts(newCase.getContactName()));
+        strategyMap.put("accountName", () -> selectValueOnAccounts(newCase.getAccountName()));
+        strategyMap.put("type", () -> selectValueOnTypeMenu(newCase.getType()));
+        strategyMap.put("caseReason", () -> selectValueOnCaseReasonMenu(newCase.getCaseReason()));
+        strategyMap.put("priority", () -> selectValueOnPriorityMenu(newCase.getPriority()));
+        strategyMap.put("webEmail", () -> inputTextOnWebEmailTextBox(newCase.getWebEmail()));
+        strategyMap.put("webName", () -> inputTextOnWebNameTextBox(newCase.getWebName()));
+        strategyMap.put("webCompany", () -> inputTextOnWebCompanyTextBox(newCase.getWebCompany()));
+        strategyMap.put("webPhone", () -> inputTextOnWebPhoneTextBox(newCase.getWebPhone()));
+        strategyMap.put("product", () -> selectValueOnProductMenu(newCase.getProduct()));
+        strategyMap.put("potentialLiability", () ->
+                selectValueOnPotentialLiabilityMenu(newCase.getPotentialLiability()));
+        strategyMap.put("engineeringReqNumber", () ->
+                inputTextOnEngineeringReqNumberTextBox(newCase.getEngineeringReqNumber()));
+        strategyMap.put("sLAViolation", () ->
+                selectValueOnSlaViolationMenu(newCase.getsLAViolation()));
+        strategyMap.put("subject", () -> inputTextOnSubjectTextBox(newCase.getSubject()));
+        strategyMap.put("description", () ->
+                inputTextOnDescriptionTextBox(newCase.getDescription()));
+        strategyMap.put("internalComments", () ->
+                inputTextOnInternalCommentsTextBox(newCase.getInternalComments()));
+        fields.forEach(field -> strategyMap.get(field).run());
+        return clickOnSaveButton();
     }
 }

@@ -15,8 +15,8 @@ public final class EnvironmentConfig {
 
     private String login;
     private String baseUrl;
-    private String username;
-    private String password;
+    private static String username;
+    private static String password;
 
     private EnvironmentConfig() {
         initialize();
@@ -64,7 +64,7 @@ public final class EnvironmentConfig {
      *
      * @return a String with the username
      */
-    public String getUsername() {
+    public static String getUsername() {
         return username;
     }
 
@@ -73,7 +73,7 @@ public final class EnvironmentConfig {
      *
      * @return a String with the password
      */
-    public String getPassword() {
+    public static String getPassword() {
         return password;
     }
 }
