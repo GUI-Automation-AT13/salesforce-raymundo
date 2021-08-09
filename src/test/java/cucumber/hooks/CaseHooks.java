@@ -18,7 +18,7 @@ public class CaseHooks {
         this.newCase = newCase;
     }
 
-    @After(value = "@DeleteCase", order = 2)
+    @After(value = "@DeleteCase", order = 3)
     public void deleteACase() {
         requestBuilder
                 .clearPathParams()

@@ -37,7 +37,7 @@ public class ContactHooks {
         contact.setId(apiResponse.getPath("id"));
     }
 
-    @After(value = "@DeleteContact")
+    @After(value = "@DeleteContact", order = 2)
     public void deleteAContact() {
         requestBuilder
                 .clearPathParams()

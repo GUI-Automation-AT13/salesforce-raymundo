@@ -113,29 +113,21 @@ public class SingleCasePage extends BasePage {
         if (fieldsList.size() == valuesList.size()) {
             Map<String, String> map = new HashMap<>();
             for (int i = 0; i < fieldsList.size(); i++) {
-                String text = fieldsList.get(i).getText();
-                if (valuesList.get(i).getText()
-                        .contains(translateValue(featureName, "details.open"))
-                        && valuesList.get(i).getText().contains(translateValue(featureName,
-                        "details.preview"))) {
-                    if (valuesList.get(i).getText().contains(",")) {
-                        String value = valuesList.get(i).getText();
-                        map.put(getCaseAttributeName(changeFieldName(
-                                replaceSpecialCharacters(text))),
-                                value.substring(0, value.indexOf(translateValue(featureName,
-                                        "details.open")) - 1)
-                                        .concat(value.substring(value.indexOf(","))));
+                String mapKey = getCaseAttributeName(changeFieldName(
+                        replaceSpecialCharacters(fieldsList.get(i).getText())));
+                String mapValue = valuesList.get(i).getText();
+                if (mapValue.contains(translateValue(featureName, "details.open"))
+                        && mapValue.contains(translateValue(featureName, "details.preview"))) {
+                    if (mapValue.contains(",")) {
+                        map.put(mapKey, mapValue.substring(0, mapValue.indexOf(
+                                translateValue(featureName, "details.open")) - 1)
+                                        .concat(mapValue.substring(mapValue.indexOf(","))));
                     } else {
-                        String value = valuesList.get(i).getText();
-                        map.put(getCaseAttributeName(
-                                changeFieldName(replaceSpecialCharacters(text))),
-                                value.substring(0, value.indexOf(translateValue(featureName,
-                                        "details.open")) - 1));
+                        map.put(mapKey, mapValue.substring(0, mapValue.indexOf(
+                                translateValue(featureName, "details.open")) - 1));
                     }
                 } else {
-                    map.put(getCaseAttributeName(
-                            changeFieldName(replaceSpecialCharacters(text))),
-                            valuesList.get(i).getText());
+                    map.put(mapKey, mapValue);
                 }
             }
             return map;

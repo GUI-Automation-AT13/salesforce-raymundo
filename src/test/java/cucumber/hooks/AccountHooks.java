@@ -35,7 +35,7 @@ public class AccountHooks {
         account.setId(apiResponse.getPath("id"));
     }
 
-    @After(value = "@DeleteAccount")
+    @After(value = "@DeleteAccount", order = 1)
     public void deleteAnAccount() {
         requestBuilder
                 .clearPathParams()

@@ -28,7 +28,7 @@ public class AccountTest {
                 .addMethod(ApiMethod.POST)
                 .build();
         ApiManager.executeWithBody(apiRequestBuilder.build(), apiResponse);
-        System.out.println(apiResponse.getBody(SalesforceApiResponse.class).getId());
+//        System.out.println(apiResponse.getBody(SalesforceApiResponse.class).getId());
     }
 
     @Test
