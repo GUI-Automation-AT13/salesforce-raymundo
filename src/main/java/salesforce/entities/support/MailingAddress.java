@@ -15,14 +15,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MailingAddress {
-    public String city;
-    public String country;
-    public Object geocodeAccuracy;
-    public Object latitude;
-    public Object longitude;
-    public String postalCode;
-    public String state;
-    public String street;
+    private String city;
+    private String country;
+    private Object geocodeAccuracy;
+    private Object latitude;
+    private Object longitude;
+    private String postalCode;
+    private String state;
+    private String street;
 
     /**
      * Gets city of MailingAddress.
@@ -36,10 +36,10 @@ public class MailingAddress {
     /**
      * Sets city of MailingAddress.
      *
-     * @param city of MailingAddress.
+     * @param newCity of MailingAddress.
      */
-    public void setCity(String city) {
-        this.city = city;
+    public void setCity(final String newCity) {
+        this.city = newCity;
     }
 
     /**
@@ -54,10 +54,10 @@ public class MailingAddress {
     /**
      * Sets country of MailingAddress.
      *
-     * @param country of MailingAddress.
+     * @param newCountry of MailingAddress.
      */
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCountry(final String newCountry) {
+        this.country = newCountry;
     }
 
     /**
@@ -72,10 +72,10 @@ public class MailingAddress {
     /**
      * Sets geocodeAccuracy of MailingAddress.
      *
-     * @param geocodeAccuracy of MailingAddress.
+     * @param newGeocodeAccuracy of MailingAddress.
      */
-    public void setGeocodeAccuracy(Object geocodeAccuracy) {
-        this.geocodeAccuracy = geocodeAccuracy;
+    public void setGeocodeAccuracy(final Object newGeocodeAccuracy) {
+        this.geocodeAccuracy = newGeocodeAccuracy;
     }
 
     /**
@@ -90,10 +90,10 @@ public class MailingAddress {
     /**
      * Sets latitude of MailingAddress.
      *
-     * @param latitude of MailingAddress.
+     * @param newLatitude of MailingAddress.
      */
-    public void setLatitude(Object latitude) {
-        this.latitude = latitude;
+    public void setLatitude(final Object newLatitude) {
+        this.latitude = newLatitude;
     }
 
     /**
@@ -108,10 +108,10 @@ public class MailingAddress {
     /**
      * Sets longitude of MailingAddress.
      *
-     * @param longitude of MailingAddress.
+     * @param newLongitude of MailingAddress.
      */
-    public void setLongitude(Object longitude) {
-        this.longitude = longitude;
+    public void setLongitude(final Object newLongitude) {
+        this.longitude = newLongitude;
     }
 
     /**
@@ -126,10 +126,10 @@ public class MailingAddress {
     /**
      * Sets postalCode of MailingAddress.
      *
-     * @param postalCode of MailingAddress.
+     * @param newPostalCode of MailingAddress.
      */
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setPostalCode(final String newPostalCode) {
+        this.postalCode = newPostalCode;
     }
 
     /**
@@ -144,10 +144,10 @@ public class MailingAddress {
     /**
      * Sets state of MailingAddress.
      *
-     * @param state of MailingAddress.
+     * @param newState of MailingAddress.
      */
-    public void setState(String state) {
-        this.state = state;
+    public void setState(final String newState) {
+        this.state = newState;
     }
 
     /**
@@ -162,9 +162,9 @@ public class MailingAddress {
     /**
      * Sets street of MailingAddress.
      *
-     * @param street of MailingAddress.
+     * @param newStreet of MailingAddress.
      */
-    public void setStreet(String street) {
-        this.street = street;
+    public void setStreet(final String newStreet) {
+        this.street = newStreet;
     }
 }

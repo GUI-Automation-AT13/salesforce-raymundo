@@ -15,14 +15,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class OtherAddress {
-    public String city;
-    public String country;
-    public Object geocodeAccuracy;
-    public Object latitude;
-    public Object longitude;
-    public String postalCode;
-    public String state;
-    public String street;
+    private String city;
+    private String country;
+    private Object geocodeAccuracy;
+    private Object latitude;
+    private Object longitude;
+    private String postalCode;
+    private String state;
+    private String street;
 
     /**
      * Gets the city.
@@ -36,10 +36,10 @@ public class OtherAddress {
     /**
      * Sets the city.
      *
-     * @param city a String with the city to set
+     * @param newCity a String with the city to set
      */
-    public void setCity(String city) {
-        this.city = city;
+    public void setCity(final String newCity) {
+        this.city = newCity;
     }
 
     /**
@@ -54,10 +54,10 @@ public class OtherAddress {
     /**
      * Sets the country.
      *
-     * @param country a String with the country to set
+     * @param newCountry a String with the country to set
      */
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCountry(final String newCountry) {
+        this.country = newCountry;
     }
 
     /**
@@ -72,10 +72,10 @@ public class OtherAddress {
     /**
      * Sets the geocode accuracy.
      *
-     * @param geocodeAccuracy a String with the geocode accuracy to set
+     * @param newGeocodeAccuracy a String with the geocode accuracy to set
      */
-    public void setGeocodeAccuracy(Object geocodeAccuracy) {
-        this.geocodeAccuracy = geocodeAccuracy;
+    public void setGeocodeAccuracy(final Object newGeocodeAccuracy) {
+        this.geocodeAccuracy = newGeocodeAccuracy;
     }
 
     /**
@@ -90,10 +90,10 @@ public class OtherAddress {
     /**
      * Sets the latitude.
      *
-     * @param latitude a String with the latitude to set
+     * @param newLatitude a String with the latitude to set
      */
-    public void setLatitude(Object latitude) {
-        this.latitude = latitude;
+    public void setLatitude(final Object newLatitude) {
+        this.latitude = newLatitude;
     }
 
     /**
@@ -108,10 +108,10 @@ public class OtherAddress {
     /**
      * Sets the longitude.
      *
-     * @param longitude a String with the longitude to set
+     * @param newLongitude a String with the longitude to set
      */
-    public void setLongitude(Object longitude) {
-        this.longitude = longitude;
+    public void setLongitude(final Object newLongitude) {
+        this.longitude = newLongitude;
     }
 
     /**
@@ -126,10 +126,10 @@ public class OtherAddress {
     /**
      * Sets the postal code.
      *
-     * @param postalCode a String with the postal code to set
+     * @param newPostalCode a String with the postal code to set
      */
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setPostalCode(final String newPostalCode) {
+        this.postalCode = newPostalCode;
     }
 
     /**
@@ -144,10 +144,10 @@ public class OtherAddress {
     /**
      * Sets the state.
      *
-     * @param state a String with the state to set
+     * @param newState a String with the state to set
      */
-    public void setState(String state) {
-        this.state = state;
+    public void setState(final String newState) {
+        this.state = newState;
     }
 
     /**
@@ -162,9 +162,9 @@ public class OtherAddress {
     /**
      * Sets the street.
      *
-     * @param street a String with the street to set
+     * @param newStreet a String with the street to set
      */
-    public void setStreet(String street) {
-        this.street = street;
+    public void setStreet(final String newStreet) {
+        this.street = newStreet;
     }
 }

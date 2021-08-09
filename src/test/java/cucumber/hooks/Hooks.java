@@ -1,7 +1,6 @@
 package cucumber.hooks;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import core.api.ApiManager;
 import core.api.ApiMethod;
 import core.api.ApiRequestBuilder;
@@ -9,14 +8,8 @@ import core.api.ApiResponse;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
-import salesforce.api.SalesforceApiResponse;
+import org.testng.asserts.SoftAssert;
 import salesforce.config.EnvironmentConfig;
-import salesforce.entities.Account;
-import salesforce.entities.Case;
-import salesforce.entities.Contact;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static core.selenium.MyWebDriverManager.getWebDriverManager;
 import static core.utils.LoadEnvironmentFile.*;
@@ -26,20 +19,14 @@ public class Hooks {
     private ApiRequestBuilder requestBuilder;
     private ApiResponse apiResponse;
     private ApiResponse tokenApiResponse;
-    private Map<String, String> idMap = new HashMap<>();
-    private Account account = new Account();
-    private Case newCase;
-    private Contact contact = new Contact();
-    final String accountName = "Punisher";
-    final String contactName = "Frank";
-    final String contactLastName = "Castle";
-    String token;
+    private String token;
+    private SoftAssert softAssert;
 
-    public Hooks(ApiRequestBuilder requestBuilder, ApiResponse apiResponse, ApiResponse tokenApiResponse, Case newCase) {
+    public Hooks(ApiRequestBuilder requestBuilder, ApiResponse apiResponse, ApiResponse tokenApiResponse, SoftAssert softAssert) {
         this.requestBuilder = requestBuilder;
         this.apiResponse = apiResponse;
         this.tokenApiResponse = tokenApiResponse;
-        this.newCase = newCase;
+        this.softAssert = softAssert;
     }
 
     @Before(order = 0)
@@ -68,68 +55,9 @@ public class Hooks {
         driver.get(EnvironmentConfig.getEnvironmentConfig().getLogin());
     }
 
-    @Before(value = "@CreateAccount")
-    public void createAnAccount() throws JsonProcessingException {
-        account.setName(accountName);
-        requestBuilder
-                .clearPathParams()
-                .addEndpoint("/services/data/v52.0/sobjects/Account/")
-                .addBody(new ObjectMapper().writeValueAsString(account))
-                .addMethod(ApiMethod.POST)
-                .build();
-        ApiManager.executeWithBody(requestBuilder.build(), apiResponse);
-        idMap.put("accountId", apiResponse.getBody(SalesforceApiResponse.class).getId());
-    }
-
-    @After(value = "@DeleteAccount")
-    public void deleteAnAccount() {
-        requestBuilder
-                .clearPathParams()
-                .addEndpoint("/services/data/v52.0/sobjects/Account/{accountID}")
-                .addPathParams("accountID", idMap.get("accountId"))
-                .addMethod(ApiMethod.DELETE)
-                .build();
-        ApiManager.execute(requestBuilder.build(), apiResponse);
-    }
-
-    @Before(value = "@CreateContact")
-    public void createAContact() throws JsonProcessingException {
-        contact.setFirstName(contactName);
-        contact.setLastName(contactLastName);
-        requestBuilder
-                .clearPathParams()
-                .addEndpoint("/services/data/v52.0/sobjects/Contact/")
-                .addBody(new ObjectMapper().writeValueAsString(contact))
-                .addMethod(ApiMethod.POST)
-                .build();
-        ApiManager.executeWithBody(requestBuilder.build(), apiResponse);
-        idMap.put("contactId", apiResponse.getBody(SalesforceApiResponse.class).getId());
-    }
-
-    @After(value = "@DeleteContact")
-    public void deleteAContact() {
-        requestBuilder
-                .clearPathParams()
-                .addEndpoint("/services/data/v52.0/sobjects/Contact/{contactID}")
-                .addPathParams("contactID", idMap.get("contactId"))
-                .addMethod(ApiMethod.DELETE)
-                .build();
-        ApiManager.execute(requestBuilder.build(), apiResponse);
-    }
-
-    @After(value = "@DeleteCase")
-    public void deleteACase() {
-        requestBuilder
-                .clearPathParams()
-                .addEndpoint("/services/data/v52.0/sobjects/Case/{caseID}")
-                .addPathParams("caseID", newCase.getId())
-                .addMethod(ApiMethod.DELETE)
-                .build();
-        ApiManager.execute(requestBuilder.build(), apiResponse);
-    }
-
-    @After
+    @After(order = 1)
     public void tearDown() {
+        softAssert.assertAll();
         getWebDriverManager().quitDriver();
     }
 }

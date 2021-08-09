@@ -18,129 +18,129 @@ import java.util.Date;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Contact {
-    public Attribute attributes;
+    private Attribute attributes;
     @JsonProperty("Id")
-    public String id;
+    private String id;
     @JsonProperty("IsDeleted")
-    public Boolean isDeleted;
+    private Boolean isDeleted;
     @JsonProperty("MasterRecordId")
-    public Object masterRecordId;
+    private Object masterRecordId;
     @JsonProperty("AccountId")
-    public String accountId;
+    private String accountId;
     @JsonProperty("LastName")
-    public String lastName;
+    private String lastName;
     @JsonProperty("FirstName")
-    public String firstName;
+    private String firstName;
     @JsonProperty("Salutation")
-    public String salutation;
+    private String salutation;
     @JsonProperty("Name")
-    public String name;
+    private String name;
     @JsonProperty("OtherStreet")
-    public String otherStreet;
+    private String otherStreet;
     @JsonProperty("OtherCity")
-    public String otherCity;
+    private String otherCity;
     @JsonProperty("OtherState")
-    public String otherState;
+    private String otherState;
     @JsonProperty("OtherPostalCode")
-    public String otherPostalCode;
+    private String otherPostalCode;
     @JsonProperty("OtherCountry")
-    public String otherCountry;
+    private String otherCountry;
     @JsonProperty("OtherLatitude")
-    public Object otherLatitude;
+    private Object otherLatitude;
     @JsonProperty("OtherLongitude")
-    public Object otherLongitude;
+    private Object otherLongitude;
     @JsonProperty("OtherGeocodeAccuracy")
-    public Object otherGeocodeAccuracy;
+    private Object otherGeocodeAccuracy;
     @JsonProperty("OtherAddress")
-    public OtherAddress otherAddress;
+    private OtherAddress otherAddress;
     @JsonProperty("MailingStreet")
-    public String mailingStreet;
+    private String mailingStreet;
     @JsonProperty("MailingCity")
-    public String mailingCity;
+    private String mailingCity;
     @JsonProperty("MailingState")
-    public String mailingState;
+    private String mailingState;
     @JsonProperty("MailingPostalCode")
-    public String mailingPostalCode;
+    private String mailingPostalCode;
     @JsonProperty("MailingCountry")
-    public String mailingCountry;
+    private String mailingCountry;
     @JsonProperty("MailingLatitude")
-    public Object mailingLatitude;
+    private Object mailingLatitude;
     @JsonProperty("MailingLongitude")
-    public Object mailingLongitude;
+    private Object mailingLongitude;
     @JsonProperty("MailingGeocodeAccuracy")
-    public Object mailingGeocodeAccuracy;
+    private Object mailingGeocodeAccuracy;
     @JsonProperty("MailingAddress")
-    public MailingAddress mailingAddress;
+    private MailingAddress mailingAddress;
     @JsonProperty("Phone")
-    public String phone;
+    private String phone;
     @JsonProperty("Fax")
-    public String fax;
+    private String fax;
     @JsonProperty("MobilePhone")
-    public String mobilePhone;
+    private String mobilePhone;
     @JsonProperty("HomePhone")
-    public String homePhone;
+    private String homePhone;
     @JsonProperty("OtherPhone")
-    public String otherPhone;
+    private String otherPhone;
     @JsonProperty("AssistantPhone")
-    public String assistantPhone;
+    private String assistantPhone;
     @JsonProperty("ReportsToId")
-    public String reportsToId;
+    private String reportsToId;
     @JsonProperty("Email")
-    public String email;
+    private String email;
     @JsonProperty("Title")
-    public String title;
+    private String title;
     @JsonProperty("Department")
-    public String department;
+    private String department;
     @JsonProperty("AssistantName")
-    public String assistantName;
+    private String assistantName;
     @JsonProperty("LeadSource")
-    public String leadSource;
+    private String leadSource;
     @JsonProperty("Birthdate")
-    public String birthdate;
+    private String birthdate;
     @JsonProperty("Description")
-    public String description;
+    private String description;
     @JsonProperty("OwnerId")
-    public String ownerId;
+    private String ownerId;
     @JsonProperty("CreatedDate")
-    public Date createdDate;
+    private Date createdDate;
     @JsonProperty("CreatedById")
-    public String createdById;
+    private String createdById;
     @JsonProperty("LastModifiedDate")
-    public Date lastModifiedDate;
+    private Date lastModifiedDate;
     @JsonProperty("LastModifiedById")
-    public String lastModifiedById;
+    private String lastModifiedById;
     @JsonProperty("SystemModstamp")
-    public Date systemModStamp;
+    private Date systemModStamp;
     @JsonProperty("LastActivityDate")
-    public Object lastActivityDate;
+    private Object lastActivityDate;
     @JsonProperty("LastCURequestDate")
-    public Object lastCuRequestDate;
+    private Object lastCuRequestDate;
     @JsonProperty("LastCUUpdateDate")
-    public Object lastCuUpdateDate;
+    private Object lastCuUpdateDate;
     @JsonProperty("LastViewedDate")
-    public Date lastViewedDate;
+    private Date lastViewedDate;
     @JsonProperty("LastReferencedDate")
-    public Date lastReferencedDate;
+    private Date lastReferencedDate;
     @JsonProperty("EmailBouncedReason")
-    public Object emailBouncedReason;
+    private Object emailBouncedReason;
     @JsonProperty("EmailBouncedDate")
-    public Object emailBouncedDate;
+    private Object emailBouncedDate;
     @JsonProperty("IsEmailBounced")
-    public Boolean isEmailBounced;
+    private Boolean isEmailBounced;
     @JsonProperty("PhotoUrl")
-    public String photoUrl;
+    private String photoUrl;
     @JsonProperty("Jigsaw")
-    public Object jigsaw;
+    private Object jigsaw;
     @JsonProperty("JigsawContactId")
-    public Object jigsawContactId;
+    private Object jigsawContactId;
     @JsonProperty("CleanStatus")
-    public String cleanStatus;
+    private String cleanStatus;
     @JsonProperty("IndividualId")
-    public Object individualId;
+    private Object individualId;
     @JsonProperty("Level__c")
-    public String levelC;
+    private String levelC;
     @JsonProperty("Languages__c")
-    public String languagesC;
+    private String languagesC;
 
     /**
      * Gets attributes of Contact.
@@ -154,10 +154,10 @@ public class Contact {
     /**
      * Sets attributes of Contact.
      *
-     * @param attributes of Contact.
+     * @param newAttributes of Contact.
      */
-    public void setAttributes(Attribute attributes) {
-        this.attributes = attributes;
+    public void setAttributes(final Attribute newAttributes) {
+        this.attributes = newAttributes;
     }
 
     /**
@@ -172,10 +172,10 @@ public class Contact {
     /**
      * Sets id of Contact.
      *
-     * @param id of Contact.
+     * @param newId of Contact.
      */
-    public void setId(String id) {
-        this.id = id;
+    public void setId(final String newId) {
+        this.id = newId;
     }
 
     /**
@@ -190,10 +190,10 @@ public class Contact {
     /**
      * Sets isDeleted of Contact.
      *
-     * @param isDeleted of Contact.
+     * @param newIsDeleted of Contact.
      */
-    public void setIsDeleted(Boolean isDeleted) {
-        this.isDeleted = isDeleted;
+    public void setIsDeleted(final Boolean newIsDeleted) {
+        this.isDeleted = newIsDeleted;
     }
 
     /**
@@ -208,10 +208,10 @@ public class Contact {
     /**
      * Sets masterRecordId of Contact.
      *
-     * @param masterRecordId of Contact.
+     * @param newMasterRecordId of Contact.
      */
-    public void setMasterRecordId(Object masterRecordId) {
-        this.masterRecordId = masterRecordId;
+    public void setMasterRecordId(final Object newMasterRecordId) {
+        this.masterRecordId = newMasterRecordId;
     }
 
     /**
@@ -226,10 +226,10 @@ public class Contact {
     /**
      * Sets accountId of Contact.
      *
-     * @param accountId of Contact.
+     * @param newAccountId of Contact.
      */
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
+    public void setAccountId(final String newAccountId) {
+        this.accountId = newAccountId;
     }
 
     /**
@@ -244,10 +244,10 @@ public class Contact {
     /**
      * Sets lastName of Contact.
      *
-     * @param lastName of Contact.
+     * @param newLastName of Contact.
      */
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastName(final String newLastName) {
+        this.lastName = newLastName;
     }
 
     /**
@@ -262,10 +262,10 @@ public class Contact {
     /**
      * Sets firstName of Contact.
      *
-     * @param firstName of Contact.
+     * @param newFirstName of Contact.
      */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstName(final String newFirstName) {
+        this.firstName = newFirstName;
     }
 
     /**
@@ -280,10 +280,10 @@ public class Contact {
     /**
      * Sets salutation of Contact.
      *
-     * @param salutation of Contact.
+     * @param newSalutation of Contact.
      */
-    public void setSalutation(String salutation) {
-        this.salutation = salutation;
+    public void setSalutation(final String newSalutation) {
+        this.salutation = newSalutation;
     }
 
     /**
@@ -298,10 +298,10 @@ public class Contact {
     /**
      * Sets name of Contact.
      *
-     * @param name of Contact.
+     * @param newName of Contact.
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(final String newName) {
+        this.name = newName;
     }
 
     /**
@@ -316,10 +316,10 @@ public class Contact {
     /**
      * Sets otherStreet of Contact.
      *
-     * @param otherStreet of Contact.
+     * @param newOtherStreet of Contact.
      */
-    public void setOtherStreet(String otherStreet) {
-        this.otherStreet = otherStreet;
+    public void setOtherStreet(final String newOtherStreet) {
+        this.otherStreet = newOtherStreet;
     }
 
     /**
@@ -334,10 +334,10 @@ public class Contact {
     /**
      * Sets otherCity of Contact.
      *
-     * @param otherCity of Contact.
+     * @param newOtherCity of Contact.
      */
-    public void setOtherCity(String otherCity) {
-        this.otherCity = otherCity;
+    public void setOtherCity(final String newOtherCity) {
+        this.otherCity = newOtherCity;
     }
 
     /**
@@ -352,10 +352,10 @@ public class Contact {
     /**
      * Sets otherState of Contact.
      *
-     * @param otherState of Contact.
+     * @param newOtherState of Contact.
      */
-    public void setOtherState(String otherState) {
-        this.otherState = otherState;
+    public void setOtherState(final String newOtherState) {
+        this.otherState = newOtherState;
     }
 
     /**
@@ -370,10 +370,10 @@ public class Contact {
     /**
      * Sets otherPostalCode of Contact.
      *
-     * @param otherPostalCode of Contact.
+     * @param newOtherPostalCode of Contact.
      */
-    public void setOtherPostalCode(String otherPostalCode) {
-        this.otherPostalCode = otherPostalCode;
+    public void setOtherPostalCode(final String newOtherPostalCode) {
+        this.otherPostalCode = newOtherPostalCode;
     }
 
     /**
@@ -388,10 +388,10 @@ public class Contact {
     /**
      * Sets otherCountry of Contact.
      *
-     * @param otherCountry of Contact.
+     * @param newOtherCountry of Contact.
      */
-    public void setOtherCountry(String otherCountry) {
-        this.otherCountry = otherCountry;
+    public void setOtherCountry(final String newOtherCountry) {
+        this.otherCountry = newOtherCountry;
     }
 
     /**
@@ -406,10 +406,10 @@ public class Contact {
     /**
      * Sets otherLatitude of Contact.
      *
-     * @param otherLatitude of Contact.
+     * @param newOtherLatitude of Contact.
      */
-    public void setOtherLatitude(Object otherLatitude) {
-        this.otherLatitude = otherLatitude;
+    public void setOtherLatitude(final Object newOtherLatitude) {
+        this.otherLatitude = newOtherLatitude;
     }
 
     /**
@@ -424,10 +424,10 @@ public class Contact {
     /**
      * Sets otherLongitude of Contact.
      *
-     * @param otherLongitude of Contact.
+     * @param newOtherLongitude of Contact.
      */
-    public void setOtherLongitude(Object otherLongitude) {
-        this.otherLongitude = otherLongitude;
+    public void setOtherLongitude(final Object newOtherLongitude) {
+        this.otherLongitude = newOtherLongitude;
     }
 
     /**
@@ -442,9 +442,9 @@ public class Contact {
     /**
      * Sets otherGeocodeAccuracy of Contact.
      *
-     * @param otherGeocodeAccuracy of Contact.
+     * @param newOtherGeocodeAccuracy of Contact.
      */
-    public void setOtherGeocodeAccuracy(Object otherGeocodeAccuracy) {
+    public void setOtherGeocodeAccuracy(final Object newOtherGeocodeAccuracy) {
         this.otherGeocodeAccuracy = otherGeocodeAccuracy;
     }
 
@@ -460,10 +460,10 @@ public class Contact {
     /**
      * Sets otherAddress of Contact.
      *
-     * @param otherAddress of Contact.
+     * @param newOtherAddress of Contact.
      */
-    public void setOtherAddress(OtherAddress otherAddress) {
-        this.otherAddress = otherAddress;
+    public void setOtherAddress(final OtherAddress newOtherAddress) {
+        this.otherAddress = newOtherAddress;
     }
 
     /**
@@ -478,10 +478,10 @@ public class Contact {
     /**
      * Sets mailingStreet of Contact.
      *
-     * @param mailingStreet of Contact.
+     * @param newMailingStreet of Contact.
      */
-    public void setMailingStreet(String mailingStreet) {
-        this.mailingStreet = mailingStreet;
+    public void setMailingStreet(final String newMailingStreet) {
+        this.mailingStreet = newMailingStreet;
     }
 
     /**
@@ -496,10 +496,10 @@ public class Contact {
     /**
      * Sets mailingCity of Contact.
      *
-     * @param mailingCity of Contact.
+     * @param newMailingCity of Contact.
      */
-    public void setMailingCity(String mailingCity) {
-        this.mailingCity = mailingCity;
+    public void setMailingCity(final String newMailingCity) {
+        this.mailingCity = newMailingCity;
     }
 
     /**
@@ -514,10 +514,10 @@ public class Contact {
     /**
      * Sets mailingState of Contact.
      *
-     * @param mailingState of Contact.
+     * @param newMailingState of Contact.
      */
-    public void setMailingState(String mailingState) {
-        this.mailingState = mailingState;
+    public void setMailingState(final String newMailingState) {
+        this.mailingState = newMailingState;
     }
 
     /**
@@ -532,10 +532,10 @@ public class Contact {
     /**
      * Sets mailingPostalCode of Contact.
      *
-     * @param mailingPostalCode of Contact.
+     * @param newMailingPostalCode of Contact.
      */
-    public void setMailingPostalCode(String mailingPostalCode) {
-        this.mailingPostalCode = mailingPostalCode;
+    public void setMailingPostalCode(final String newMailingPostalCode) {
+        this.mailingPostalCode = newMailingPostalCode;
     }
 
     /**
@@ -550,10 +550,10 @@ public class Contact {
     /**
      * Sets mailingCountry of Contact.
      *
-     * @param mailingCountry of Contact.
+     * @param newMailingCountry of Contact.
      */
-    public void setMailingCountry(String mailingCountry) {
-        this.mailingCountry = mailingCountry;
+    public void setMailingCountry(final String newMailingCountry) {
+        this.mailingCountry = newMailingCountry;
     }
 
     /**
@@ -568,10 +568,10 @@ public class Contact {
     /**
      * Sets mailingLatitude of Contact.
      *
-     * @param mailingLatitude of Contact.
+     * @param newMailingLatitude of Contact.
      */
-    public void setMailingLatitude(Object mailingLatitude) {
-        this.mailingLatitude = mailingLatitude;
+    public void setMailingLatitude(final Object newMailingLatitude) {
+        this.mailingLatitude = newMailingLatitude;
     }
 
     /**
@@ -586,10 +586,10 @@ public class Contact {
     /**
      * Sets mailingLongitude of Contact.
      *
-     * @param mailingLongitude of Contact.
+     * @param newMailingLongitude of Contact.
      */
-    public void setMailingLongitude(Object mailingLongitude) {
-        this.mailingLongitude = mailingLongitude;
+    public void setMailingLongitude(final Object newMailingLongitude) {
+        this.mailingLongitude = newMailingLongitude;
     }
 
     /**
@@ -604,10 +604,10 @@ public class Contact {
     /**
      * Sets mailingGeocodeAccuracy of Contact.
      *
-     * @param mailingGeocodeAccuracy of Contact.
+     * @param newMailingGeocodeAccuracy of Contact.
      */
-    public void setMailingGeocodeAccuracy(Object mailingGeocodeAccuracy) {
-        this.mailingGeocodeAccuracy = mailingGeocodeAccuracy;
+    public void setMailingGeocodeAccuracy(final Object newMailingGeocodeAccuracy) {
+        this.mailingGeocodeAccuracy = newMailingGeocodeAccuracy;
     }
 
     /**
@@ -622,10 +622,10 @@ public class Contact {
     /**
      * Sets mailingAddress of Contact.
      *
-     * @param mailingAddress of Contact.
+     * @param newMailingAddress of Contact.
      */
-    public void setMailingAddress(MailingAddress mailingAddress) {
-        this.mailingAddress = mailingAddress;
+    public void setMailingAddress(final MailingAddress newMailingAddress) {
+        this.mailingAddress = newMailingAddress;
     }
 
     /**
@@ -640,10 +640,10 @@ public class Contact {
     /**
      * Sets phone of Contact.
      *
-     * @param phone of Contact.
+     * @param newPhone of Contact.
      */
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone(final String newPhone) {
+        this.phone = newPhone;
     }
 
     /**
@@ -658,10 +658,10 @@ public class Contact {
     /**
      * Sets fax of Contact.
      *
-     * @param fax of Contact.
+     * @param newFax of Contact.
      */
-    public void setFax(String fax) {
-        this.fax = fax;
+    public void setFax(final String newFax) {
+        this.fax = newFax;
     }
 
     /**
@@ -676,10 +676,10 @@ public class Contact {
     /**
      * Sets mobilePhone of Contact.
      *
-     * @param mobilePhone of Contact.
+     * @param newMobilePhone of Contact.
      */
-    public void setMobilePhone(String mobilePhone) {
-        this.mobilePhone = mobilePhone;
+    public void setMobilePhone(final String newMobilePhone) {
+        this.mobilePhone = newMobilePhone;
     }
 
     /**
@@ -694,10 +694,10 @@ public class Contact {
     /**
      * Sets homePhone of Contact.
      *
-     * @param homePhone of Contact.
+     * @param newHomePhone of Contact.
      */
-    public void setHomePhone(String homePhone) {
-        this.homePhone = homePhone;
+    public void setHomePhone(final String newHomePhone) {
+        this.homePhone = newHomePhone;
     }
 
     /**
@@ -712,10 +712,10 @@ public class Contact {
     /**
      * Sets otherPhone of Contact.
      *
-     * @param otherPhone of Contact.
+     * @param newOtherPhone of Contact.
      */
-    public void setOtherPhone(String otherPhone) {
-        this.otherPhone = otherPhone;
+    public void setOtherPhone(final String newOtherPhone) {
+        this.otherPhone = newOtherPhone;
     }
 
     /**
@@ -730,10 +730,10 @@ public class Contact {
     /**
      * Sets assistantPhone of Contact.
      *
-     * @param assistantPhone of Contact.
+     * @param newAssistantPhone of Contact.
      */
-    public void setAssistantPhone(String assistantPhone) {
-        this.assistantPhone = assistantPhone;
+    public void setAssistantPhone(final String newAssistantPhone) {
+        this.assistantPhone = newAssistantPhone;
     }
 
     /**
@@ -748,10 +748,10 @@ public class Contact {
     /**
      * Sets reportsToId of Contact.
      *
-     * @param reportsToId of Contact.
+     * @param newReportsToId of Contact.
      */
-    public void setReportsToId(String reportsToId) {
-        this.reportsToId = reportsToId;
+    public void setReportsToId(final String newReportsToId) {
+        this.reportsToId = newReportsToId;
     }
 
     /**
@@ -766,10 +766,10 @@ public class Contact {
     /**
      * Sets email of Contact.
      *
-     * @param email of Contact.
+     * @param newEmail of Contact.
      */
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(final String newEmail) {
+        this.email = newEmail;
     }
 
     /**
@@ -784,10 +784,10 @@ public class Contact {
     /**
      * Sets title of Contact.
      *
-     * @param title of Contact.
+     * @param newTitle of Contact.
      */
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitle(final String newTitle) {
+        this.title = newTitle;
     }
 
     /**
@@ -802,10 +802,10 @@ public class Contact {
     /**
      * Sets department of Contact.
      *
-     * @param department of Contact.
+     * @param newDepartment of Contact.
      */
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setDepartment(final String newDepartment) {
+        this.department = newDepartment;
     }
 
     /**
@@ -820,10 +820,10 @@ public class Contact {
     /**
      * Sets assistantName of Contact.
      *
-     * @param assistantName of Contact.
+     * @param newAssistantName of Contact.
      */
-    public void setAssistantName(String assistantName) {
-        this.assistantName = assistantName;
+    public void setAssistantName(final String newAssistantName) {
+        this.assistantName = newAssistantName;
     }
 
     /**
@@ -838,10 +838,10 @@ public class Contact {
     /**
      * Sets leadSource of Contact.
      *
-     * @param leadSource of Contact.
+     * @param newLeadSource of Contact.
      */
-    public void setLeadSource(String leadSource) {
-        this.leadSource = leadSource;
+    public void setLeadSource(final String newLeadSource) {
+        this.leadSource = newLeadSource;
     }
 
     /**
@@ -856,10 +856,10 @@ public class Contact {
     /**
      * Sets birthdate of Contact.
      *
-     * @param birthdate of Contact.
+     * @param newBirthdate of Contact.
      */
-    public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
+    public void setBirthdate(final String newBirthdate) {
+        this.birthdate = newBirthdate;
     }
 
     /**
@@ -874,10 +874,10 @@ public class Contact {
     /**
      * Sets description of Contact.
      *
-     * @param description of Contact.
+     * @param newDescription of Contact.
      */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(final String newDescription) {
+        this.description = newDescription;
     }
 
     /**
@@ -892,10 +892,10 @@ public class Contact {
     /**
      * Sets ownerId of Contact.
      *
-     * @param ownerId of Contact.
+     * @param newOwnerId of Contact.
      */
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    public void setOwnerId(final String newOwnerId) {
+        this.ownerId = newOwnerId;
     }
 
     /**
@@ -910,10 +910,10 @@ public class Contact {
     /**
      * Sets createdDate of Contact.
      *
-     * @param createdDate of Contact.
+     * @param newCreatedDate of Contact.
      */
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+    public void setCreatedDate(final Date newCreatedDate) {
+        this.createdDate = newCreatedDate;
     }
 
     /**
@@ -928,10 +928,10 @@ public class Contact {
     /**
      * Sets createdById of Contact.
      *
-     * @param createdById of Contact.
+     * @param newCreatedById of Contact.
      */
-    public void setCreatedById(String createdById) {
-        this.createdById = createdById;
+    public void setCreatedById(final String newCreatedById) {
+        this.createdById = newCreatedById;
     }
 
     /**
@@ -946,10 +946,10 @@ public class Contact {
     /**
      * Sets lastModifiedDate of Contact.
      *
-     * @param lastModifiedDate of Contact.
+     * @param newLastModifiedDate of Contact.
      */
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
+    public void setLastModifiedDate(final Date newLastModifiedDate) {
+        this.lastModifiedDate = newLastModifiedDate;
     }
 
     /**
@@ -964,10 +964,10 @@ public class Contact {
     /**
      * Sets lastModifiedById of Contact.
      *
-     * @param lastModifiedById of Contact.
+     * @param newLastModifiedById of Contact.
      */
-    public void setLastModifiedById(String lastModifiedById) {
-        this.lastModifiedById = lastModifiedById;
+    public void setLastModifiedById(final String newLastModifiedById) {
+        this.lastModifiedById = newLastModifiedById;
     }
 
     /**
@@ -982,10 +982,10 @@ public class Contact {
     /**
      * Sets systemModStamp of Contact.
      *
-     * @param systemModStamp of Contact.
+     * @param newSystemModStamp of Contact.
      */
-    public void setSystemModStamp(Date systemModStamp) {
-        this.systemModStamp = systemModStamp;
+    public void setSystemModStamp(final Date newSystemModStamp) {
+        this.systemModStamp = newSystemModStamp;
     }
 
     /**
@@ -1000,10 +1000,10 @@ public class Contact {
     /**
      * Sets lastActivityDate of Contact.
      *
-     * @param lastActivityDate of Contact.
+     * @param newLastActivityDate of Contact.
      */
-    public void setLastActivityDate(Object lastActivityDate) {
-        this.lastActivityDate = lastActivityDate;
+    public void setLastActivityDate(final Object newLastActivityDate) {
+        this.lastActivityDate = newLastActivityDate;
     }
 
     /**
@@ -1018,10 +1018,10 @@ public class Contact {
     /**
      * Sets lastCuRequestDate of Contact.
      *
-     * @param lastCuRequestDate of Contact.
+     * @param newLastCuRequestDate of Contact.
      */
-    public void setLastCuRequestDate(Object lastCuRequestDate) {
-        this.lastCuRequestDate = lastCuRequestDate;
+    public void setLastCuRequestDate(final Object newLastCuRequestDate) {
+        this.lastCuRequestDate = newLastCuRequestDate;
     }
 
     /**
@@ -1036,10 +1036,10 @@ public class Contact {
     /**
      * Sets lastCuUpdateDate of Contact.
      *
-     * @param lastCuUpdateDate of Contact.
+     * @param newLastCuUpdateDate of Contact.
      */
-    public void setLastCuUpdateDate(Object lastCuUpdateDate) {
-        this.lastCuUpdateDate = lastCuUpdateDate;
+    public void setLastCuUpdateDate(final Object newLastCuUpdateDate) {
+        this.lastCuUpdateDate = newLastCuUpdateDate;
     }
 
     /**
@@ -1054,10 +1054,10 @@ public class Contact {
     /**
      * Sets lastViewedDate of Contact.
      *
-     * @param lastViewedDate of Contact.
+     * @param newLastViewedDate of Contact.
      */
-    public void setLastViewedDate(Date lastViewedDate) {
-        this.lastViewedDate = lastViewedDate;
+    public void setLastViewedDate(final Date newLastViewedDate) {
+        this.lastViewedDate = newLastViewedDate;
     }
 
     /**
@@ -1072,10 +1072,10 @@ public class Contact {
     /**
      * Sets lastReferencedDate of Contact.
      *
-     * @param lastReferencedDate of Contact.
+     * @param newLastReferencedDate of Contact.
      */
-    public void setLastReferencedDate(Date lastReferencedDate) {
-        this.lastReferencedDate = lastReferencedDate;
+    public void setLastReferencedDate(final Date newLastReferencedDate) {
+        this.lastReferencedDate = newLastReferencedDate;
     }
 
     /**
@@ -1090,10 +1090,10 @@ public class Contact {
     /**
      * Sets emailBouncedReason of Contact.
      *
-     * @param emailBouncedReason of Contact.
+     * @param newEmailBouncedReason of Contact.
      */
-    public void setEmailBouncedReason(Object emailBouncedReason) {
-        this.emailBouncedReason = emailBouncedReason;
+    public void setEmailBouncedReason(final Object newEmailBouncedReason) {
+        this.emailBouncedReason = newEmailBouncedReason;
     }
 
     /**
@@ -1108,10 +1108,10 @@ public class Contact {
     /**
      * Sets emailBouncedDate of Contact.
      *
-     * @param emailBouncedDate of Contact.
+     * @param newEmailBouncedDate of Contact.
      */
-    public void setEmailBouncedDate(Object emailBouncedDate) {
-        this.emailBouncedDate = emailBouncedDate;
+    public void setEmailBouncedDate(final Object newEmailBouncedDate) {
+        this.emailBouncedDate = newEmailBouncedDate;
     }
 
     /**
@@ -1126,10 +1126,10 @@ public class Contact {
     /**
      * Sets isEmailBounced of Contact.
      *
-     * @param isEmailBounced of Contact.
+     * @param newIsEmailBounced of Contact.
      */
-    public void setIsEmailBounced(Boolean isEmailBounced) {
-        this.isEmailBounced = isEmailBounced;
+    public void setIsEmailBounced(final Boolean newIsEmailBounced) {
+        this.isEmailBounced = newIsEmailBounced;
     }
 
     /**
@@ -1144,10 +1144,10 @@ public class Contact {
     /**
      * Sets photoUrl of Contact.
      *
-     * @param photoUrl of Contact.
+     * @param newPhotoUrl of Contact.
      */
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
+    public void setPhotoUrl(final String newPhotoUrl) {
+        this.photoUrl = newPhotoUrl;
     }
 
     /**
@@ -1162,10 +1162,10 @@ public class Contact {
     /**
      * Sets jigsaw of Contact.
      *
-     * @param jigsaw of Contact.
+     * @param newJigsaw of Contact.
      */
-    public void setJigsaw(Object jigsaw) {
-        this.jigsaw = jigsaw;
+    public void setJigsaw(final Object newJigsaw) {
+        this.jigsaw = newJigsaw;
     }
 
     /**
@@ -1180,10 +1180,10 @@ public class Contact {
     /**
      * Sets jigsawContactId of Contact.
      *
-     * @param jigsawContactId of Contact.
+     * @param newJigsawContactId of Contact.
      */
-    public void setJigsawContactId(Object jigsawContactId) {
-        this.jigsawContactId = jigsawContactId;
+    public void setJigsawContactId(final Object newJigsawContactId) {
+        this.jigsawContactId = newJigsawContactId;
     }
 
     /**
@@ -1198,10 +1198,10 @@ public class Contact {
     /**
      * Sets cleanStatus of Contact.
      *
-     * @param cleanStatus of Contact.
+     * @param newCleanStatus of Contact.
      */
-    public void setCleanStatus(String cleanStatus) {
-        this.cleanStatus = cleanStatus;
+    public void setCleanStatus(final String newCleanStatus) {
+        this.cleanStatus = newCleanStatus;
     }
 
     /**
@@ -1216,10 +1216,10 @@ public class Contact {
     /**
      * Sets individualId of Contact.
      *
-     * @param individualId of Contact.
+     * @param newIndividualId of Contact.
      */
-    public void setIndividualId(Object individualId) {
-        this.individualId = individualId;
+    public void setIndividualId(final Object newIndividualId) {
+        this.individualId = newIndividualId;
     }
 
     /**
@@ -1234,10 +1234,10 @@ public class Contact {
     /**
      * Sets levelC of Contact.
      *
-     * @param levelC of Contact.
+     * @param newLevelC of Contact.
      */
-    public void setLevelC(String levelC) {
-        this.levelC = levelC;
+    public void setLevelC(final String newLevelC) {
+        this.levelC = newLevelC;
     }
 
     /**
@@ -1252,9 +1252,9 @@ public class Contact {
     /**
      * Sets languagesC of Contact.
      *
-     * @param languagesC of Contact.
+     * @param newLanguagesC of Contact.
      */
-    public void setLanguagesC(String languagesC) {
-        this.languagesC = languagesC;
+    public void setLanguagesC(final String newLanguagesC) {
+        this.languagesC = newLanguagesC;
     }
 }

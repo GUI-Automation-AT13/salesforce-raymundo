@@ -15,14 +15,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ShippingAddress {
-    public String city;
-    public String country;
-    public Object geocodeAccuracy;
-    public Object latitude;
-    public Object longitude;
-    public String postalCode;
-    public String state;
-    public String street;
+    private String city;
+    private String country;
+    private Object geocodeAccuracy;
+    private Object latitude;
+    private Object longitude;
+    private String postalCode;
+    private String state;
+    private String street;
 
     /**
      * Gets city of ShippingAddress.
@@ -36,10 +36,10 @@ public class ShippingAddress {
     /**
      * Sets city of ShippingAddress.
      *
-     * @param city of ShippingAddress.
+     * @param newCity of ShippingAddress.
      */
-    public void setCity(String city) {
-        this.city = city;
+    public void setCity(final String newCity) {
+        this.city = newCity;
     }
 
     /**
@@ -54,10 +54,10 @@ public class ShippingAddress {
     /**
      * Sets country of ShippingAddress.
      *
-     * @param country of ShippingAddress.
+     * @param newCountry of ShippingAddress.
      */
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCountry(final String newCountry) {
+        this.country = newCountry;
     }
 
     /**
@@ -72,10 +72,10 @@ public class ShippingAddress {
     /**
      * Sets geocodeAccuracy of ShippingAddress.
      *
-     * @param geocodeAccuracy of ShippingAddress.
+     * @param newGeocodeAccuracy of ShippingAddress.
      */
-    public void setGeocodeAccuracy(Object geocodeAccuracy) {
-        this.geocodeAccuracy = geocodeAccuracy;
+    public void setGeocodeAccuracy(final Object newGeocodeAccuracy) {
+        this.geocodeAccuracy = newGeocodeAccuracy;
     }
 
     /**
@@ -90,10 +90,10 @@ public class ShippingAddress {
     /**
      * Sets latitude of ShippingAddress.
      *
-     * @param latitude of ShippingAddress.
+     * @param newLatitude of ShippingAddress.
      */
-    public void setLatitude(Object latitude) {
-        this.latitude = latitude;
+    public void setLatitude(final Object newLatitude) {
+        this.latitude = newLatitude;
     }
 
     /**
@@ -108,10 +108,10 @@ public class ShippingAddress {
     /**
      * Sets longitude of ShippingAddress.
      *
-     * @param longitude of ShippingAddress.
+     * @param newLongitude of ShippingAddress.
      */
-    public void setLongitude(Object longitude) {
-        this.longitude = longitude;
+    public void setLongitude(final Object newLongitude) {
+        this.longitude = newLongitude;
     }
 
     /**
@@ -126,10 +126,10 @@ public class ShippingAddress {
     /**
      * Sets postalCode of ShippingAddress.
      *
-     * @param postalCode of ShippingAddress.
+     * @param newPostalCode of ShippingAddress.
      */
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setPostalCode(final String newPostalCode) {
+        this.postalCode = newPostalCode;
     }
 
     /**
@@ -144,10 +144,10 @@ public class ShippingAddress {
     /**
      * Sets state of ShippingAddress.
      *
-     * @param state of ShippingAddress.
+     * @param newState of ShippingAddress.
      */
-    public void setState(String state) {
-        this.state = state;
+    public void setState(final String newState) {
+        this.state = newState;
     }
 
     /**
@@ -162,9 +162,9 @@ public class ShippingAddress {
     /**
      * Sets street of ShippingAddress.
      *
-     * @param street of ShippingAddress.
+     * @param newStreet of ShippingAddress.
      */
-    public void setStreet(String street) {
-        this.street = street;
+    public void setStreet(final String newStreet) {
+        this.street = newStreet;
     }
 }

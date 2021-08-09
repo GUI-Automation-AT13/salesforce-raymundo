@@ -30,10 +30,10 @@ public class Attribute {
     /**
      * Sets the attribute's type.
      *
-     * @param type a String with the type to set
+     * @param newType a String with the type to set
      */
-    public void setType(final String type) {
-        this.type = type;
+    public void setType(final String newType) {
+        this.type = newType;
     }
 
     /**
@@ -48,9 +48,9 @@ public class Attribute {
     /**
      * Sets attribute's URL.
      *
-     * @param url a String with the URL to set
+     * @param newUrl a String with the URL to set
      */
-    public void setUrl(final String url) {
-        this.url = url;
+    public void setUrl(final String newUrl) {
+        this.url = newUrl;
     }
 }

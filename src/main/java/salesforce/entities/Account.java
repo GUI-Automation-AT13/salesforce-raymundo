@@ -162,10 +162,10 @@ public class Account {
     /**
      * Sets attributes of Account.
      *
-     * @param attributes of Account.
+     * @param newAttributes of Account.
      */
-    public void setAttributes(Attribute attributes) {
-        this.attributes = attributes;
+    public void setAttributes(final Attribute newAttributes) {
+        this.attributes = newAttributes;
     }
 
     /**
@@ -180,10 +180,10 @@ public class Account {
     /**
      * Sets id of Account.
      *
-     * @param id of Account.
+     * @param newId of Account.
      */
-    public void setId(String id) {
-        this.id = id;
+    public void setId(final String newId) {
+        this.id = newId;
     }
 
     /**
@@ -198,10 +198,10 @@ public class Account {
     /**
      * Sets deleted of Account.
      *
-     * @param deleted of Account.
+     * @param newDeleted of Account.
      */
-    public void setIsDeleted(Boolean deleted) {
-        isDeleted = deleted;
+    public void setIsDeleted(final Boolean newDeleted) {
+        isDeleted = newDeleted;
     }
 
     /**
@@ -216,10 +216,10 @@ public class Account {
     /**
      * Sets masterRecordId of Account.
      *
-     * @param masterRecordId of Account.
+     * @param newMasterRecordId of Account.
      */
-    public void setMasterRecordId(Object masterRecordId) {
-        this.masterRecordId = masterRecordId;
+    public void setMasterRecordId(final Object newMasterRecordId) {
+        this.masterRecordId = newMasterRecordId;
     }
 
     /**
@@ -234,10 +234,10 @@ public class Account {
     /**
      * Sets name of Account.
      *
-     * @param name of Account.
+     * @param newName of Account.
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(final String newName) {
+        this.name = newName;
     }
 
     /**
@@ -252,10 +252,10 @@ public class Account {
     /**
      * Sets type of Account.
      *
-     * @param type of Account.
+     * @param newType of Account.
      */
-    public void setType(String type) {
-        this.type = type;
+    public void setType(final String newType) {
+        this.type = newType;
     }
 
     /**
@@ -270,10 +270,10 @@ public class Account {
     /**
      * Sets parentId of Account.
      *
-     * @param parentId of Account.
+     * @param newParentId of Account.
      */
-    public void setParentId(Object parentId) {
-        this.parentId = parentId;
+    public void setParentId(final Object newParentId) {
+        this.parentId = newParentId;
     }
 
     /**
@@ -288,10 +288,10 @@ public class Account {
     /**
      * Sets billingStreet of Account.
      *
-     * @param billingStreet of Account.
+     * @param newBillingStreet of Account.
      */
-    public void setBillingStreet(String billingStreet) {
-        this.billingStreet = billingStreet;
+    public void setBillingStreet(final String newBillingStreet) {
+        this.billingStreet = newBillingStreet;
     }
 
     /**
@@ -306,10 +306,10 @@ public class Account {
     /**
      * Sets billingCity of Account.
      *
-     * @param billingCity of Account.
+     * @param newBillingCity of Account.
      */
-    public void setBillingCity(String billingCity) {
-        this.billingCity = billingCity;
+    public void setBillingCity(final String newBillingCity) {
+        this.billingCity = newBillingCity;
     }
 
     /**
@@ -324,10 +324,10 @@ public class Account {
     /**
      * Sets billingState of Account.
      *
-     * @param billingState of Account.
+     * @param newBillingState of Account.
      */
-    public void setBillingState(String billingState) {
-        this.billingState = billingState;
+    public void setBillingState(final String newBillingState) {
+        this.billingState = newBillingState;
     }
 
     /**
@@ -342,10 +342,10 @@ public class Account {
     /**
      * Sets billingPostalCode of Account.
      *
-     * @param billingPostalCode of Account.
+     * @param newBillingPostalCode of Account.
      */
-    public void setBillingPostalCode(String billingPostalCode) {
-        this.billingPostalCode = billingPostalCode;
+    public void setBillingPostalCode(final String newBillingPostalCode) {
+        this.billingPostalCode = newBillingPostalCode;
     }
 
     /**
@@ -360,10 +360,10 @@ public class Account {
     /**
      * Sets billingCountry of Account.
      *
-     * @param billingCountry of Account.
+     * @param newBillingCountry of Account.
      */
-    public void setBillingCountry(String billingCountry) {
-        this.billingCountry = billingCountry;
+    public void setBillingCountry(final String newBillingCountry) {
+        this.billingCountry = newBillingCountry;
     }
 
     /**
@@ -378,10 +378,10 @@ public class Account {
     /**
      * Sets billingLatitude of Account.
      *
-     * @param billingLatitude of Account.
+     * @param newBillingLatitude of Account.
      */
-    public void setBillingLatitude(Object billingLatitude) {
-        this.billingLatitude = billingLatitude;
+    public void setBillingLatitude(final Object newBillingLatitude) {
+        this.billingLatitude = newBillingLatitude;
     }
 
     /**
@@ -396,10 +396,10 @@ public class Account {
     /**
      * Sets billingLongitude of Account.
      *
-     * @param billingLongitude of Account.
+     * @param newBillingLongitude of Account.
      */
-    public void setBillingLongitude(Object billingLongitude) {
-        this.billingLongitude = billingLongitude;
+    public void setBillingLongitude(final Object newBillingLongitude) {
+        this.billingLongitude = newBillingLongitude;
     }
 
     /**
@@ -414,10 +414,10 @@ public class Account {
     /**
      * Sets billingGeocodeAccuracy of Account.
      *
-     * @param billingGeocodeAccuracy of Account.
+     * @param newBillingGeocodeAccuracy of Account.
      */
-    public void setBillingGeocodeAccuracy(Object billingGeocodeAccuracy) {
-        this.billingGeocodeAccuracy = billingGeocodeAccuracy;
+    public void setBillingGeocodeAccuracy(final Object newBillingGeocodeAccuracy) {
+        this.billingGeocodeAccuracy = newBillingGeocodeAccuracy;
     }
 
     /**
@@ -432,10 +432,10 @@ public class Account {
     /**
      * Sets billingAddress of Account.
      *
-     * @param billingAddress of Account.
+     * @param newBillingAddress of Account.
      */
-    public void setBillingAddress(BillingAddress billingAddress) {
-        this.billingAddress = billingAddress;
+    public void setBillingAddress(final BillingAddress newBillingAddress) {
+        this.billingAddress = newBillingAddress;
     }
 
     /**
@@ -450,10 +450,10 @@ public class Account {
     /**
      * Sets shippingStreet of Account.
      *
-     * @param shippingStreet of Account.
+     * @param newShippingStreet of Account.
      */
-    public void setShippingStreet(String shippingStreet) {
-        this.shippingStreet = shippingStreet;
+    public void setShippingStreet(final String newShippingStreet) {
+        this.shippingStreet = newShippingStreet;
     }
 
     /**
@@ -468,10 +468,10 @@ public class Account {
     /**
      * Sets shippingCity of Account.
      *
-     * @param shippingCity of Account.
+     * @param newShippingCity of Account.
      */
-    public void setShippingCity(String shippingCity) {
-        this.shippingCity = shippingCity;
+    public void setShippingCity(final String newShippingCity) {
+        this.shippingCity = newShippingCity;
     }
 
     /**
@@ -486,10 +486,10 @@ public class Account {
     /**
      * Sets shippingState of Account.
      *
-     * @param shippingState of Account.
+     * @param newShippingState of Account.
      */
-    public void setShippingState(String shippingState) {
-        this.shippingState = shippingState;
+    public void setShippingState(final String newShippingState) {
+        this.shippingState = newShippingState;
     }
 
     /**
@@ -504,10 +504,10 @@ public class Account {
     /**
      * Sets shippingPostalCode of Account.
      *
-     * @param shippingPostalCode of Account.
+     * @param newShippingPostalCode of Account.
      */
-    public void setShippingPostalCode(String shippingPostalCode) {
-        this.shippingPostalCode = shippingPostalCode;
+    public void setShippingPostalCode(final String newShippingPostalCode) {
+        this.shippingPostalCode = newShippingPostalCode;
     }
 
     /**
@@ -522,10 +522,10 @@ public class Account {
     /**
      * Sets shippingCountry of Account.
      *
-     * @param shippingCountry of Account.
+     * @param newShippingCountry of Account.
      */
-    public void setShippingCountry(String shippingCountry) {
-        this.shippingCountry = shippingCountry;
+    public void setShippingCountry(final String newShippingCountry) {
+        this.shippingCountry = newShippingCountry;
     }
 
     /**
@@ -540,10 +540,10 @@ public class Account {
     /**
      * Sets shippingLatitude of Account.
      *
-     * @param shippingLatitude of Account.
+     * @param newShippingLatitude of Account.
      */
-    public void setShippingLatitude(Object shippingLatitude) {
-        this.shippingLatitude = shippingLatitude;
+    public void setShippingLatitude(final Object newShippingLatitude) {
+        this.shippingLatitude = newShippingLatitude;
     }
 
     /**
@@ -558,10 +558,10 @@ public class Account {
     /**
      * Sets shippingLongitude of Account.
      *
-     * @param shippingLongitude of Account.
+     * @param newShippingLongitude of Account.
      */
-    public void setShippingLongitude(Object shippingLongitude) {
-        this.shippingLongitude = shippingLongitude;
+    public void setShippingLongitude(final Object newShippingLongitude) {
+        this.shippingLongitude = newShippingLongitude;
     }
 
     /**
@@ -576,10 +576,10 @@ public class Account {
     /**
      * Sets shippingGeocodeAccuracy of Account.
      *
-     * @param shippingGeocodeAccuracy of Account.
+     * @param newShippingGeocodeAccuracy of Account.
      */
-    public void setShippingGeocodeAccuracy(Object shippingGeocodeAccuracy) {
-        this.shippingGeocodeAccuracy = shippingGeocodeAccuracy;
+    public void setShippingGeocodeAccuracy(final Object newShippingGeocodeAccuracy) {
+        this.shippingGeocodeAccuracy = newShippingGeocodeAccuracy;
     }
 
     /**
@@ -594,10 +594,10 @@ public class Account {
     /**
      * Sets shippingAddress of Account.
      *
-     * @param shippingAddress of Account.
+     * @param newShippingAddress of Account.
      */
-    public void setShippingAddress(ShippingAddress shippingAddress) {
-        this.shippingAddress = shippingAddress;
+    public void setShippingAddress(final ShippingAddress newShippingAddress) {
+        this.shippingAddress = newShippingAddress;
     }
 
     /**
@@ -612,10 +612,10 @@ public class Account {
     /**
      * Sets phone of Account.
      *
-     * @param phone of Account.
+     * @param newPhone of Account.
      */
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone(final String newPhone) {
+        this.phone = newPhone;
     }
 
     /**
@@ -630,10 +630,10 @@ public class Account {
     /**
      * Sets fax of Account.
      *
-     * @param fax of Account.
+     * @param newFax of Account.
      */
-    public void setFax(String fax) {
-        this.fax = fax;
+    public void setFax(final String newFax) {
+        this.fax = newFax;
     }
 
     /**
@@ -648,10 +648,10 @@ public class Account {
     /**
      * Sets accountNumber of Account.
      *
-     * @param accountNumber of Account.
+     * @param newAccountNumber of Account.
      */
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
+    public void setAccountNumber(final String newAccountNumber) {
+        this.accountNumber = newAccountNumber;
     }
 
     /**
@@ -666,10 +666,10 @@ public class Account {
     /**
      * Sets website of Account.
      *
-     * @param website of Account.
+     * @param newWebsite of Account.
      */
-    public void setWebsite(String website) {
-        this.website = website;
+    public void setWebsite(final String newWebsite) {
+        this.website = newWebsite;
     }
 
     /**
@@ -684,10 +684,10 @@ public class Account {
     /**
      * Sets photoUrl of Account.
      *
-     * @param photoUrl of Account.
+     * @param newPhotoUrl of Account.
      */
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
+    public void setPhotoUrl(final String newPhotoUrl) {
+        this.photoUrl = newPhotoUrl;
     }
 
     /**
@@ -702,10 +702,10 @@ public class Account {
     /**
      * Sets sic of Account.
      *
-     * @param sic of Account.
+     * @param newSic of Account.
      */
-    public void setSic(String sic) {
-        this.sic = sic;
+    public void setSic(final String newSic) {
+        this.sic = newSic;
     }
 
     /**
@@ -720,10 +720,10 @@ public class Account {
     /**
      * Sets industry of Account.
      *
-     * @param industry of Account.
+     * @param newIndustry of Account.
      */
-    public void setIndustry(String industry) {
-        this.industry = industry;
+    public void setIndustry(final String newIndustry) {
+        this.industry = newIndustry;
     }
 
     /**
@@ -738,10 +738,10 @@ public class Account {
     /**
      * Sets annualRevenue of Account.
      *
-     * @param annualRevenue of Account.
+     * @param newAnnualRevenue of Account.
      */
-    public void setAnnualRevenue(Double annualRevenue) {
-        this.annualRevenue = annualRevenue;
+    public void setAnnualRevenue(final Double newAnnualRevenue) {
+        this.annualRevenue = newAnnualRevenue;
     }
 
     /**
@@ -756,10 +756,10 @@ public class Account {
     /**
      * Sets numberOfEmployees of Account.
      *
-     * @param numberOfEmployees of Account.
+     * @param newNumberOfEmployees of Account.
      */
-    public void setNumberOfEmployees(Integer numberOfEmployees) {
-        this.numberOfEmployees = numberOfEmployees;
+    public void setNumberOfEmployees(final Integer newNumberOfEmployees) {
+        this.numberOfEmployees = newNumberOfEmployees;
     }
 
     /**
@@ -774,10 +774,10 @@ public class Account {
     /**
      * Sets ownership of Account.
      *
-     * @param ownership of Account.
+     * @param newOwnership of Account.
      */
-    public void setOwnership(String ownership) {
-        this.ownership = ownership;
+    public void setOwnership(final String newOwnership) {
+        this.ownership = newOwnership;
     }
 
     /**
@@ -792,10 +792,10 @@ public class Account {
     /**
      * Sets tickerSymbol of Account.
      *
-     * @param tickerSymbol of Account.
+     * @param newTickerSymbol of Account.
      */
-    public void setTickerSymbol(String tickerSymbol) {
-        this.tickerSymbol = tickerSymbol;
+    public void setTickerSymbol(final String newTickerSymbol) {
+        this.tickerSymbol = newTickerSymbol;
     }
 
     /**
@@ -810,10 +810,10 @@ public class Account {
     /**
      * Sets description of Account.
      *
-     * @param description of Account.
+     * @param newDescription of Account.
      */
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(final String newDescription) {
+        this.description = newDescription;
     }
 
     /**
@@ -828,10 +828,10 @@ public class Account {
     /**
      * Sets rating of Account.
      *
-     * @param rating of Account.
+     * @param newRating of Account.
      */
-    public void setRating(String rating) {
-        this.rating = rating;
+    public void setRating(final String newRating) {
+        this.rating = newRating;
     }
 
     /**
@@ -846,10 +846,10 @@ public class Account {
     /**
      * Sets site of Account.
      *
-     * @param site of Account.
+     * @param newSite of Account.
      */
-    public void setSite(String site) {
-        this.site = site;
+    public void setSite(final String newSite) {
+        this.site = newSite;
     }
 
     /**
@@ -864,10 +864,10 @@ public class Account {
     /**
      * Sets ownerId of Account.
      *
-     * @param ownerId of Account.
+     * @param newOwnerId of Account.
      */
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    public void setOwnerId(final String newOwnerId) {
+        this.ownerId = newOwnerId;
     }
 
     /**
@@ -882,10 +882,10 @@ public class Account {
     /**
      * Sets createdDate of Account.
      *
-     * @param createdDate of Account.
+     * @param newCreatedDate of Account.
      */
-    public void setCreatedDate(String createdDate) {
-        this.createdDate = createdDate;
+    public void setCreatedDate(final String newCreatedDate) {
+        this.createdDate = newCreatedDate;
     }
 
     /**
@@ -900,10 +900,10 @@ public class Account {
     /**
      * Sets createdById of Account.
      *
-     * @param createdById of Account.
+     * @param newCreatedById of Account.
      */
-    public void setCreatedById(String createdById) {
-        this.createdById = createdById;
+    public void setCreatedById(final String newCreatedById) {
+        this.createdById = newCreatedById;
     }
 
     /**
@@ -918,10 +918,10 @@ public class Account {
     /**
      * Sets lastModifiedDate of Account.
      *
-     * @param lastModifiedDate of Account.
+     * @param newLastModifiedDate of Account.
      */
-    public void setLastModifiedDate(String lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
+    public void setLastModifiedDate(final String newLastModifiedDate) {
+        this.lastModifiedDate = newLastModifiedDate;
     }
 
     /**
@@ -936,10 +936,10 @@ public class Account {
     /**
      * Sets lastModifiedById of Account.
      *
-     * @param lastModifiedById of Account.
+     * @param newLastModifiedById of Account.
      */
-    public void setLastModifiedById(String lastModifiedById) {
-        this.lastModifiedById = lastModifiedById;
+    public void setLastModifiedById(final String newLastModifiedById) {
+        this.lastModifiedById = newLastModifiedById;
     }
 
     /**
@@ -954,10 +954,10 @@ public class Account {
     /**
      * Sets systemModStamp of Account.
      *
-     * @param systemModStamp of Account.
+     * @param newSystemModStamp of Account.
      */
-    public void setSystemModStamp(String systemModStamp) {
-        this.systemModStamp = systemModStamp;
+    public void setSystemModStamp(final String newSystemModStamp) {
+        this.systemModStamp = newSystemModStamp;
     }
 
     /**
@@ -972,10 +972,10 @@ public class Account {
     /**
      * Sets lastActivityDate of Account.
      *
-     * @param lastActivityDate of Account.
+     * @param newLastActivityDate of Account.
      */
-    public void setLastActivityDate(Object lastActivityDate) {
-        this.lastActivityDate = lastActivityDate;
+    public void setLastActivityDate(final Object newLastActivityDate) {
+        this.lastActivityDate = newLastActivityDate;
     }
 
     /**
@@ -990,10 +990,10 @@ public class Account {
     /**
      * Sets lastViewedDate of Account.
      *
-     * @param lastViewedDate of Account.
+     * @param newLastViewedDate of Account.
      */
-    public void setLastViewedDate(String lastViewedDate) {
-        this.lastViewedDate = lastViewedDate;
+    public void setLastViewedDate(final String newLastViewedDate) {
+        this.lastViewedDate = newLastViewedDate;
     }
 
     /**
@@ -1008,10 +1008,10 @@ public class Account {
     /**
      * Sets lastReferencedDate of Account.
      *
-     * @param lastReferencedDate of Account.
+     * @param newLastReferencedDate of Account.
      */
-    public void setLastReferencedDate(String lastReferencedDate) {
-        this.lastReferencedDate = lastReferencedDate;
+    public void setLastReferencedDate(final String newLastReferencedDate) {
+        this.lastReferencedDate = newLastReferencedDate;
     }
 
     /**
@@ -1026,10 +1026,10 @@ public class Account {
     /**
      * Sets jigsaw of Account.
      *
-     * @param jigsaw of Account.
+     * @param newJigsaw of Account.
      */
-    public void setJigsaw(Object jigsaw) {
-        this.jigsaw = jigsaw;
+    public void setJigsaw(final Object newJigsaw) {
+        this.jigsaw = newJigsaw;
     }
 
     /**
@@ -1044,10 +1044,10 @@ public class Account {
     /**
      * Sets jigsawCompanyId of Account.
      *
-     * @param jigsawCompanyId of Account.
+     * @param newJigsawCompanyId of Account.
      */
-    public void setJigsawCompanyId(Object jigsawCompanyId) {
-        this.jigsawCompanyId = jigsawCompanyId;
+    public void setJigsawCompanyId(final Object newJigsawCompanyId) {
+        this.jigsawCompanyId = newJigsawCompanyId;
     }
 
     /**
@@ -1062,10 +1062,10 @@ public class Account {
     /**
      * Sets cleanStatus of Account.
      *
-     * @param cleanStatus of Account.
+     * @param newCleanStatus of Account.
      */
-    public void setCleanStatus(String cleanStatus) {
-        this.cleanStatus = cleanStatus;
+    public void setCleanStatus(final String newCleanStatus) {
+        this.cleanStatus = newCleanStatus;
     }
 
     /**
@@ -1080,10 +1080,10 @@ public class Account {
     /**
      * Sets accountSource of Account.
      *
-     * @param accountSource of Account.
+     * @param newAccountSource of Account.
      */
-    public void setAccountSource(Object accountSource) {
-        this.accountSource = accountSource;
+    public void setAccountSource(final Object newAccountSource) {
+        this.accountSource = newAccountSource;
     }
 
     /**
@@ -1098,10 +1098,10 @@ public class Account {
     /**
      * Sets dunsNumber of Account.
      *
-     * @param dunsNumber of Account.
+     * @param newDunsNumber of Account.
      */
-    public void setDunsNumber(Object dunsNumber) {
-        this.dunsNumber = dunsNumber;
+    public void setDunsNumber(final Object newDunsNumber) {
+        this.dunsNumber = newDunsNumber;
     }
 
     /**
@@ -1116,10 +1116,10 @@ public class Account {
     /**
      * Sets tradeStyle of Account.
      *
-     * @param tradeStyle of Account.
+     * @param newTradeStyle of Account.
      */
-    public void setTradeStyle(Object tradeStyle) {
-        this.tradeStyle = tradeStyle;
+    public void setTradeStyle(final Object newTradeStyle) {
+        this.tradeStyle = newTradeStyle;
     }
 
     /**
@@ -1134,10 +1134,10 @@ public class Account {
     /**
      * Sets naiCsCode of Account.
      *
-     * @param naiCsCode of Account.
+     * @param newNaiCsCode of Account.
      */
-    public void setNaiCsCode(Object naiCsCode) {
-        this.naiCsCode = naiCsCode;
+    public void setNaiCsCode(final Object newNaiCsCode) {
+        this.naiCsCode = newNaiCsCode;
     }
 
     /**
@@ -1152,10 +1152,10 @@ public class Account {
     /**
      * Sets naiCsDesc of Account.
      *
-     * @param naiCsDesc of Account.
+     * @param newNaiCsDesc of Account.
      */
-    public void setNaiCsDesc(Object naiCsDesc) {
-        this.naiCsDesc = naiCsDesc;
+    public void setNaiCsDesc(final Object newNaiCsDesc) {
+        this.naiCsDesc = newNaiCsDesc;
     }
 
     /**
@@ -1170,10 +1170,10 @@ public class Account {
     /**
      * Sets yearStarted of Account.
      *
-     * @param yearStarted of Account.
+     * @param newYearStarted of Account.
      */
-    public void setYearStarted(Object yearStarted) {
-        this.yearStarted = yearStarted;
+    public void setYearStarted(final Object newYearStarted) {
+        this.yearStarted = newYearStarted;
     }
 
     /**
@@ -1188,10 +1188,10 @@ public class Account {
     /**
      * Sets sicDesc of Account.
      *
-     * @param sicDesc of Account.
+     * @param newSicDesc of Account.
      */
-    public void setSicDesc(Object sicDesc) {
-        this.sicDesc = sicDesc;
+    public void setSicDesc(final Object newSicDesc) {
+        this.sicDesc = newSicDesc;
     }
 
     /**
@@ -1206,10 +1206,10 @@ public class Account {
     /**
      * Sets danDbCompanyId of Account.
      *
-     * @param danDbCompanyId of Account.
+     * @param newDanDbCompanyId of Account.
      */
-    public void setDanDbCompanyId(Object danDbCompanyId) {
-        this.danDbCompanyId = danDbCompanyId;
+    public void setDanDbCompanyId(final Object newDanDbCompanyId) {
+        this.danDbCompanyId = newDanDbCompanyId;
     }
 
     /**
@@ -1224,10 +1224,10 @@ public class Account {
     /**
      * Sets operatingHoursId of Account.
      *
-     * @param operatingHoursId of Account.
+     * @param newOperatingHoursId of Account.
      */
-    public void setOperatingHoursId(Object operatingHoursId) {
-        this.operatingHoursId = operatingHoursId;
+    public void setOperatingHoursId(final Object newOperatingHoursId) {
+        this.operatingHoursId = newOperatingHoursId;
     }
 
     /**
@@ -1242,10 +1242,10 @@ public class Account {
     /**
      * Sets customerPriorityC of Account.
      *
-     * @param customerPriorityC of Account.
+     * @param newCustomerPriorityC of Account.
      */
-    public void setCustomerPriorityC(String customerPriorityC) {
-        this.customerPriorityC = customerPriorityC;
+    public void setCustomerPriorityC(final String newCustomerPriorityC) {
+        this.customerPriorityC = newCustomerPriorityC;
     }
 
     /**
@@ -1260,10 +1260,10 @@ public class Account {
     /**
      * Sets slaC of Account.
      *
-     * @param slaC of Account.
+     * @param newSlaC of Account.
      */
-    public void setSlaC(String slaC) {
-        this.slaC = slaC;
+    public void setSlaC(final String newSlaC) {
+        this.slaC = newSlaC;
     }
 
     /**
@@ -1278,10 +1278,10 @@ public class Account {
     /**
      * Sets activeC of Account.
      *
-     * @param activeC of Account.
+     * @param newActiveC of Account.
      */
-    public void setActiveC(String activeC) {
-        this.activeC = activeC;
+    public void setActiveC(final String newActiveC) {
+        this.activeC = newActiveC;
     }
 
     /**
@@ -1296,10 +1296,10 @@ public class Account {
     /**
      * Sets numberOfLocationsC of Account.
      *
-     * @param numberOfLocationsC of Account.
+     * @param newNumberOfLocationsC of Account.
      */
-    public void setNumberOfLocationsC(Double numberOfLocationsC) {
-        this.numberOfLocationsC = numberOfLocationsC;
+    public void setNumberOfLocationsC(final Double newNumberOfLocationsC) {
+        this.numberOfLocationsC = newNumberOfLocationsC;
     }
 
     /**
@@ -1307,17 +1307,17 @@ public class Account {
      *
      * @return upsellOpportunityC of Account.
      */
-    public String getUpsellOpportunity__c() {
+    public String getUpsellOpportunityC() {
         return upsellOpportunityC;
     }
 
     /**
      * Sets upsellOpportunityC of Account.
      *
-     * @param upsellOpportunityC of Account.
+     * @param newUpsellOpportunityC of Account.
      */
-    public void setUpsellOpportunityC(String upsellOpportunityC) {
-        this.upsellOpportunityC = upsellOpportunityC;
+    public void setUpsellOpportunityC(final String newUpsellOpportunityC) {
+        this.upsellOpportunityC = newUpsellOpportunityC;
     }
 
     /**
@@ -1332,10 +1332,10 @@ public class Account {
     /**
      * Sets slaSerialNumberC of Account.
      *
-     * @param slaSerialNumberC of Account.
+     * @param newSlaSerialNumberC of Account.
      */
-    public void setSlaSerialNumberC(String slaSerialNumberC) {
-        this.slaSerialNumberC = slaSerialNumberC;
+    public void setSlaSerialNumberC(final String newSlaSerialNumberC) {
+        this.slaSerialNumberC = newSlaSerialNumberC;
     }
 
     /**
@@ -1350,9 +1350,9 @@ public class Account {
     /**
      * Sets slaExpirationDateC of Account.
      *
-     * @param slaExpirationDateC of Account.
+     * @param newSlaExpirationDateC of Account.
      */
-    public void setSlaExpirationDateC(String slaExpirationDateC) {
-        this.slaExpirationDateC = slaExpirationDateC;
+    public void setSlaExpirationDateC(final String newSlaExpirationDateC) {
+        this.slaExpirationDateC = newSlaExpirationDateC;
     }
 }

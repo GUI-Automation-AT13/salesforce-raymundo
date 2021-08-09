@@ -133,4 +133,27 @@ public class WebElementAction {
                     .getWebDriverConfig().getImplicitWaitTime(), TimeUnit.MILLISECONDS);
         }
     }
+
+    /**
+     * Gets the current web site's url.
+     *
+     * @return a String with the url
+     */
+    public String getSiteCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
+
+    /**
+     * Selects an option of a dropdown menu.
+     *
+     * @param webElement the dropdown menu
+     * @param value the value to choose
+     * @param xpath the displayed values xpath
+     */
+    public void selectOnDropDownMenu(final WebElement webElement, final String value,
+                                     final String xpath) {
+        wait.until(ExpectedConditions.visibilityOf(webElement));
+        webElement.click();
+        driver.findElement(By.xpath(String.format(xpath, value))).click();
+    }
 }
